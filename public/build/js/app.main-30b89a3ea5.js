@@ -10251,6 +10251,1319 @@ function format (id) {
 
 },{}],4:[function(require,module,exports){
 /*!
+ * vue-resource v0.9.3
+ * https://github.com/vuejs/vue-resource
+ * Released under the MIT License.
+ */
+
+'use strict';
+
+/**
+ * Promises/A+ polyfill v1.1.4 (https://github.com/bramstein/promis)
+ */
+
+var RESOLVED = 0;
+var REJECTED = 1;
+var PENDING = 2;
+
+function Promise$2(executor) {
+
+    this.state = PENDING;
+    this.value = undefined;
+    this.deferred = [];
+
+    var promise = this;
+
+    try {
+        executor(function (x) {
+            promise.resolve(x);
+        }, function (r) {
+            promise.reject(r);
+        });
+    } catch (e) {
+        promise.reject(e);
+    }
+}
+
+Promise$2.reject = function (r) {
+    return new Promise$2(function (resolve, reject) {
+        reject(r);
+    });
+};
+
+Promise$2.resolve = function (x) {
+    return new Promise$2(function (resolve, reject) {
+        resolve(x);
+    });
+};
+
+Promise$2.all = function all(iterable) {
+    return new Promise$2(function (resolve, reject) {
+        var count = 0,
+            result = [];
+
+        if (iterable.length === 0) {
+            resolve(result);
+        }
+
+        function resolver(i) {
+            return function (x) {
+                result[i] = x;
+                count += 1;
+
+                if (count === iterable.length) {
+                    resolve(result);
+                }
+            };
+        }
+
+        for (var i = 0; i < iterable.length; i += 1) {
+            Promise$2.resolve(iterable[i]).then(resolver(i), reject);
+        }
+    });
+};
+
+Promise$2.race = function race(iterable) {
+    return new Promise$2(function (resolve, reject) {
+        for (var i = 0; i < iterable.length; i += 1) {
+            Promise$2.resolve(iterable[i]).then(resolve, reject);
+        }
+    });
+};
+
+var p$1 = Promise$2.prototype;
+
+p$1.resolve = function resolve(x) {
+    var promise = this;
+
+    if (promise.state === PENDING) {
+        if (x === promise) {
+            throw new TypeError('Promise settled with itself.');
+        }
+
+        var called = false;
+
+        try {
+            var then = x && x['then'];
+
+            if (x !== null && typeof x === 'object' && typeof then === 'function') {
+                then.call(x, function (x) {
+                    if (!called) {
+                        promise.resolve(x);
+                    }
+                    called = true;
+                }, function (r) {
+                    if (!called) {
+                        promise.reject(r);
+                    }
+                    called = true;
+                });
+                return;
+            }
+        } catch (e) {
+            if (!called) {
+                promise.reject(e);
+            }
+            return;
+        }
+
+        promise.state = RESOLVED;
+        promise.value = x;
+        promise.notify();
+    }
+};
+
+p$1.reject = function reject(reason) {
+    var promise = this;
+
+    if (promise.state === PENDING) {
+        if (reason === promise) {
+            throw new TypeError('Promise settled with itself.');
+        }
+
+        promise.state = REJECTED;
+        promise.value = reason;
+        promise.notify();
+    }
+};
+
+p$1.notify = function notify() {
+    var promise = this;
+
+    nextTick(function () {
+        if (promise.state !== PENDING) {
+            while (promise.deferred.length) {
+                var deferred = promise.deferred.shift(),
+                    onResolved = deferred[0],
+                    onRejected = deferred[1],
+                    resolve = deferred[2],
+                    reject = deferred[3];
+
+                try {
+                    if (promise.state === RESOLVED) {
+                        if (typeof onResolved === 'function') {
+                            resolve(onResolved.call(undefined, promise.value));
+                        } else {
+                            resolve(promise.value);
+                        }
+                    } else if (promise.state === REJECTED) {
+                        if (typeof onRejected === 'function') {
+                            resolve(onRejected.call(undefined, promise.value));
+                        } else {
+                            reject(promise.value);
+                        }
+                    }
+                } catch (e) {
+                    reject(e);
+                }
+            }
+        }
+    });
+};
+
+p$1.then = function then(onResolved, onRejected) {
+    var promise = this;
+
+    return new Promise$2(function (resolve, reject) {
+        promise.deferred.push([onResolved, onRejected, resolve, reject]);
+        promise.notify();
+    });
+};
+
+p$1.catch = function (onRejected) {
+    return this.then(undefined, onRejected);
+};
+
+var PromiseObj = window.Promise || Promise$2;
+
+function Promise$1(executor, context) {
+
+    if (executor instanceof PromiseObj) {
+        this.promise = executor;
+    } else {
+        this.promise = new PromiseObj(executor.bind(context));
+    }
+
+    this.context = context;
+}
+
+Promise$1.all = function (iterable, context) {
+    return new Promise$1(PromiseObj.all(iterable), context);
+};
+
+Promise$1.resolve = function (value, context) {
+    return new Promise$1(PromiseObj.resolve(value), context);
+};
+
+Promise$1.reject = function (reason, context) {
+    return new Promise$1(PromiseObj.reject(reason), context);
+};
+
+Promise$1.race = function (iterable, context) {
+    return new Promise$1(PromiseObj.race(iterable), context);
+};
+
+var p = Promise$1.prototype;
+
+p.bind = function (context) {
+    this.context = context;
+    return this;
+};
+
+p.then = function (fulfilled, rejected) {
+
+    if (fulfilled && fulfilled.bind && this.context) {
+        fulfilled = fulfilled.bind(this.context);
+    }
+
+    if (rejected && rejected.bind && this.context) {
+        rejected = rejected.bind(this.context);
+    }
+
+    return new Promise$1(this.promise.then(fulfilled, rejected), this.context);
+};
+
+p.catch = function (rejected) {
+
+    if (rejected && rejected.bind && this.context) {
+        rejected = rejected.bind(this.context);
+    }
+
+    return new Promise$1(this.promise.catch(rejected), this.context);
+};
+
+p.finally = function (callback) {
+
+    return this.then(function (value) {
+        callback.call(this);
+        return value;
+    }, function (reason) {
+        callback.call(this);
+        return PromiseObj.reject(reason);
+    });
+};
+
+var debug = false;
+var util = {};
+var array = [];
+function Util (Vue) {
+    util = Vue.util;
+    debug = Vue.config.debug || !Vue.config.silent;
+}
+
+function warn(msg) {
+    if (typeof console !== 'undefined' && debug) {
+        console.warn('[VueResource warn]: ' + msg);
+    }
+}
+
+function error(msg) {
+    if (typeof console !== 'undefined') {
+        console.error(msg);
+    }
+}
+
+function nextTick(cb, ctx) {
+    return util.nextTick(cb, ctx);
+}
+
+function trim(str) {
+    return str.replace(/^\s*|\s*$/g, '');
+}
+
+var isArray = Array.isArray;
+
+function isString(val) {
+    return typeof val === 'string';
+}
+
+function isBoolean(val) {
+    return val === true || val === false;
+}
+
+function isFunction(val) {
+    return typeof val === 'function';
+}
+
+function isObject(obj) {
+    return obj !== null && typeof obj === 'object';
+}
+
+function isPlainObject(obj) {
+    return isObject(obj) && Object.getPrototypeOf(obj) == Object.prototype;
+}
+
+function isFormData(obj) {
+    return typeof FormData !== 'undefined' && obj instanceof FormData;
+}
+
+function when(value, fulfilled, rejected) {
+
+    var promise = Promise$1.resolve(value);
+
+    if (arguments.length < 2) {
+        return promise;
+    }
+
+    return promise.then(fulfilled, rejected);
+}
+
+function options(fn, obj, opts) {
+
+    opts = opts || {};
+
+    if (isFunction(opts)) {
+        opts = opts.call(obj);
+    }
+
+    return merge(fn.bind({ $vm: obj, $options: opts }), fn, { $options: opts });
+}
+
+function each(obj, iterator) {
+
+    var i, key;
+
+    if (typeof obj.length == 'number') {
+        for (i = 0; i < obj.length; i++) {
+            iterator.call(obj[i], obj[i], i);
+        }
+    } else if (isObject(obj)) {
+        for (key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                iterator.call(obj[key], obj[key], key);
+            }
+        }
+    }
+
+    return obj;
+}
+
+var assign = Object.assign || _assign;
+
+function merge(target) {
+
+    var args = array.slice.call(arguments, 1);
+
+    args.forEach(function (source) {
+        _merge(target, source, true);
+    });
+
+    return target;
+}
+
+function defaults(target) {
+
+    var args = array.slice.call(arguments, 1);
+
+    args.forEach(function (source) {
+
+        for (var key in source) {
+            if (target[key] === undefined) {
+                target[key] = source[key];
+            }
+        }
+    });
+
+    return target;
+}
+
+function _assign(target) {
+
+    var args = array.slice.call(arguments, 1);
+
+    args.forEach(function (source) {
+        _merge(target, source);
+    });
+
+    return target;
+}
+
+function _merge(target, source, deep) {
+    for (var key in source) {
+        if (deep && (isPlainObject(source[key]) || isArray(source[key]))) {
+            if (isPlainObject(source[key]) && !isPlainObject(target[key])) {
+                target[key] = {};
+            }
+            if (isArray(source[key]) && !isArray(target[key])) {
+                target[key] = [];
+            }
+            _merge(target[key], source[key], deep);
+        } else if (source[key] !== undefined) {
+            target[key] = source[key];
+        }
+    }
+}
+
+function root (options, next) {
+
+    var url = next(options);
+
+    if (isString(options.root) && !url.match(/^(https?:)?\//)) {
+        url = options.root + '/' + url;
+    }
+
+    return url;
+}
+
+function query (options, next) {
+
+    var urlParams = Object.keys(Url.options.params),
+        query = {},
+        url = next(options);
+
+    each(options.params, function (value, key) {
+        if (urlParams.indexOf(key) === -1) {
+            query[key] = value;
+        }
+    });
+
+    query = Url.params(query);
+
+    if (query) {
+        url += (url.indexOf('?') == -1 ? '?' : '&') + query;
+    }
+
+    return url;
+}
+
+/**
+ * URL Template v2.0.6 (https://github.com/bramstein/url-template)
+ */
+
+function expand(url, params, variables) {
+
+    var tmpl = parse(url),
+        expanded = tmpl.expand(params);
+
+    if (variables) {
+        variables.push.apply(variables, tmpl.vars);
+    }
+
+    return expanded;
+}
+
+function parse(template) {
+
+    var operators = ['+', '#', '.', '/', ';', '?', '&'],
+        variables = [];
+
+    return {
+        vars: variables,
+        expand: function (context) {
+            return template.replace(/\{([^\{\}]+)\}|([^\{\}]+)/g, function (_, expression, literal) {
+                if (expression) {
+
+                    var operator = null,
+                        values = [];
+
+                    if (operators.indexOf(expression.charAt(0)) !== -1) {
+                        operator = expression.charAt(0);
+                        expression = expression.substr(1);
+                    }
+
+                    expression.split(/,/g).forEach(function (variable) {
+                        var tmp = /([^:\*]*)(?::(\d+)|(\*))?/.exec(variable);
+                        values.push.apply(values, getValues(context, operator, tmp[1], tmp[2] || tmp[3]));
+                        variables.push(tmp[1]);
+                    });
+
+                    if (operator && operator !== '+') {
+
+                        var separator = ',';
+
+                        if (operator === '?') {
+                            separator = '&';
+                        } else if (operator !== '#') {
+                            separator = operator;
+                        }
+
+                        return (values.length !== 0 ? operator : '') + values.join(separator);
+                    } else {
+                        return values.join(',');
+                    }
+                } else {
+                    return encodeReserved(literal);
+                }
+            });
+        }
+    };
+}
+
+function getValues(context, operator, key, modifier) {
+
+    var value = context[key],
+        result = [];
+
+    if (isDefined(value) && value !== '') {
+        if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
+            value = value.toString();
+
+            if (modifier && modifier !== '*') {
+                value = value.substring(0, parseInt(modifier, 10));
+            }
+
+            result.push(encodeValue(operator, value, isKeyOperator(operator) ? key : null));
+        } else {
+            if (modifier === '*') {
+                if (Array.isArray(value)) {
+                    value.filter(isDefined).forEach(function (value) {
+                        result.push(encodeValue(operator, value, isKeyOperator(operator) ? key : null));
+                    });
+                } else {
+                    Object.keys(value).forEach(function (k) {
+                        if (isDefined(value[k])) {
+                            result.push(encodeValue(operator, value[k], k));
+                        }
+                    });
+                }
+            } else {
+                var tmp = [];
+
+                if (Array.isArray(value)) {
+                    value.filter(isDefined).forEach(function (value) {
+                        tmp.push(encodeValue(operator, value));
+                    });
+                } else {
+                    Object.keys(value).forEach(function (k) {
+                        if (isDefined(value[k])) {
+                            tmp.push(encodeURIComponent(k));
+                            tmp.push(encodeValue(operator, value[k].toString()));
+                        }
+                    });
+                }
+
+                if (isKeyOperator(operator)) {
+                    result.push(encodeURIComponent(key) + '=' + tmp.join(','));
+                } else if (tmp.length !== 0) {
+                    result.push(tmp.join(','));
+                }
+            }
+        }
+    } else {
+        if (operator === ';') {
+            result.push(encodeURIComponent(key));
+        } else if (value === '' && (operator === '&' || operator === '?')) {
+            result.push(encodeURIComponent(key) + '=');
+        } else if (value === '') {
+            result.push('');
+        }
+    }
+
+    return result;
+}
+
+function isDefined(value) {
+    return value !== undefined && value !== null;
+}
+
+function isKeyOperator(operator) {
+    return operator === ';' || operator === '&' || operator === '?';
+}
+
+function encodeValue(operator, value, key) {
+
+    value = operator === '+' || operator === '#' ? encodeReserved(value) : encodeURIComponent(value);
+
+    if (key) {
+        return encodeURIComponent(key) + '=' + value;
+    } else {
+        return value;
+    }
+}
+
+function encodeReserved(str) {
+    return str.split(/(%[0-9A-Fa-f]{2})/g).map(function (part) {
+        if (!/%[0-9A-Fa-f]/.test(part)) {
+            part = encodeURI(part);
+        }
+        return part;
+    }).join('');
+}
+
+function template (options) {
+
+    var variables = [],
+        url = expand(options.url, options.params, variables);
+
+    variables.forEach(function (key) {
+        delete options.params[key];
+    });
+
+    return url;
+}
+
+/**
+ * Service for URL templating.
+ */
+
+var ie = document.documentMode;
+var el = document.createElement('a');
+
+function Url(url, params) {
+
+    var self = this || {},
+        options = url,
+        transform;
+
+    if (isString(url)) {
+        options = { url: url, params: params };
+    }
+
+    options = merge({}, Url.options, self.$options, options);
+
+    Url.transforms.forEach(function (handler) {
+        transform = factory(handler, transform, self.$vm);
+    });
+
+    return transform(options);
+}
+
+/**
+ * Url options.
+ */
+
+Url.options = {
+    url: '',
+    root: null,
+    params: {}
+};
+
+/**
+ * Url transforms.
+ */
+
+Url.transforms = [template, query, root];
+
+/**
+ * Encodes a Url parameter string.
+ *
+ * @param {Object} obj
+ */
+
+Url.params = function (obj) {
+
+    var params = [],
+        escape = encodeURIComponent;
+
+    params.add = function (key, value) {
+
+        if (isFunction(value)) {
+            value = value();
+        }
+
+        if (value === null) {
+            value = '';
+        }
+
+        this.push(escape(key) + '=' + escape(value));
+    };
+
+    serialize(params, obj);
+
+    return params.join('&').replace(/%20/g, '+');
+};
+
+/**
+ * Parse a URL and return its components.
+ *
+ * @param {String} url
+ */
+
+Url.parse = function (url) {
+
+    if (ie) {
+        el.href = url;
+        url = el.href;
+    }
+
+    el.href = url;
+
+    return {
+        href: el.href,
+        protocol: el.protocol ? el.protocol.replace(/:$/, '') : '',
+        port: el.port,
+        host: el.host,
+        hostname: el.hostname,
+        pathname: el.pathname.charAt(0) === '/' ? el.pathname : '/' + el.pathname,
+        search: el.search ? el.search.replace(/^\?/, '') : '',
+        hash: el.hash ? el.hash.replace(/^#/, '') : ''
+    };
+};
+
+function factory(handler, next, vm) {
+    return function (options) {
+        return handler.call(vm, options, next);
+    };
+}
+
+function serialize(params, obj, scope) {
+
+    var array = isArray(obj),
+        plain = isPlainObject(obj),
+        hash;
+
+    each(obj, function (value, key) {
+
+        hash = isObject(value) || isArray(value);
+
+        if (scope) {
+            key = scope + '[' + (plain || hash ? key : '') + ']';
+        }
+
+        if (!scope && array) {
+            params.add(value.name, value.value);
+        } else if (hash) {
+            serialize(params, value, key);
+        } else {
+            params.add(key, value);
+        }
+    });
+}
+
+function xdrClient (request) {
+    return new Promise$1(function (resolve) {
+
+        var xdr = new XDomainRequest(),
+            handler = function (event) {
+
+            var response = request.respondWith(xdr.responseText, {
+                status: xdr.status,
+                statusText: xdr.statusText
+            });
+
+            resolve(response);
+        };
+
+        request.abort = function () {
+            return xdr.abort();
+        };
+
+        xdr.open(request.method, request.getUrl(), true);
+        xdr.timeout = 0;
+        xdr.onload = handler;
+        xdr.onerror = handler;
+        xdr.ontimeout = function () {};
+        xdr.onprogress = function () {};
+        xdr.send(request.getBody());
+    });
+}
+
+var ORIGIN_URL = Url.parse(location.href);
+var SUPPORTS_CORS = 'withCredentials' in new XMLHttpRequest();
+
+function cors (request, next) {
+
+    if (!isBoolean(request.crossOrigin) && crossOrigin(request)) {
+        request.crossOrigin = true;
+    }
+
+    if (request.crossOrigin) {
+
+        if (!SUPPORTS_CORS) {
+            request.client = xdrClient;
+        }
+
+        delete request.emulateHTTP;
+    }
+
+    next();
+}
+
+function crossOrigin(request) {
+
+    var requestUrl = Url.parse(Url(request));
+
+    return requestUrl.protocol !== ORIGIN_URL.protocol || requestUrl.host !== ORIGIN_URL.host;
+}
+
+function body (request, next) {
+
+    if (request.emulateJSON && isPlainObject(request.body)) {
+        request.body = Url.params(request.body);
+        request.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+    }
+
+    if (isFormData(request.body)) {
+        delete request.headers['Content-Type'];
+    }
+
+    if (isPlainObject(request.body)) {
+        request.body = JSON.stringify(request.body);
+    }
+
+    next(function (response) {
+
+        var contentType = response.headers['Content-Type'];
+
+        if (isString(contentType) && contentType.indexOf('application/json') === 0) {
+
+            try {
+                response.data = response.json();
+            } catch (e) {
+                response.data = null;
+            }
+        } else {
+            response.data = response.text();
+        }
+    });
+}
+
+function jsonpClient (request) {
+    return new Promise$1(function (resolve) {
+
+        var name = request.jsonp || 'callback',
+            callback = '_jsonp' + Math.random().toString(36).substr(2),
+            body = null,
+            handler,
+            script;
+
+        handler = function (event) {
+
+            var status = 0;
+
+            if (event.type === 'load' && body !== null) {
+                status = 200;
+            } else if (event.type === 'error') {
+                status = 404;
+            }
+
+            resolve(request.respondWith(body, { status: status }));
+
+            delete window[callback];
+            document.body.removeChild(script);
+        };
+
+        request.params[name] = callback;
+
+        window[callback] = function (result) {
+            body = JSON.stringify(result);
+        };
+
+        script = document.createElement('script');
+        script.src = request.getUrl();
+        script.type = 'text/javascript';
+        script.async = true;
+        script.onload = handler;
+        script.onerror = handler;
+
+        document.body.appendChild(script);
+    });
+}
+
+function jsonp (request, next) {
+
+    if (request.method == 'JSONP') {
+        request.client = jsonpClient;
+    }
+
+    next(function (response) {
+
+        if (request.method == 'JSONP') {
+            response.data = response.json();
+        }
+    });
+}
+
+function before (request, next) {
+
+    if (isFunction(request.before)) {
+        request.before.call(this, request);
+    }
+
+    next();
+}
+
+/**
+ * HTTP method override Interceptor.
+ */
+
+function method (request, next) {
+
+    if (request.emulateHTTP && /^(PUT|PATCH|DELETE)$/i.test(request.method)) {
+        request.headers['X-HTTP-Method-Override'] = request.method;
+        request.method = 'POST';
+    }
+
+    next();
+}
+
+function header (request, next) {
+
+    request.method = request.method.toUpperCase();
+    request.headers = assign({}, Http.headers.common, !request.crossOrigin ? Http.headers.custom : {}, Http.headers[request.method.toLowerCase()], request.headers);
+
+    next();
+}
+
+/**
+ * Timeout Interceptor.
+ */
+
+function timeout (request, next) {
+
+    var timeout;
+
+    if (request.timeout) {
+        timeout = setTimeout(function () {
+            request.abort();
+        }, request.timeout);
+    }
+
+    next(function (response) {
+
+        clearTimeout(timeout);
+    });
+}
+
+function xhrClient (request) {
+    return new Promise$1(function (resolve) {
+
+        var xhr = new XMLHttpRequest(),
+            handler = function (event) {
+
+            var response = request.respondWith('response' in xhr ? xhr.response : xhr.responseText, {
+                status: xhr.status === 1223 ? 204 : xhr.status, // IE9 status bug
+                statusText: xhr.status === 1223 ? 'No Content' : trim(xhr.statusText),
+                headers: parseHeaders(xhr.getAllResponseHeaders())
+            });
+
+            resolve(response);
+        };
+
+        request.abort = function () {
+            return xhr.abort();
+        };
+
+        xhr.open(request.method, request.getUrl(), true);
+        xhr.timeout = 0;
+        xhr.onload = handler;
+        xhr.onerror = handler;
+
+        if (request.progress) {
+            if (request.method === 'GET') {
+                xhr.addEventListener('progress', request.progress);
+            } else if (/^(POST|PUT)$/i.test(request.method)) {
+                xhr.upload.addEventListener('progress', request.progress);
+            }
+        }
+
+        if (request.credentials === true) {
+            xhr.withCredentials = true;
+        }
+
+        each(request.headers || {}, function (value, header) {
+            xhr.setRequestHeader(header, value);
+        });
+
+        xhr.send(request.getBody());
+    });
+}
+
+function parseHeaders(str) {
+
+    var headers = {},
+        value,
+        name,
+        i;
+
+    each(trim(str).split('\n'), function (row) {
+
+        i = row.indexOf(':');
+        name = trim(row.slice(0, i));
+        value = trim(row.slice(i + 1));
+
+        if (headers[name]) {
+
+            if (isArray(headers[name])) {
+                headers[name].push(value);
+            } else {
+                headers[name] = [headers[name], value];
+            }
+        } else {
+
+            headers[name] = value;
+        }
+    });
+
+    return headers;
+}
+
+function Client (context) {
+
+    var reqHandlers = [sendRequest],
+        resHandlers = [],
+        handler;
+
+    if (!isObject(context)) {
+        context = null;
+    }
+
+    function Client(request) {
+        return new Promise$1(function (resolve) {
+
+            function exec() {
+
+                handler = reqHandlers.pop();
+
+                if (isFunction(handler)) {
+                    handler.call(context, request, next);
+                } else {
+                    warn('Invalid interceptor of type ' + typeof handler + ', must be a function');
+                    next();
+                }
+            }
+
+            function next(response) {
+
+                if (isFunction(response)) {
+
+                    resHandlers.unshift(response);
+                } else if (isObject(response)) {
+
+                    resHandlers.forEach(function (handler) {
+                        response = when(response, function (response) {
+                            return handler.call(context, response) || response;
+                        });
+                    });
+
+                    when(response, resolve);
+
+                    return;
+                }
+
+                exec();
+            }
+
+            exec();
+        }, context);
+    }
+
+    Client.use = function (handler) {
+        reqHandlers.push(handler);
+    };
+
+    return Client;
+}
+
+function sendRequest(request, resolve) {
+
+    var client = request.client || xhrClient;
+
+    resolve(client(request));
+}
+
+var classCallCheck = function (instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+};
+
+/**
+ * HTTP Response.
+ */
+
+var Response = function () {
+    function Response(body, _ref) {
+        var url = _ref.url;
+        var headers = _ref.headers;
+        var status = _ref.status;
+        var statusText = _ref.statusText;
+        classCallCheck(this, Response);
+
+
+        this.url = url;
+        this.body = body;
+        this.headers = headers || {};
+        this.status = status || 0;
+        this.statusText = statusText || '';
+        this.ok = status >= 200 && status < 300;
+    }
+
+    Response.prototype.text = function text() {
+        return this.body;
+    };
+
+    Response.prototype.blob = function blob() {
+        return new Blob([this.body]);
+    };
+
+    Response.prototype.json = function json() {
+        return JSON.parse(this.body);
+    };
+
+    return Response;
+}();
+
+var Request = function () {
+    function Request(options) {
+        classCallCheck(this, Request);
+
+
+        this.method = 'GET';
+        this.body = null;
+        this.params = {};
+        this.headers = {};
+
+        assign(this, options);
+    }
+
+    Request.prototype.getUrl = function getUrl() {
+        return Url(this);
+    };
+
+    Request.prototype.getBody = function getBody() {
+        return this.body;
+    };
+
+    Request.prototype.respondWith = function respondWith(body, options) {
+        return new Response(body, assign(options || {}, { url: this.getUrl() }));
+    };
+
+    return Request;
+}();
+
+/**
+ * Service for sending network requests.
+ */
+
+var CUSTOM_HEADERS = { 'X-Requested-With': 'XMLHttpRequest' };
+var COMMON_HEADERS = { 'Accept': 'application/json, text/plain, */*' };
+var JSON_CONTENT_TYPE = { 'Content-Type': 'application/json;charset=utf-8' };
+
+function Http(options) {
+
+    var self = this || {},
+        client = Client(self.$vm);
+
+    defaults(options || {}, self.$options, Http.options);
+
+    Http.interceptors.forEach(function (handler) {
+        client.use(handler);
+    });
+
+    return client(new Request(options)).then(function (response) {
+
+        return response.ok ? response : Promise$1.reject(response);
+    }, function (response) {
+
+        if (response instanceof Error) {
+            error(response);
+        }
+
+        return Promise$1.reject(response);
+    });
+}
+
+Http.options = {};
+
+Http.headers = {
+    put: JSON_CONTENT_TYPE,
+    post: JSON_CONTENT_TYPE,
+    patch: JSON_CONTENT_TYPE,
+    delete: JSON_CONTENT_TYPE,
+    custom: CUSTOM_HEADERS,
+    common: COMMON_HEADERS
+};
+
+Http.interceptors = [before, timeout, method, body, jsonp, header, cors];
+
+['get', 'delete', 'head', 'jsonp'].forEach(function (method) {
+
+    Http[method] = function (url, options) {
+        return this(assign(options || {}, { url: url, method: method }));
+    };
+});
+
+['post', 'put', 'patch'].forEach(function (method) {
+
+    Http[method] = function (url, body, options) {
+        return this(assign(options || {}, { url: url, method: method, body: body }));
+    };
+});
+
+function Resource(url, params, actions, options) {
+
+    var self = this || {},
+        resource = {};
+
+    actions = assign({}, Resource.actions, actions);
+
+    each(actions, function (action, name) {
+
+        action = merge({ url: url, params: params || {} }, options, action);
+
+        resource[name] = function () {
+            return (self.$http || Http)(opts(action, arguments));
+        };
+    });
+
+    return resource;
+}
+
+function opts(action, args) {
+
+    var options = assign({}, action),
+        params = {},
+        body;
+
+    switch (args.length) {
+
+        case 2:
+
+            params = args[0];
+            body = args[1];
+
+            break;
+
+        case 1:
+
+            if (/^(POST|PUT|PATCH)$/i.test(options.method)) {
+                body = args[0];
+            } else {
+                params = args[0];
+            }
+
+            break;
+
+        case 0:
+
+            break;
+
+        default:
+
+            throw 'Expected up to 4 arguments [params, body], got ' + args.length + ' arguments';
+    }
+
+    options.body = body;
+    options.params = assign({}, options.params, params);
+
+    return options;
+}
+
+Resource.actions = {
+
+    get: { method: 'GET' },
+    save: { method: 'POST' },
+    query: { method: 'GET' },
+    update: { method: 'PUT' },
+    remove: { method: 'DELETE' },
+    delete: { method: 'DELETE' }
+
+};
+
+function plugin(Vue) {
+
+    if (plugin.installed) {
+        return;
+    }
+
+    Util(Vue);
+
+    Vue.url = Url;
+    Vue.http = Http;
+    Vue.resource = Resource;
+    Vue.Promise = Promise$1;
+
+    Object.defineProperties(Vue.prototype, {
+
+        $url: {
+            get: function () {
+                return options(Vue.url, this, this.$options.url);
+            }
+        },
+
+        $http: {
+            get: function () {
+                return options(Vue.http, this, this.$options.http);
+            }
+        },
+
+        $resource: {
+            get: function () {
+                return Vue.resource.bind(this);
+            }
+        },
+
+        $promise: {
+            get: function () {
+                var _this = this;
+
+                return function (executor) {
+                    return new Vue.Promise(executor, _this);
+                };
+            }
+        }
+
+    });
+}
+
+if (typeof window !== 'undefined' && window.Vue) {
+    window.Vue.use(plugin);
+}
+
+module.exports = plugin;
+},{}],5:[function(require,module,exports){
+/*!
  * vue-router v0.7.13
  * (c) 2016 Evan You
  * Released under the MIT License.
@@ -12959,7 +14272,7 @@ function format (id) {
   return Router;
 
 }));
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 (function (process,global){
 /*!
  * Vue.js v1.0.26
@@ -23036,7 +24349,7 @@ setTimeout(function () {
 
 module.exports = Vue;
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"_process":2}],6:[function(require,module,exports){
+},{"_process":2}],7:[function(require,module,exports){
 var inserted = exports.cache = {}
 
 exports.insert = function (css) {
@@ -23056,7 +24369,7 @@ exports.insert = function (css) {
   return elem
 }
 
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 exports.sync = function (store, router) {
   patchStore(store)
   store.router = router
@@ -23134,7 +24447,7 @@ function patchStore (store) {
   }
 }
 
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 /*!
  * Vuex v1.0.0-rc.2
  * (c) 2016 Evan You
@@ -23797,7 +25110,7 @@ function patchStore (store) {
   return index;
 
 }));
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 'use strict';
 
 var _vue = require('vue');
@@ -23828,7 +25141,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 _router2.default.start(_App2.default, '#app');
 
-},{"./components/App.vue":10,"./router":18,"./vuex/store":19,"jquery":1,"vue":5,"vuex-router-sync":7}],10:[function(require,module,exports){
+},{"./components/App.vue":11,"./router":22,"./vuex/store":23,"jquery":1,"vue":6,"vuex-router-sync":8}],11:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -23856,7 +25169,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-38a73648", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/store":19,"vue":5,"vue-hot-reload-api":3}],11:[function(require,module,exports){
+},{"../vuex/store":23,"vue":6,"vue-hot-reload-api":3}],12:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -23877,7 +25190,7 @@ exports.default = {
     components: { NavBar: _NavBar2.default, Tabs: _Tabs2.default }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<nav-bar _v-31ea03b4=\"\"></nav-bar><tabs _v-31ea03b4=\"\"></tabs><router-view _v-31ea03b4=\"\"></router-view>"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<nav-bar _v-31ea03b4=\"\"></nav-bar><tabs v-if=\"[&quot;reminder&quot;, &quot;record&quot;, &quot;analysis&quot;].indexOf($route.name) != -1\" _v-31ea03b4=\"\"></tabs><router-view _v-31ea03b4=\"\"></router-view>"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -23888,8 +25201,8 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-31ea03b4", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"./NavBar.vue":12,"./Tabs.vue":13,"vue":5,"vue-hot-reload-api":3}],12:[function(require,module,exports){
-"use strict";
+},{"./NavBar.vue":13,"./Tabs.vue":14,"vue":6,"vue-hot-reload-api":3}],13:[function(require,module,exports){
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -23897,12 +25210,42 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = {
     ready: function ready() {
         $(".button-collapse").sideNav({
-            // closeOnClick: true
+            closeOnClick: true
         });
+    },
+
+    computed: {
+        header: function header() {
+            var switchObj = {
+                home: 'MS Diary',
+                reminder: 'Reminder',
+                record: 'Record',
+                analysis: 'Analysis',
+                privacyPolicy: 'Privacy Policy',
+                termOfUse: 'Term Of Use',
+                usefulLink: 'Useful Links'
+            };
+            return switchObj[this.$route.name];
+        }
+    },
+    methods: {
+        logout: function logout() {
+            var _this = this;
+
+            this.$http.get('/logout').then(function (_ref) {
+                var data = _ref.data;
+
+                if (data.success == 1) {
+                    Materialize.toast(data.msg, 5000);
+                    _this.$router.go({ name: "loginView" });
+                }
+            });
+        }
     }
+
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<nav _v-80dc71f6=\"\"><div class=\"nav-wrapper\" _v-80dc71f6=\"\"><a class=\"brand-logo\" _v-80dc71f6=\"\">MS Diary</a><ul id=\"slide-out\" class=\"side-nav\" _v-80dc71f6=\"\"><li _v-80dc71f6=\"\"><a class=\"waves-effect\" _v-80dc71f6=\"\">Home</a></li><li _v-80dc71f6=\"\"><a class=\"waves-effect\" _v-80dc71f6=\"\">Privacy Policy</a></li><li _v-80dc71f6=\"\"><a class=\"waves-effect\" _v-80dc71f6=\"\">Term of use</a></li><li _v-80dc71f6=\"\"><a class=\"waves-effect\" _v-80dc71f6=\"\">Useful Links</a></li><li _v-80dc71f6=\"\"><a class=\"waves-effect\" _v-80dc71f6=\"\">Log out</a></li></ul><a data-activates=\"slide-out\" class=\"button-collapse\" _v-80dc71f6=\"\"><i class=\"material-icons\" _v-80dc71f6=\"\">menu</i></a></div></nav>"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<nav _v-80dc71f6=\"\"><div class=\"nav-wrapper\" _v-80dc71f6=\"\"><a class=\"brand-logo\" _v-80dc71f6=\"\">{{ header }}</a><ul id=\"slide-out\" class=\"side-nav\" _v-80dc71f6=\"\"><li _v-80dc71f6=\"\"><a v-link=\"{ name: &quot;reminder&quot; }\" class=\"waves-effect\" _v-80dc71f6=\"\">Home</a></li><li _v-80dc71f6=\"\"><a v-link=\"{ name: &quot;privacyPolicy&quot; }\" class=\"waves-effect\" _v-80dc71f6=\"\">Privacy Policy</a></li><li _v-80dc71f6=\"\"><a v-link=\"{ name: &quot;termOfUse&quot; }\" class=\"waves-effect\" _v-80dc71f6=\"\">Term of use</a></li><li _v-80dc71f6=\"\"><a v-link=\"{ name: &quot;usefulLink&quot; }\" class=\"waves-effect\" _v-80dc71f6=\"\">Useful Links</a></li><li _v-80dc71f6=\"\"><a @click=\"logout()\" class=\"waves-effect\" _v-80dc71f6=\"\">Log out</a></li></ul><a data-activates=\"slide-out\" class=\"button-collapse\" _v-80dc71f6=\"\"><i class=\"material-icons\" _v-80dc71f6=\"\">menu</i></a></div></nav>"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -23913,7 +25256,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-80dc71f6", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":5,"vue-hot-reload-api":3}],13:[function(require,module,exports){
+},{"vue":6,"vue-hot-reload-api":3}],14:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert(".no-padding[_v-19e0dad3] {\n  padding: 0;\n}\n")
 'use strict';
@@ -23942,7 +25285,109 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-19e0dad3", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":5,"vue-hot-reload-api":3,"vueify/lib/insert-css":6}],14:[function(require,module,exports){
+},{"vue":6,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],15:[function(require,module,exports){
+var __vueify_insert__ = require("vueify/lib/insert-css")
+var __vueify_style__ = __vueify_insert__.insert("div.container[_v-5b21ebff] {\n  padding: 0 0.3rem;\n}\n")
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
+  data: function data() {
+    return {};
+  },
+  computed: {},
+  ready: function ready() {},
+  attached: function attached() {},
+  methods: {},
+  components: {}
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div class=\"container\" _v-5b21ebff=\"\"><p _v-5b21ebff=\"\">1. At different occasions you may be asked for certain types of personally-identifiable information (e.g. email address). We hope you will provide with this information, as for a log in purpose. However, if you do not want to disclose this information to us, please do not submit it. This does mean that in some cases we will not be able to provide you the service you have requested.</p><p _v-5b21ebff=\"\">2. The data you put will NOT be collected for any statistic purpose.1</p><p _v-5b21ebff=\"\">3. The data you provided will only be used for data storage and backup purpose on the server. And we are not disclosing the information to any third party unless a written agreement provided by you.</p><p _v-5b21ebff=\"\">4. For the continuous use of the App, there remains a possibility that the data been transfer from one server provider to another, by accepting the terms of use, you agree the data transfer will be proceeded without further notice.</p><p _v-5b21ebff=\"\">5. We take reasonable steps to ensure that the data input remains well protected and maintained. Unfortunately, no data transmission over the Internet can be guaranteed to be 100% secure and while we strive to protect your information, we cannot guarantee or warrant its complete security. We shall not be responsible for harm that you or any person may suffer as a result of a breach of confidentiality in respect to your use of the App or any information you transmit to the App.</p><p _v-5b21ebff=\"\">6. In case of the termination of the App develop and maintenance, the data will be kept on server for at least 6 months.</p><p _v-5b21ebff=\"\">7. The App may contain links to website operated and maintained by third parties over which we have absolutely no control. Any information you provided to the third party websites will be governed under the terms of each websites’ privacy policy and we encourage you to investigate and ask questions before disclosing any information to the operators of the third party website.</p><p _v-5b21ebff=\"\">8. This Privacy Policy is effective as Sep 1st, 2015. UCB reserves the right to change this Privacy Policy at any time. Any changes to this Policy will be effective immediately upon notice, which may be provided to you via e-mail or any other method. Your subsequent use of the App deemed acceptance of such changes. Please ensure to review the Privacy Policy periodically to ensure familiarity with its most current version. If you disagree with the changes in our policy, however, please do not use the App after the posting of such changes online. By using the App following the posting of changes to this Privacy Policy, you agree to all such changes.</p></div>"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.dispose(function () {
+    __vueify_insert__.cache["div.container[_v-5b21ebff] {\n  padding: 0 0.3rem;\n}\n"] = false
+    document.head.removeChild(__vueify_style__)
+  })
+  if (!module.hot.data) {
+    hotAPI.createRecord("_v-5b21ebff", module.exports)
+  } else {
+    hotAPI.update("_v-5b21ebff", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+  }
+})()}
+},{"vue":6,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],16:[function(require,module,exports){
+var __vueify_insert__ = require("vueify/lib/insert-css")
+var __vueify_style__ = __vueify_insert__.insert("div.container[_v-11f621c9] {\n  padding: 0 0.3rem;\n}\n")
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
+  data: function data() {
+    return {};
+  },
+  computed: {},
+  ready: function ready() {},
+  attached: function attached() {},
+  methods: {},
+  components: {}
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div class=\"container\" _v-11f621c9=\"\"><p _v-11f621c9=\"\">PLEASE READ THESE TERMS OF USE AND THE PRIVACY POLICY BEFOR USING THIS APP.</p><p _v-11f621c9=\"\">1. The app is for the purpose of your own record and reminder, all personal information is stored in your local device.</p><p _v-11f621c9=\"\">2. The app is NOT intended to substitute face to face consulting by professional healthcare provider, please consult your physician for any specific medical opinion or any action.</p><p _v-11f621c9=\"\">3.Terms used in the app</p><p _v-11f621c9=\"\">a) EDSS: The Kurtzke Expanded Disability Status Scale (EDSS) is a method of quantifying disability in multiple sclerosis. The scale has been developed by John F. Kurtzke. The EDSS quantifies disability in eight Functional Systems (FS) and allows neurologists to assign a Functional System Score (FSS) in each of these.</p><p _v-11f621c9=\"\">b) T25FW: The Timed 25-Foot Walk (T25FW). The T25FW is a simple and reliable measure of walking ability. Walking speed has been shown to be a reliable measure of walking ability. Changes in a patient’s T25FW score have a clinical impact on disability.</p><p _v-11f621c9=\"\">c) MSWS-12: The MSWS-12 is a clinically validated and reliable tool that is flexible and simple enough to use in clinical practice. Captures patients\\' perspectives on their ambulatory disability on the following: standing, ability to run, need for support, moving around the home, concentration needed to walk, walking speed, maintaining balance, climbing stairs, walking distance, effort needed to walk, ability to walk, and gait.</p></div>"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.dispose(function () {
+    __vueify_insert__.cache["div.container[_v-11f621c9] {\n  padding: 0 0.3rem;\n}\n"] = false
+    document.head.removeChild(__vueify_style__)
+  })
+  if (!module.hot.data) {
+    hotAPI.createRecord("_v-11f621c9", module.exports)
+  } else {
+    hotAPI.update("_v-11f621c9", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+  }
+})()}
+},{"vue":6,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],17:[function(require,module,exports){
+var __vueify_insert__ = require("vueify/lib/insert-css")
+var __vueify_style__ = __vueify_insert__.insert("div.container[_v-8a82144a] {\n  padding: 0 0.3rem;\n}\np[_v-8a82144a] {\n  overflow-wrap: break-word;\n}\n")
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
+  data: function data() {
+    return {};
+  },
+  computed: {},
+  ready: function ready() {},
+  attached: function attached() {},
+  methods: {},
+  components: {}
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div class=\"container\" _v-8a82144a=\"\"><p _v-8a82144a=\"\">Below you can find useful links for information related to multiple sclerosis.</p><p _v-8a82144a=\"\">UCB is not in charge of the reviewing the accuracy and update the information provided from these links.</p><p _v-8a82144a=\"\">English, Multiple Sclerosis of Canada.</p><p _v-8a82144a=\"\">https://beta.mssociety.ca/</p><p _v-8a82144a=\"\">English, National Multiple Sclerosis Society.</p><p _v-8a82144a=\"\">http://www.nationalmssociety.org/</p><p _v-8a82144a=\"\">Traditional Chinese: National Taiwan University Hospital.</p><p _v-8a82144a=\"\">https://www.ntuh.gov.tw/neur/patient/DocLib3/Forms/AllItems.aspx</p></div>"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.dispose(function () {
+    __vueify_insert__.cache["div.container[_v-8a82144a] {\n  padding: 0 0.3rem;\n}\np[_v-8a82144a] {\n  overflow-wrap: break-word;\n}\n"] = false
+    document.head.removeChild(__vueify_style__)
+  })
+  if (!module.hot.data) {
+    hotAPI.createRecord("_v-8a82144a", module.exports)
+  } else {
+    hotAPI.update("_v-8a82144a", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+  }
+})()}
+},{"vue":6,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],18:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert(".login-container[_v-55d74ffe] {\n  width: 100%;\n  height: 100vh;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  background-color: #eee;\n}\n.row[_v-55d74ffe] {\n  width: 100%;\n}\n.btn-login[_v-55d74ffe] {\n  border-radius: 0.2rem 0 0 0.2rem;\n}\n.btn-register[_v-55d74ffe] {\n  border-radius: 0 0.2rem 0.2rem 0;\n}\n")
 "use strict";
@@ -23967,45 +25412,142 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-55d74ffe", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":5,"vue-hot-reload-api":3,"vueify/lib/insert-css":6}],15:[function(require,module,exports){
+},{"vue":6,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],19:[function(require,module,exports){
+var __vueify_insert__ = require("vueify/lib/insert-css")
+var __vueify_style__ = __vueify_insert__.insert(".error[_v-6ad7f143] {\n  color: #f00;\n  position: relative;\n  top: -1.5rem;\n  left: 0 !important;\n  font-size: 0.6rem !important;\n}\n")
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
-exports.default = {};
+exports.default = {
+    data: function data() {
+        return {
+            username: "",
+            password: "",
+            error: {
+                username: "",
+                password: ""
+            }
+        };
+    },
+
+    methods: {
+        login: function login() {
+            var _this = this;
+
+            this.error = {
+                username: "",
+                password: ""
+            };
+            this.$http.post('/login', {
+                username: this.username,
+                password: this.password
+            }).then(function (_ref) {
+                var data = _ref.data;
+                var status = _ref.status;
+
+                if (data.success == 1) {
+                    Materialize.toast(data.msg, 5000);
+                    _this.$router.go({ name: 'home' });
+                }
+            }).catch(function (_ref2) {
+                var data = _ref2.data;
+                var status = _ref2.status;
+
+                if (status == 422) {
+                    _this.error = data;
+                }
+            });
+        }
+    }
+};
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<form class=\"col s12\" _v-6ad7f143=\"\"><div class=\"row\" _v-6ad7f143=\"\"><div class=\"input-field col s10 offset-s1\" _v-6ad7f143=\"\"><i class=\"material-icons prefix\" _v-6ad7f143=\"\">account_circle</i><input id=\"usernameInput\" type=\"text\" class=\"validate\" _v-6ad7f143=\"\"><label for=\"usernameInput\" _v-6ad7f143=\"\">Username</label></div></div><div class=\"row\" _v-6ad7f143=\"\"><div class=\"input-field col s10 offset-s1\" _v-6ad7f143=\"\"><i class=\"material-icons prefix\" _v-6ad7f143=\"\">fingerprint</i><input id=\"passwordInput\" type=\"password\" class=\"validate\" _v-6ad7f143=\"\"><label for=\"passwordInput\" _v-6ad7f143=\"\">Password</label></div></div><div class=\"row\" _v-6ad7f143=\"\"><a class=\"waves-effect waves-light btn col s8 offset-s2\" _v-6ad7f143=\"\">Done</a></div></form>"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<form class=\"col s12\" _v-6ad7f143=\"\"><div class=\"row\" _v-6ad7f143=\"\"><div class=\"input-field col s10 offset-s1\" _v-6ad7f143=\"\"><i class=\"material-icons prefix\" _v-6ad7f143=\"\">account_circle</i><input id=\"usernameInput\" type=\"text\" v-model=\"username\" class=\"validate\" _v-6ad7f143=\"\"><label for=\"usernameInput\" _v-6ad7f143=\"\">Username</label><label v-if=\"error\" class=\"error\" _v-6ad7f143=\"\">{{ error.username[0] }}</label></div></div><div class=\"row\" _v-6ad7f143=\"\"><div class=\"input-field col s10 offset-s1\" _v-6ad7f143=\"\"><i class=\"material-icons prefix\" _v-6ad7f143=\"\">fingerprint</i><input id=\"passwordInput\" type=\"password\" v-model=\"password\" class=\"validate\" _v-6ad7f143=\"\"><label for=\"passwordInput\" _v-6ad7f143=\"\">Password</label><label v-if=\"error\" class=\"error\" _v-6ad7f143=\"\">{{ error.password[0] }}</label></div></div><div class=\"row\" _v-6ad7f143=\"\"><a @click=\"login()\" class=\"waves-effect waves-light btn col s8 offset-s2\" _v-6ad7f143=\"\">Done</a></div></form>"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
+  module.hot.dispose(function () {
+    __vueify_insert__.cache[".error[_v-6ad7f143] {\n  color: #f00;\n  position: relative;\n  top: -1.5rem;\n  left: 0 !important;\n  font-size: 0.6rem !important;\n}\n"] = false
+    document.head.removeChild(__vueify_style__)
+  })
   if (!module.hot.data) {
     hotAPI.createRecord("_v-6ad7f143", module.exports)
   } else {
     hotAPI.update("_v-6ad7f143", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":5,"vue-hot-reload-api":3}],16:[function(require,module,exports){
+},{"vue":6,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],20:[function(require,module,exports){
+var __vueify_insert__ = require("vueify/lib/insert-css")
+var __vueify_style__ = __vueify_insert__.insert(".error[_v-45f27163] {\n  color: #f00;\n  position: relative;\n  top: -1.5rem;\n  left: 0 !important;\n  font-size: 0.6rem !important;\n}\n")
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
-exports.default = {};
+exports.default = {
+    data: function data() {
+        return {
+            username: "",
+            password: "",
+            passwordConfirm: "",
+            error: {
+                username: "",
+                password: ""
+            }
+        };
+    },
+
+    methods: {
+        register: function register() {
+            var _this = this;
+
+            this.error = {
+                username: "",
+                password: ""
+            };
+            this.$http.post('/register', {
+                username: this.username,
+                password: this.password,
+                password_confirmation: this.passwordConfirm
+            }).then(function (_ref) {
+                var data = _ref.data;
+                var status = _ref.status;
+
+                if (data.success == 1) {
+                    Materialize.toast(data.msg, 5000);
+                    _this.$router.go({ name: 'loginView' });
+                }
+            }).catch(function (_ref2) {
+                var data = _ref2.data;
+                var status = _ref2.status;
+
+                if (status == 422) {
+                    _this.error = data;
+                }
+            });
+        }
+    }
+
+};
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<form class=\"col s12\" _v-45f27163=\"\"><div class=\"row\" _v-45f27163=\"\"><div class=\"input-field col s10 offset-s1\" _v-45f27163=\"\"><i class=\"material-icons prefix\" _v-45f27163=\"\">account_circle</i><input id=\"usernameInput\" type=\"text\" class=\"validate\" _v-45f27163=\"\"><label for=\"usernameInput\" _v-45f27163=\"\">Username</label></div></div><div class=\"row\" _v-45f27163=\"\"><div class=\"input-field col s10 offset-s1\" _v-45f27163=\"\"><i class=\"material-icons prefix\" _v-45f27163=\"\">fingerprint</i><input id=\"passwordInput\" type=\"password\" class=\"validate\" _v-45f27163=\"\"><label for=\"passwordInput\" _v-45f27163=\"\">Password</label></div></div><div class=\"row\" _v-45f27163=\"\"><div class=\"input-field col s10 offset-s1\" _v-45f27163=\"\"><i class=\"material-icons prefix\" _v-45f27163=\"\">fingerprint</i><input id=\"passwordInputConfirm\" type=\"password\" class=\"validate\" _v-45f27163=\"\"><label for=\"passwordInputConfirm\" _v-45f27163=\"\">Confirm</label></div></div><div class=\"row\" _v-45f27163=\"\"><a class=\"waves-effect waves-light btn col s8 offset-s2\" _v-45f27163=\"\">Done</a></div></form>"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<form class=\"col s12\" _v-45f27163=\"\"><div class=\"row\" _v-45f27163=\"\"><div class=\"input-field col s10 offset-s1\" _v-45f27163=\"\"><i class=\"material-icons prefix\" _v-45f27163=\"\">account_circle</i><input id=\"usernameInput\" type=\"text\" v-model=\"username\" class=\"validate\" _v-45f27163=\"\"><label for=\"usernameInput\" _v-45f27163=\"\">Username</label><label v-if=\"error\" class=\"error\" _v-45f27163=\"\">{{ error.username[0] }}</label></div></div><div class=\"row\" _v-45f27163=\"\"><div class=\"input-field col s10 offset-s1\" _v-45f27163=\"\"><i class=\"material-icons prefix\" _v-45f27163=\"\">fingerprint</i><input id=\"passwordInput\" type=\"password\" v-model=\"password\" class=\"validate\" _v-45f27163=\"\"><label for=\"passwordInput\" _v-45f27163=\"\">Password</label><label v-if=\"error\" class=\"error\" _v-45f27163=\"\">{{ error.password[0] }}</label></div></div><div class=\"row\" _v-45f27163=\"\"><div class=\"input-field col s10 offset-s1\" _v-45f27163=\"\"><i class=\"material-icons prefix\" _v-45f27163=\"\">fingerprint</i><input id=\"passwordInputConfirm\" type=\"password\" v-model=\"passwordConfirm\" class=\"validate\" _v-45f27163=\"\"><label for=\"passwordInputConfirm\" _v-45f27163=\"\">Confirm</label></div></div><div class=\"row\" _v-45f27163=\"\"><a @click=\"register()\" class=\"waves-effect waves-light btn col s8 offset-s2\" _v-45f27163=\"\">Done</a></div></form>"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
+  module.hot.dispose(function () {
+    __vueify_insert__.cache[".error[_v-45f27163] {\n  color: #f00;\n  position: relative;\n  top: -1.5rem;\n  left: 0 !important;\n  font-size: 0.6rem !important;\n}\n"] = false
+    document.head.removeChild(__vueify_style__)
+  })
   if (!module.hot.data) {
     hotAPI.createRecord("_v-45f27163", module.exports)
   } else {
     hotAPI.update("_v-45f27163", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":5,"vue-hot-reload-api":3}],17:[function(require,module,exports){
+},{"vue":6,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],21:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert(".btn-floating[_v-7a89a639] {\n  position: fixed;\n  bottom: 1rem;\n  right: 1rem;\n}\n")
 "use strict";
@@ -24024,7 +25566,7 @@ exports.default = {
   components: {}
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<a class=\"btn-floating btn-large waves-effect waves-light\" _v-7a89a639=\"\"><i class=\"material-icons\" _v-7a89a639=\"\">add</i></a>"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div class=\"row\" _v-7a89a639=\"\"><div v-for=\"i in 5\" class=\"col s12 m6\" _v-7a89a639=\"\"><div class=\"card grey lighten-2\" _v-7a89a639=\"\"><div class=\"card-content\" _v-7a89a639=\"\"><span class=\"card-title\" _v-7a89a639=\"\">Card Title</span><p _v-7a89a639=\"\">I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p></div><div class=\"card-action\" _v-7a89a639=\"\"><a _v-7a89a639=\"\">This is a link</a><a _v-7a89a639=\"\">This is a link</a></div></div></div></div><a class=\"btn-floating btn-large waves-effect waves-light\" _v-7a89a639=\"\"><i class=\"material-icons\" _v-7a89a639=\"\">add</i></a>"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -24039,7 +25581,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-7a89a639", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":5,"vue-hot-reload-api":3,"vueify/lib/insert-css":6}],18:[function(require,module,exports){
+},{"vue":6,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],22:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24053,6 +25595,10 @@ var _vue2 = _interopRequireDefault(_vue);
 var _vueRouter = require('vue-router');
 
 var _vueRouter2 = _interopRequireDefault(_vueRouter);
+
+var _vueResource = require('vue-resource');
+
+var _vueResource2 = _interopRequireDefault(_vueResource);
 
 var _Login = require('./components/login/Login.vue');
 
@@ -24074,12 +25620,23 @@ var _Reminders = require('./components/reminder/Reminders.vue');
 
 var _Reminders2 = _interopRequireDefault(_Reminders);
 
+var _PrivacyPolicy = require('./components/home/PrivacyPolicy.vue');
+
+var _PrivacyPolicy2 = _interopRequireDefault(_PrivacyPolicy);
+
+var _TermOfUse = require('./components/home/TermOfUse.vue');
+
+var _TermOfUse2 = _interopRequireDefault(_TermOfUse);
+
+var _UsefulLink = require('./components/home/UsefulLink.vue');
+
+var _UsefulLink2 = _interopRequireDefault(_UsefulLink);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_vue2.default.use(_vueRouter2.default);
-
 //components
-
+_vue2.default.use(_vueRouter2.default);
+_vue2.default.use(_vueResource2.default);
 
 var router = new _vueRouter2.default();
 
@@ -24089,10 +25646,12 @@ router.map({
         component: _Login2.default,
         subRoutes: {
             'login': {
-                component: _LoginView2.default
+                component: _LoginView2.default,
+                name: 'loginView'
             },
             'register': {
-                component: _RegisterView2.default
+                component: _RegisterView2.default,
+                name: 'registerView'
             }
         }
     },
@@ -24101,7 +25660,20 @@ router.map({
         component: _Home2.default,
         subRoutes: {
             '/': {
-                component: _Reminders2.default
+                component: _Reminders2.default,
+                name: 'reminder'
+            },
+            '/privacyPolicy': {
+                component: _PrivacyPolicy2.default,
+                name: 'privacyPolicy'
+            },
+            '/termOfUse': {
+                component: _TermOfUse2.default,
+                name: 'termOfUse'
+            },
+            '/usefulLink': {
+                component: _UsefulLink2.default,
+                name: 'usefulLink'
             }
         }
     }
@@ -24109,7 +25681,7 @@ router.map({
 
 exports.default = router;
 
-},{"./components/Home.vue":11,"./components/login/Login.vue":14,"./components/login/LoginView.vue":15,"./components/login/RegisterView.vue":16,"./components/reminder/Reminders.vue":17,"vue":5,"vue-router":4}],19:[function(require,module,exports){
+},{"./components/Home.vue":12,"./components/home/PrivacyPolicy.vue":15,"./components/home/TermOfUse.vue":16,"./components/home/UsefulLink.vue":17,"./components/login/Login.vue":18,"./components/login/LoginView.vue":19,"./components/login/RegisterView.vue":20,"./components/reminder/Reminders.vue":21,"vue":6,"vue-resource":4,"vue-router":5}],23:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24142,6 +25714,6 @@ exports.default = new _vuex2.default.Store({
     mutations: mutations
 });
 
-},{"vue":5,"vue-router":4,"vuex":8}]},{},[9]);
+},{"vue":6,"vue-router":5,"vuex":9}]},{},[10]);
 
 //# sourceMappingURL=app.main.js.map

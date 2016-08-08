@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import VueResource from 'vue-resource'
 
 //components
 import Login from './components/login/Login.vue'
@@ -8,8 +9,12 @@ import RegisterView from './components/login/RegisterView.vue'
 
 import Home from './components/Home.vue'
 import Reminders from './components/reminder/Reminders.vue'
+import PrivacyPolicy from './components/home/PrivacyPolicy.vue'
+import TermOfUse from './components/home/TermOfUse.vue'
+import UsefulLink from './components/home/UsefulLink.vue'
 
 Vue.use(VueRouter)
+Vue.use(VueResource)
 
 const router = new VueRouter()
 
@@ -19,10 +24,12 @@ router.map({
         component: Login,
         subRoutes: {
             'login': {
-                component: LoginView
+                component: LoginView,
+                name: 'loginView'
             },
             'register': {
-                component: RegisterView
+                component: RegisterView,
+                name: 'registerView'
             }
         }
     },
@@ -31,8 +38,21 @@ router.map({
         component: Home,
         subRoutes: {
             '/': {
-                component: Reminders
-            }
+                component: Reminders,
+                name: 'reminder'
+            },
+            '/privacyPolicy': {
+                component: PrivacyPolicy,
+                name: 'privacyPolicy'
+            },
+            '/termOfUse': {
+                component: TermOfUse,
+                name: 'termOfUse'
+            },
+            '/usefulLink': {
+                component: UsefulLink,
+                name: 'usefulLink'
+            },
         }
     }
 })
