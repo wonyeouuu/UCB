@@ -184,7 +184,6 @@ trait AuthenticatesUsers
             'msg' => 'Logout Success.'
         ];
 
-//        return redirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : '/');
     }
 
     /**

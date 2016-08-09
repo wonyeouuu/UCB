@@ -25432,6 +25432,12 @@ exports.default = {
         };
     },
 
+    route: {
+        activate: function activate() {
+            console.log('adfa');
+            this.checkLogin();
+        }
+    },
     methods: {
         login: function login() {
             var _this = this;
@@ -25457,6 +25463,17 @@ exports.default = {
 
                 if (status == 422) {
                     _this.error = data;
+                }
+            });
+        },
+        checkLogin: function checkLogin() {
+            var _this2 = this;
+
+            this.$http.get('/checkLogin').then(function (_ref3) {
+                var data = _ref3.data;
+
+                if (data == 1) {
+                    _this2.$router.go({ name: 'home' });
                 }
             });
         }

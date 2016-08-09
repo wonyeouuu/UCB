@@ -15,3 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::auth();
+
+Route::get('/checkLogin', function() {
+    if (Auth::check()) {
+        return 1;
+    } else {
+        return 0;
+    }
+});

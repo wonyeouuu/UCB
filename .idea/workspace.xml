@@ -2,130 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="952edf6d-c25c-49dd-8a30-1798661b9342" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/build/js/app.main-44c5dad2a3.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/build/fonts/roboto/Roboto-Bold.eot" afterPath="$PROJECT_DIR$/public/build/fonts/roboto/Roboto-Bold.eot" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/build/fonts/roboto/Roboto-Bold.ttf" afterPath="$PROJECT_DIR$/public/build/fonts/roboto/Roboto-Bold.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/build/fonts/roboto/Roboto-Bold.woff" afterPath="$PROJECT_DIR$/public/build/fonts/roboto/Roboto-Bold.woff" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/build/fonts/roboto/Roboto-Bold.woff2" afterPath="$PROJECT_DIR$/public/build/fonts/roboto/Roboto-Bold.woff2" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/build/fonts/roboto/Roboto-Light.eot" afterPath="$PROJECT_DIR$/public/build/fonts/roboto/Roboto-Light.eot" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/build/fonts/roboto/Roboto-Light.ttf" afterPath="$PROJECT_DIR$/public/build/fonts/roboto/Roboto-Light.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/build/fonts/roboto/Roboto-Light.woff" afterPath="$PROJECT_DIR$/public/build/fonts/roboto/Roboto-Light.woff" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/build/fonts/roboto/Roboto-Light.woff2" afterPath="$PROJECT_DIR$/public/build/fonts/roboto/Roboto-Light.woff2" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/build/fonts/roboto/Roboto-Medium.eot" afterPath="$PROJECT_DIR$/public/build/fonts/roboto/Roboto-Medium.eot" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/build/fonts/roboto/Roboto-Medium.ttf" afterPath="$PROJECT_DIR$/public/build/fonts/roboto/Roboto-Medium.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/build/fonts/roboto/Roboto-Medium.woff" afterPath="$PROJECT_DIR$/public/build/fonts/roboto/Roboto-Medium.woff" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/build/fonts/roboto/Roboto-Medium.woff2" afterPath="$PROJECT_DIR$/public/build/fonts/roboto/Roboto-Medium.woff2" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/build/fonts/roboto/Roboto-Regular.eot" afterPath="$PROJECT_DIR$/public/build/fonts/roboto/Roboto-Regular.eot" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/build/fonts/roboto/Roboto-Regular.ttf" afterPath="$PROJECT_DIR$/public/build/fonts/roboto/Roboto-Regular.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/build/fonts/roboto/Roboto-Regular.woff" afterPath="$PROJECT_DIR$/public/build/fonts/roboto/Roboto-Regular.woff" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/build/fonts/roboto/Roboto-Regular.woff2" afterPath="$PROJECT_DIR$/public/build/fonts/roboto/Roboto-Regular.woff2" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/build/fonts/roboto/Roboto-Thin.eot" afterPath="$PROJECT_DIR$/public/build/fonts/roboto/Roboto-Thin.eot" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/build/fonts/roboto/Roboto-Thin.ttf" afterPath="$PROJECT_DIR$/public/build/fonts/roboto/Roboto-Thin.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/build/fonts/roboto/Roboto-Thin.woff" afterPath="$PROJECT_DIR$/public/build/fonts/roboto/Roboto-Thin.woff" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/build/fonts/roboto/Roboto-Thin.woff2" afterPath="$PROJECT_DIR$/public/build/fonts/roboto/Roboto-Thin.woff2" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/favicon.ico" afterPath="$PROJECT_DIR$/public/favicon.ico" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.babelrc" afterPath="$PROJECT_DIR$/.babelrc" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.env.example" afterPath="$PROJECT_DIR$/.env.example" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitattributes" afterPath="$PROJECT_DIR$/.gitattributes" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Console/Commands/Inspire.php" afterPath="$PROJECT_DIR$/app/Console/Commands/Inspire.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Console/Kernel.php" afterPath="$PROJECT_DIR$/app/Console/Kernel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Events/Event.php" afterPath="$PROJECT_DIR$/app/Events/Event.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Exceptions/Handler.php" afterPath="$PROJECT_DIR$/app/Exceptions/Handler.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/PasswordController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/PasswordController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Kernel.php" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" afterPath="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Middleware/EncryptCookies.php" afterPath="$PROJECT_DIR$/app/Http/Middleware/EncryptCookies.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" afterPath="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Middleware/VerifyCsrfToken.php" afterPath="$PROJECT_DIR$/app/Http/Middleware/VerifyCsrfToken.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Requests/Request.php" afterPath="$PROJECT_DIR$/app/Http/Requests/Request.php" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/build/js/app.main-30b89a3ea5.js" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Jobs/Job.php" afterPath="$PROJECT_DIR$/app/Jobs/Job.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Listeners/.gitkeep" afterPath="$PROJECT_DIR$/app/Listeners/.gitkeep" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Policies/.gitkeep" afterPath="$PROJECT_DIR$/app/Policies/.gitkeep" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" afterPath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" afterPath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" afterPath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/User.php" afterPath="$PROJECT_DIR$/app/User.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/artisan" afterPath="$PROJECT_DIR$/artisan" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bootstrap/app.php" afterPath="$PROJECT_DIR$/bootstrap/app.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bootstrap/autoload.php" afterPath="$PROJECT_DIR$/bootstrap/autoload.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bootstrap/cache/.gitignore" afterPath="$PROJECT_DIR$/bootstrap/cache/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/app.php" afterPath="$PROJECT_DIR$/config/app.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/auth.php" afterPath="$PROJECT_DIR$/config/auth.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/broadcasting.php" afterPath="$PROJECT_DIR$/config/broadcasting.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/cache.php" afterPath="$PROJECT_DIR$/config/cache.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/compile.php" afterPath="$PROJECT_DIR$/config/compile.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/database.php" afterPath="$PROJECT_DIR$/config/database.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/filesystems.php" afterPath="$PROJECT_DIR$/config/filesystems.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/mail.php" afterPath="$PROJECT_DIR$/config/mail.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/queue.php" afterPath="$PROJECT_DIR$/config/queue.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/services.php" afterPath="$PROJECT_DIR$/config/services.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/session.php" afterPath="$PROJECT_DIR$/config/session.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/view.php" afterPath="$PROJECT_DIR$/config/view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/.gitignore" afterPath="$PROJECT_DIR$/database/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/factories/ModelFactory.php" afterPath="$PROJECT_DIR$/database/factories/ModelFactory.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/.gitkeep" afterPath="$PROJECT_DIR$/database/migrations/.gitkeep" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_100000_create_password_resets_table.php" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_100000_create_password_resets_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/.gitkeep" afterPath="$PROJECT_DIR$/database/seeds/.gitkeep" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gulpfile.js" afterPath="$PROJECT_DIR$/gulpfile.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/phpunit.xml" afterPath="$PROJECT_DIR$/phpunit.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/.htaccess" afterPath="$PROJECT_DIR$/public/.htaccess" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/build/css/app-f1b3ead096.css" afterPath="$PROJECT_DIR$/public/build/css/app-f1b3ead096.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/build/css/app.css.map" afterPath="$PROJECT_DIR$/public/build/css/app.css.map" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/build/js/app.main.js.map" afterPath="$PROJECT_DIR$/public/build/js/app.main.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/build/js/material.main.js.map" afterPath="$PROJECT_DIR$/public/build/js/material.main.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/build/js/navbar.main.js.map" afterPath="$PROJECT_DIR$/public/build/js/navbar.main.js.map" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/build/rev-manifest.json" afterPath="$PROJECT_DIR$/public/build/rev-manifest.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/app.css" afterPath="$PROJECT_DIR$/public/css/app.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/app.css.map" afterPath="$PROJECT_DIR$/public/css/app.css.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/index.php" afterPath="$PROJECT_DIR$/public/index.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/app.main.js" afterPath="$PROJECT_DIR$/public/js/app.main.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/app.main.js.map" afterPath="$PROJECT_DIR$/public/js/app.main.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/material.main.js" afterPath="$PROJECT_DIR$/public/js/material.main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/material.main.js.map" afterPath="$PROJECT_DIR$/public/js/material.main.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/navbar.main.js" afterPath="$PROJECT_DIR$/public/js/navbar.main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/navbar.main.js.map" afterPath="$PROJECT_DIR$/public/js/navbar.main.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/robots.txt" afterPath="$PROJECT_DIR$/public/robots.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/web.config" afterPath="$PROJECT_DIR$/public/web.config" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/js/app.js" afterPath="$PROJECT_DIR$/resources/assets/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/js/components/App.vue" afterPath="$PROJECT_DIR$/resources/assets/js/components/App.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/js/components/Home.vue" afterPath="$PROJECT_DIR$/resources/assets/js/components/Home.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/js/components/NavBar.vue" afterPath="$PROJECT_DIR$/resources/assets/js/components/NavBar.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/js/components/Tabs.vue" afterPath="$PROJECT_DIR$/resources/assets/js/components/Tabs.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/js/components/login/Login.vue" afterPath="$PROJECT_DIR$/resources/assets/js/components/login/Login.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/js/components/login/LoginView.vue" afterPath="$PROJECT_DIR$/resources/assets/js/components/login/LoginView.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/js/components/login/RegisterView.vue" afterPath="$PROJECT_DIR$/resources/assets/js/components/login/RegisterView.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/js/components/reminder/Reminders.vue" afterPath="$PROJECT_DIR$/resources/assets/js/components/reminder/Reminders.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/js/material.js" afterPath="$PROJECT_DIR$/resources/assets/js/material.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/js/router.js" afterPath="$PROJECT_DIR$/resources/assets/js/router.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/js/vuex/store.js" afterPath="$PROJECT_DIR$/resources/assets/js/vuex/store.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/app.scss" afterPath="$PROJECT_DIR$/resources/assets/sass/app.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/lang/en/auth.php" afterPath="$PROJECT_DIR$/resources/lang/en/auth.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/lang/en/pagination.php" afterPath="$PROJECT_DIR$/resources/lang/en/pagination.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/lang/en/passwords.php" afterPath="$PROJECT_DIR$/resources/lang/en/passwords.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/lang/en/validation.php" afterPath="$PROJECT_DIR$/resources/lang/en/validation.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/errors/503.blade.php" afterPath="$PROJECT_DIR$/resources/views/errors/503.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/vendor/.gitkeep" afterPath="$PROJECT_DIR$/resources/views/vendor/.gitkeep" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.php" afterPath="$PROJECT_DIR$/server.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/app/.gitignore" afterPath="$PROJECT_DIR$/storage/app/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/app/public/.gitignore" afterPath="$PROJECT_DIR$/storage/app/public/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/framework/.gitignore" afterPath="$PROJECT_DIR$/storage/framework/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/framework/cache/.gitignore" afterPath="$PROJECT_DIR$/storage/framework/cache/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/framework/sessions/.gitignore" afterPath="$PROJECT_DIR$/storage/framework/sessions/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/framework/views/.gitignore" afterPath="$PROJECT_DIR$/storage/framework/views/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/logs/.gitignore" afterPath="$PROJECT_DIR$/storage/logs/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/ExampleTest.php" afterPath="$PROJECT_DIR$/tests/ExampleTest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/TestCase.php" afterPath="$PROJECT_DIR$/tests/TestCase.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/Auth/AuthenticatesUsers.php" afterPath="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/Auth/AuthenticatesUsers.php" />
     </list>
     <ignored path="UCB.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -147,11 +33,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="routes.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <file leaf-file-name="LoginView.vue" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/assets/js/components/login/LoginView.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+            <state relative-caret-position="359">
+              <caret line="32" column="29" selection-start-line="32" selection-start-column="29" selection-end-line="32" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -169,6 +55,7 @@
         <option value="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/Auth/RegistersUsers.php" />
         <option value="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/Auth/AuthenticatesUsers.php" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
+        <option value="$PROJECT_DIR$/resources/assets/js/components/login/LoginView.vue" />
       </list>
     </option>
   </component>
@@ -184,6 +71,9 @@
       </GulpfileState>
     </gulpfiles>
     <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="PhpServers">
+    <servers />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
@@ -230,6 +120,9 @@
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="952edf6d-c25c-49dd-8a30-1798661b9342" name="Default" comment="" />
@@ -237,37 +130,46 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1470669772182</updated>
-      <workItem from="1470669774372" duration="963000" />
+      <workItem from="1470669774372" duration="1551000" />
+      <workItem from="1470746493790" duration="1172000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="963000" />
+    <option name="totallyTimeSpent" value="2723000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32945737" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -277,26 +179,65 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/Auth/AuthenticatesUsers.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4186">
+          <caret line="184" column="9" selection-start-line="184" selection-start-column="9" selection-end-line="184" selection-end-column="9" />
+          <folding>
+            <marker date="1470748577000" expanded="false" signature="50:148" ph="..." />
+            <marker date="1470748577000" expanded="true" signature="174:5991" ph="{...}" />
+            <marker date="1470748577000" expanded="true" signature="209:303" ph=" Show the application login form. ..." />
+            <marker date="1470748577000" expanded="true" signature="336:387" ph="{...}" />
+            <marker date="1470748577000" expanded="true" signature="396:490" ph=" Show the application login form. ..." />
+            <marker date="1470748577000" expanded="true" signature="528:770" ph="{...}" />
+            <marker date="1470748577000" expanded="true" signature="686:727" ph="..." />
+            <marker date="1470748577000" expanded="true" signature="779:933" ph=" Handle a login request to the application. ..." />
+            <marker date="1470748577000" expanded="true" signature="983:1034" ph="{...}" />
+            <marker date="1470748577000" expanded="true" signature="1043:1197" ph=" Handle a login request to the application. ..." />
+            <marker date="1470748577000" expanded="true" signature="1243:2482" ph="{...}" />
+            <marker date="1470748577000" expanded="true" signature="1695:1809" ph="..." />
+            <marker date="1470748577000" expanded="true" signature="1964:2049" ph="..." />
+            <marker date="1470748577000" expanded="true" signature="2355:2417" ph="..." />
+            <marker date="1470748577000" expanded="true" signature="2491:2614" ph=" Validate the user login request. ..." />
+            <marker date="1470748577000" expanded="true" signature="2671:2807" ph="{...}" />
+            <marker date="1470748577000" expanded="true" signature="2702:2799" ph="..." />
+            <marker date="1470748577000" expanded="true" signature="2713:2798" ph="..." />
+            <marker date="1470748577000" expanded="true" signature="2816:3011" ph=" Send the response after the user was authenticated. ..." />
+            <marker date="1470748577000" expanded="true" signature="3093:3502" ph="{...}" />
+            <marker date="1470748577000" expanded="true" signature="3125:3183" ph="..." />
+            <marker date="1470748577000" expanded="true" signature="3238:3338" ph="..." />
+            <marker date="1470748577000" expanded="true" signature="3357:3432" ph="..." />
+            <marker date="1470748577000" expanded="true" signature="3511:3661" ph=" Get the failed login response instance. ..." />
+            <marker date="1470748577000" expanded="true" signature="3728:3967" ph="{...}" />
+            <marker date="1470748577000" expanded="true" signature="3793:3843" ph="..." />
+            <marker date="1470748577000" expanded="true" signature="3870:3959" ph="..." />
+            <marker date="1470748577000" expanded="true" signature="3871:3958" ph="..." />
+            <marker date="1470748577000" expanded="true" signature="3976:4048" ph=" Get the failed login message. ..." />
+            <marker date="1470748577000" expanded="true" signature="4097:4257" ph="{...}" />
+            <marker date="1470748577000" expanded="true" signature="4266:4416" ph=" Get the needed authorization credentials from the request. ..." />
+            <marker date="1470748577000" expanded="true" signature="4474:4553" ph="{...}" />
+            <marker date="1470748577000" expanded="true" signature="4562:4660" ph=" Log the user out of the application. ..." />
+            <marker date="1470748577000" expanded="true" signature="4694:4738" ph="{...}" />
+            <marker date="1470748577000" expanded="true" signature="4747:4845" ph=" Log the user out of the application. ..." />
+            <marker date="1470748577000" expanded="true" signature="4876:5043" ph="{...}" />
+            <marker date="1470748577000" expanded="true" signature="4958:5034" ph="..." />
+            <marker date="1470748577000" expanded="true" signature="5052:5111" ph=" Get the guest middleware for the application. ..." />
+            <marker date="1470748577000" expanded="true" signature="5151:5251" ph="{...}" />
+            <marker date="1470748577000" expanded="true" signature="5260:5355" ph=" Get the login username to be used by the controller. ..." />
+            <marker date="1470748577000" expanded="true" signature="5393:5484" ph="{...}" />
+            <marker date="1470748577000" expanded="true" signature="5493:5592" ph=" Determine if the class is using the ThrottlesLogins trait. ..." />
+            <marker date="1470748577000" expanded="true" signature="5647:5767" ph="{...}" />
+            <marker date="1470748577000" expanded="true" signature="5678:5759" ph="..." />
+            <marker date="1470748577000" expanded="true" signature="5776:5871" ph=" Get the guard to be used during authentication. ..." />
+            <marker date="1470748577000" expanded="true" signature="5907:5989" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
           <caret line="23" column="34" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
-          <folding>
-            <marker date="1470673380000" expanded="true" signature="49:221" ph="..." />
-            <marker date="1470673380000" expanded="true" signature="262:1896" ph="{...}" />
-            <marker date="1470673380000" expanded="true" signature="271:706" ph="..." />
-            <marker date="1470673380000" expanded="true" signature="775:866" ph=" Where to redirect users after login / registration. ..." />
-            <marker date="1470673380000" expanded="true" signature="948:1037" ph=" Create a new authentication controller instance. ..." />
-            <marker date="1470673380000" expanded="true" signature="1073:1162" ph="{...}" />
-            <marker date="1470673380000" expanded="true" signature="1171:1331" ph=" Get a validator for an incoming registration request. ..." />
-            <marker date="1470673380000" expanded="true" signature="1379:1565" ph="{...}" />
-            <marker date="1470673380000" expanded="true" signature="1417:1557" ph="..." />
-            <marker date="1470673380000" expanded="true" signature="1425:1556" ph="..." />
-            <marker date="1470673380000" expanded="true" signature="1574:1697" ph=" Create a new user instance after a valid registration. ..." />
-            <marker date="1470673380000" expanded="true" signature="1742:1894" ph="{...}" />
-            <marker date="1470673380000" expanded="true" signature="1777:1886" ph="..." />
-            <marker date="1470673380000" expanded="true" signature="1778:1885" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -304,24 +245,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1403">
           <caret line="62" column="39" selection-start-line="62" selection-start-column="39" selection-end-line="62" selection-end-column="39" />
-          <folding>
-            <marker date="1470673904000" expanded="false" signature="50:111" ph="..." />
-            <marker date="1470673904000" expanded="true" signature="133:1881" ph="{...}" />
-            <marker date="1470673904000" expanded="true" signature="168:269" ph=" Show the application registration form. ..." />
-            <marker date="1470673904000" expanded="true" signature="305:363" ph="{...}" />
-            <marker date="1470673904000" expanded="true" signature="372:473" ph=" Show the application registration form. ..." />
-            <marker date="1470673904000" expanded="true" signature="518:679" ph="{...}" />
-            <marker date="1470673904000" expanded="true" signature="578:633" ph="..." />
-            <marker date="1470673904000" expanded="true" signature="688:850" ph=" Handle a registration request for the application. ..." />
-            <marker date="1470673904000" expanded="true" signature="903:957" ph="{...}" />
-            <marker date="1470673904000" expanded="true" signature="966:1128" ph=" Handle a registration request for the application. ..." />
-            <marker date="1470673904000" expanded="true" signature="1177:1659" ph="{...}" />
-            <marker date="1470673904000" expanded="true" signature="1275:1381" ph="..." />
-            <marker date="1470673904000" expanded="true" signature="1320:1370" ph="..." />
-            <marker date="1470673904000" expanded="true" signature="1522:1600" ph="..." />
-            <marker date="1470673904000" expanded="true" signature="1668:1761" ph=" Get the guard to be used during registration. ..." />
-            <marker date="1470673904000" expanded="true" signature="1797:1879" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -337,63 +260,114 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/Auth/AuthenticatesUsers.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="184" column="9" selection-start-line="184" selection-start-column="9" selection-end-line="184" selection-end-column="9" />
+        <state relative-caret-position="460">
+          <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
           <folding>
-            <marker date="1470674701000" expanded="false" signature="50:148" ph="..." />
-            <marker date="1470674701000" expanded="true" signature="174:6100" ph="{...}" />
-            <marker date="1470674701000" expanded="true" signature="209:303" ph=" Show the application login form. ..." />
-            <marker date="1470674701000" expanded="true" signature="336:387" ph="{...}" />
-            <marker date="1470674701000" expanded="true" signature="396:490" ph=" Show the application login form. ..." />
-            <marker date="1470674701000" expanded="true" signature="528:770" ph="{...}" />
-            <marker date="1470674701000" expanded="true" signature="686:727" ph="..." />
-            <marker date="1470674701000" expanded="true" signature="779:933" ph=" Handle a login request to the application. ..." />
-            <marker date="1470674701000" expanded="true" signature="983:1034" ph="{...}" />
-            <marker date="1470674701000" expanded="true" signature="1043:1197" ph=" Handle a login request to the application. ..." />
-            <marker date="1470674701000" expanded="true" signature="1243:2482" ph="{...}" />
-            <marker date="1470674701000" expanded="true" signature="1695:1809" ph="..." />
-            <marker date="1470674701000" expanded="true" signature="1964:2049" ph="..." />
-            <marker date="1470674701000" expanded="true" signature="2355:2417" ph="..." />
-            <marker date="1470674701000" expanded="true" signature="2491:2614" ph=" Validate the user login request. ..." />
-            <marker date="1470674701000" expanded="true" signature="2671:2807" ph="{...}" />
-            <marker date="1470674701000" expanded="true" signature="2702:2799" ph="..." />
-            <marker date="1470674701000" expanded="true" signature="2713:2798" ph="..." />
-            <marker date="1470674701000" expanded="true" signature="2816:3011" ph=" Send the response after the user was authenticated. ..." />
-            <marker date="1470674701000" expanded="true" signature="3093:3502" ph="{...}" />
-            <marker date="1470674701000" expanded="true" signature="3125:3183" ph="..." />
-            <marker date="1470674701000" expanded="true" signature="3238:3338" ph="..." />
-            <marker date="1470674701000" expanded="true" signature="3357:3432" ph="..." />
-            <marker date="1470674701000" expanded="true" signature="3511:3661" ph=" Get the failed login response instance. ..." />
-            <marker date="1470674701000" expanded="true" signature="3728:3967" ph="{...}" />
-            <marker date="1470674701000" expanded="true" signature="3793:3843" ph="..." />
-            <marker date="1470674701000" expanded="true" signature="3870:3959" ph="..." />
-            <marker date="1470674701000" expanded="true" signature="3871:3958" ph="..." />
-            <marker date="1470674701000" expanded="true" signature="3976:4048" ph=" Get the failed login message. ..." />
-            <marker date="1470674701000" expanded="true" signature="4097:4257" ph="{...}" />
-            <marker date="1470674701000" expanded="true" signature="4266:4416" ph=" Get the needed authorization credentials from the request. ..." />
-            <marker date="1470674701000" expanded="true" signature="4474:4553" ph="{...}" />
-            <marker date="1470674701000" expanded="true" signature="4562:4660" ph=" Log the user out of the application. ..." />
-            <marker date="1470674701000" expanded="true" signature="4694:4738" ph="{...}" />
-            <marker date="1470674701000" expanded="true" signature="4747:4845" ph=" Log the user out of the application. ..." />
-            <marker date="1470674701000" expanded="true" signature="4876:5152" ph="{...}" />
-            <marker date="1470674701000" expanded="true" signature="4958:5034" ph="..." />
-            <marker date="1470674701000" expanded="true" signature="5161:5220" ph=" Get the guest middleware for the application. ..." />
-            <marker date="1470674701000" expanded="true" signature="5260:5360" ph="{...}" />
-            <marker date="1470674701000" expanded="true" signature="5369:5464" ph=" Get the login username to be used by the controller. ..." />
-            <marker date="1470674701000" expanded="true" signature="5502:5593" ph="{...}" />
-            <marker date="1470674701000" expanded="true" signature="5602:5701" ph=" Determine if the class is using the ThrottlesLogins trait. ..." />
-            <marker date="1470674701000" expanded="true" signature="5756:5876" ph="{...}" />
-            <marker date="1470674701000" expanded="true" signature="5787:5868" ph="..." />
-            <marker date="1470674701000" expanded="true" signature="5885:5980" ph=" Get the guard to be used during authentication. ..." />
-            <marker date="1470674701000" expanded="true" signature="6016:6098" ph="{...}" />
+            <marker date="1470748577000" expanded="false" signature="50:148" ph="..." />
+            <marker date="1470748577000" expanded="true" signature="174:5991" ph="{...}" />
+            <marker date="1470748577000" expanded="true" signature="209:303" ph=" Show the application login form. ..." />
+            <marker date="1470748577000" expanded="true" signature="336:387" ph="{...}" />
+            <marker date="1470748577000" expanded="true" signature="396:490" ph=" Show the application login form. ..." />
+            <marker date="1470748577000" expanded="true" signature="528:770" ph="{...}" />
+            <marker date="1470748577000" expanded="true" signature="686:727" ph="..." />
+            <marker date="1470748577000" expanded="true" signature="779:933" ph=" Handle a login request to the application. ..." />
+            <marker date="1470748577000" expanded="true" signature="983:1034" ph="{...}" />
+            <marker date="1470748577000" expanded="true" signature="1043:1197" ph=" Handle a login request to the application. ..." />
+            <marker date="1470748577000" expanded="true" signature="1243:2482" ph="{...}" />
+            <marker date="1470748577000" expanded="true" signature="1695:1809" ph="..." />
+            <marker date="1470748577000" expanded="true" signature="1964:2049" ph="..." />
+            <marker date="1470748577000" expanded="true" signature="2355:2417" ph="..." />
+            <marker date="1470748577000" expanded="true" signature="2491:2614" ph=" Validate the user login request. ..." />
+            <marker date="1470748577000" expanded="true" signature="2671:2807" ph="{...}" />
+            <marker date="1470748577000" expanded="true" signature="2702:2799" ph="..." />
+            <marker date="1470748577000" expanded="true" signature="2713:2798" ph="..." />
+            <marker date="1470748577000" expanded="true" signature="2816:3011" ph=" Send the response after the user was authenticated. ..." />
+            <marker date="1470748577000" expanded="true" signature="3093:3502" ph="{...}" />
+            <marker date="1470748577000" expanded="true" signature="3125:3183" ph="..." />
+            <marker date="1470748577000" expanded="true" signature="3238:3338" ph="..." />
+            <marker date="1470748577000" expanded="true" signature="3357:3432" ph="..." />
+            <marker date="1470748577000" expanded="true" signature="3511:3661" ph=" Get the failed login response instance. ..." />
+            <marker date="1470748577000" expanded="true" signature="3728:3967" ph="{...}" />
+            <marker date="1470748577000" expanded="true" signature="3793:3843" ph="..." />
+            <marker date="1470748577000" expanded="true" signature="3870:3959" ph="..." />
+            <marker date="1470748577000" expanded="true" signature="3871:3958" ph="..." />
+            <marker date="1470748577000" expanded="true" signature="3976:4048" ph=" Get the failed login message. ..." />
+            <marker date="1470748577000" expanded="true" signature="4097:4257" ph="{...}" />
+            <marker date="1470748577000" expanded="true" signature="4266:4416" ph=" Get the needed authorization credentials from the request. ..." />
+            <marker date="1470748577000" expanded="true" signature="4474:4553" ph="{...}" />
+            <marker date="1470748577000" expanded="true" signature="4562:4660" ph=" Log the user out of the application. ..." />
+            <marker date="1470748577000" expanded="true" signature="4694:4738" ph="{...}" />
+            <marker date="1470748577000" expanded="true" signature="4747:4845" ph=" Log the user out of the application. ..." />
+            <marker date="1470748577000" expanded="true" signature="4876:5043" ph="{...}" />
+            <marker date="1470748577000" expanded="true" signature="4958:5034" ph="..." />
+            <marker date="1470748577000" expanded="true" signature="5052:5111" ph=" Get the guest middleware for the application. ..." />
+            <marker date="1470748577000" expanded="true" signature="5151:5251" ph="{...}" />
+            <marker date="1470748577000" expanded="true" signature="5260:5355" ph=" Get the login username to be used by the controller. ..." />
+            <marker date="1470748577000" expanded="true" signature="5393:5484" ph="{...}" />
+            <marker date="1470748577000" expanded="true" signature="5493:5592" ph=" Determine if the class is using the ThrottlesLogins trait. ..." />
+            <marker date="1470748577000" expanded="true" signature="5647:5767" ph="{...}" />
+            <marker date="1470748577000" expanded="true" signature="5678:5759" ph="..." />
+            <marker date="1470748577000" expanded="true" signature="5776:5871" ph=" Get the guard to be used during authentication. ..." />
+            <marker date="1470748577000" expanded="true" signature="5907:5989" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/js/components/App.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding>
+            <marker date="1470576940000" expanded="true" signature="20:44" ph="..." />
+            <marker date="1470576940000" expanded="true" signature="54:127" ph="..." />
+            <marker date="1470576940000" expanded="true" signature="105:118" ph="{...}" />
+            <marker date="1470576940000" expanded="true" signature="157:167" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/js/router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="727">
+          <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+          <folding>
+            <marker date="1470674198000" expanded="true" signature="7:95" ph="..." />
+            <marker date="1470674198000" expanded="false" signature="117:558" ph="..." />
+            <marker date="1470674198000" expanded="true" signature="644:1537" ph="{...}" />
+            <marker date="1470674198000" expanded="true" signature="655:970" ph="{&quot;name&quot;: 'login'...}" />
+            <marker date="1470674198000" expanded="true" signature="725:964" ph="{...}" />
+            <marker date="1470674198000" expanded="true" signature="748:835" ph="{&quot;name&quot;: 'loginView'...}" />
+            <marker date="1470674198000" expanded="true" signature="861:954" ph="{&quot;name&quot;: 'registerView'...}" />
+            <marker date="1470674198000" expanded="true" signature="985:1535" ph="{&quot;name&quot;: 'home'...}" />
+            <marker date="1470674198000" expanded="true" signature="1053:1529" ph="{...}" />
+            <marker date="1470674198000" expanded="true" signature="1072:1158" ph="{&quot;name&quot;: 'reminder'...}" />
+            <marker date="1470674198000" expanded="true" signature="1190:1285" ph="{&quot;name&quot;: 'privacyPolicy'...}" />
+            <marker date="1470674198000" expanded="true" signature="1313:1400" ph="{&quot;name&quot;: 'termOfUse'...}" />
+            <marker date="1470674198000" expanded="true" signature="1429:1518" ph="{&quot;name&quot;: 'usefulLink'...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        <state relative-caret-position="276">
+          <caret line="21" column="4" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="4" />
+          <folding>
+            <marker date="1470762409000" expanded="false" signature="9:390" ph="..." />
+            <marker date="1470762409000" expanded="true" signature="405:453" ph="..." />
+            <marker date="1470762409000" expanded="true" signature="423:452" ph="..." />
+            <marker date="1470762409000" expanded="true" signature="483:592" ph="..." />
+            <marker date="1470762409000" expanded="true" signature="510:591" ph="..." />
+            <marker date="1470762409000" expanded="true" signature="535:558" ph="..." />
+            <marker date="1470762409000" expanded="true" signature="566:589" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/js/components/login/LoginView.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="359">
+          <caret line="32" column="29" selection-start-line="32" selection-start-column="29" selection-end-line="32" selection-end-column="29" />
           <folding />
         </state>
       </provider>
