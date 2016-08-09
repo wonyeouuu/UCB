@@ -2,16 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="952edf6d-c25c-49dd-8a30-1798661b9342" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/build/js/app.main-30b89a3ea5.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/build/js/app.main-8149b59630.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/build/js/app.main.js.map" afterPath="$PROJECT_DIR$/public/build/js/app.main.js.map" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/build/rev-manifest.json" afterPath="$PROJECT_DIR$/public/build/rev-manifest.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/app.main.js" afterPath="$PROJECT_DIR$/public/js/app.main.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/app.main.js.map" afterPath="$PROJECT_DIR$/public/js/app.main.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/js/components/login/Login.vue" afterPath="$PROJECT_DIR$/resources/assets/js/components/login/Login.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/js/components/login/LoginView.vue" afterPath="$PROJECT_DIR$/resources/assets/js/components/login/LoginView.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/Auth/AuthenticatesUsers.php" afterPath="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/Auth/AuthenticatesUsers.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/js/router.js" afterPath="$PROJECT_DIR$/resources/assets/js/router.js" />
     </list>
     <ignored path="UCB.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,12 +32,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="LoginView.vue" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/assets/js/components/login/LoginView.vue">
+      <file leaf-file-name="router.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/assets/js/router.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="359">
-              <caret line="32" column="29" selection-start-line="32" selection-start-column="29" selection-end-line="32" selection-end-column="29" />
-              <folding />
+            <state relative-caret-position="543">
+              <caret line="67" column="38" selection-start-line="67" selection-start-column="38" selection-end-line="67" selection-end-column="38" />
+              <folding>
+                <element signature="e#0#21#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -55,7 +56,9 @@
         <option value="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/Auth/RegistersUsers.php" />
         <option value="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/Auth/AuthenticatesUsers.php" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
+        <option value="$PROJECT_DIR$/resources/assets/js/components/login/Login.vue" />
         <option value="$PROJECT_DIR$/resources/assets/js/components/login/LoginView.vue" />
+        <option value="$PROJECT_DIR$/resources/assets/js/router.js" />
       </list>
     </option>
   </component>
@@ -105,11 +108,11 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane />
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -131,16 +134,16 @@
       <option name="presentableId" value="Default" />
       <updated>1470669772182</updated>
       <workItem from="1470669774372" duration="1551000" />
-      <workItem from="1470746493790" duration="1172000" />
+      <workItem from="1470746493790" duration="2107000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2723000" />
+    <option name="totallyTimeSpent" value="3658000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -150,7 +153,7 @@
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32945737" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32945737" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -326,28 +329,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/assets/js/router.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="727">
-          <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-          <folding>
-            <marker date="1470674198000" expanded="true" signature="7:95" ph="..." />
-            <marker date="1470674198000" expanded="false" signature="117:558" ph="..." />
-            <marker date="1470674198000" expanded="true" signature="644:1537" ph="{...}" />
-            <marker date="1470674198000" expanded="true" signature="655:970" ph="{&quot;name&quot;: 'login'...}" />
-            <marker date="1470674198000" expanded="true" signature="725:964" ph="{...}" />
-            <marker date="1470674198000" expanded="true" signature="748:835" ph="{&quot;name&quot;: 'loginView'...}" />
-            <marker date="1470674198000" expanded="true" signature="861:954" ph="{&quot;name&quot;: 'registerView'...}" />
-            <marker date="1470674198000" expanded="true" signature="985:1535" ph="{&quot;name&quot;: 'home'...}" />
-            <marker date="1470674198000" expanded="true" signature="1053:1529" ph="{...}" />
-            <marker date="1470674198000" expanded="true" signature="1072:1158" ph="{&quot;name&quot;: 'reminder'...}" />
-            <marker date="1470674198000" expanded="true" signature="1190:1285" ph="{&quot;name&quot;: 'privacyPolicy'...}" />
-            <marker date="1470674198000" expanded="true" signature="1313:1400" ph="{&quot;name&quot;: 'termOfUse'...}" />
-            <marker date="1470674198000" expanded="true" signature="1429:1518" ph="{&quot;name&quot;: 'usefulLink'...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
@@ -364,11 +345,53 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/js/components/login/Login.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding>
+            <marker date="1470763090000" expanded="true" signature="21:307" ph="..." />
+            <marker date="1470763090000" expanded="true" signature="317:347" ph="..." />
+            <marker date="1470763090000" expanded="true" signature="334:338" ph="{...}" />
+            <marker date="1470763090000" expanded="true" signature="377:740" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/assets/js/components/login/LoginView.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="32" column="29" selection-start-line="32" selection-start-column="29" selection-end-line="32" selection-end-column="29" />
-          <folding />
+        <state relative-caret-position="474">
+          <caret line="33" column="10" selection-start-line="33" selection-start-column="10" selection-end-line="33" selection-end-column="10" />
+          <folding>
+            <marker date="1470764673000" expanded="true" signature="21:716" ph="..." />
+            <marker date="1470764673000" expanded="true" signature="726:2088" ph="..." />
+            <marker date="1470764673000" expanded="true" signature="743:2079" ph="{...}" />
+            <marker date="1470764673000" expanded="true" signature="756:936" ph="{...}" />
+            <marker date="1470764673000" expanded="true" signature="773:930" ph="{&quot;username&quot;: &quot;&quot;...}" />
+            <marker date="1470764673000" expanded="true" signature="846:920" ph="{&quot;username&quot;: &quot;&quot;...}" />
+            <marker date="1470764673000" expanded="true" signature="949:1023" ph="{...}" />
+            <marker date="1470764673000" expanded="true" signature="951:1017" ph="//..." />
+            <marker date="1470764673000" expanded="true" signature="1038:2077" ph="{...}" />
+            <marker date="1470764673000" expanded="true" signature="1056:1768" ph="{...}" />
+            <marker date="1470764673000" expanded="true" signature="1083:1157" ph="{&quot;username&quot;: &quot;&quot;...}" />
+            <marker date="1470764673000" expanded="true" signature="1230:1338" ph="{...}" />
+            <marker date="1470764673000" expanded="true" signature="1384:1414" ph="{...}" />
+            <marker date="1470764673000" expanded="true" signature="1429:1568" ph="{...}" />
+            <marker date="1470764673000" expanded="true" signature="1633:1665" ph="{...}" />
+            <marker date="1470764673000" expanded="true" signature="1674:1739" ph="{...}" />
+            <marker date="1470764673000" expanded="true" signature="1769:2071" ph="//..." />
+            <marker date="1470764673000" expanded="true" signature="2118:2240" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/js/router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="543">
+          <caret line="67" column="38" selection-start-line="67" selection-start-column="38" selection-end-line="67" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

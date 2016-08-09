@@ -25433,10 +25433,9 @@ exports.default = {
     },
 
     route: {
-        activate: function activate() {
-            console.log('adfa');
-            this.checkLogin();
-        }
+        //        activate() {
+        //            this.checkLogin()
+        //        }
     },
     methods: {
         login: function login() {
@@ -25465,18 +25464,18 @@ exports.default = {
                     _this.error = data;
                 }
             });
-        },
-        checkLogin: function checkLogin() {
-            var _this2 = this;
-
-            this.$http.get('/checkLogin').then(function (_ref3) {
-                var data = _ref3.data;
-
-                if (data == 1) {
-                    _this2.$router.go({ name: 'home' });
-                }
-            });
         }
+        //        checkLogin() {
+        //            this
+        //                .$http
+        //                .get('/checkLogin')
+        //                .then(({ data }) => {
+        //                    if (data == 1) {
+        //                        this.$router.go({ name: 'home' })
+        //                    }
+        //                })
+        //        }
+
     }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
@@ -25694,6 +25693,23 @@ router.map({
             }
         }
     }
+});
+
+router.redirect({
+    '/': '/login'
+});
+
+router.beforeEach(function (transition) {
+    if (['/', '/login'].indexOf(transition.to.path) != -1) {
+        _vue2.default.http.get('/checkLogin').then(function (_ref) {
+            var data = _ref.data;
+
+            if (data == 1) {
+                router.go({ name: 'home' });
+            }
+        });
+    }
+    transition.next();
 });
 
 exports.default = router;

@@ -28,11 +28,6 @@ export default {
             }
         }
     },
-    route: {
-        activate() {
-            this.checkLogin()
-        }
-    },
     methods: {
         login() {
             this.error = {
@@ -54,16 +49,6 @@ export default {
                 .catch(({ data, status }) => {
                     if (status == 422) {
                         this.error = data
-                    }
-                })
-        },
-        checkLogin() {
-            this
-                .$http
-                .get('/checkLogin')
-                .then(({ data }) => {
-                    if (data == 1) {
-                        this.$router.go({ name: 'home' })
                     }
                 })
         }

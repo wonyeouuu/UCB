@@ -57,4 +57,19 @@ router.map({
     }
 })
 
+router.redirect({
+    '/': '/login'
+})
+
+router.beforeEach(function(transition) {
+    if (['/', '/login'].indexOf(transition.to.path) != -1) {
+        Vue.http.get('/checkLogin').then(({ data }) => {
+            if (data == 1) {
+                router.go({ name: 'home' })
+            }
+        })
+    }
+    transition.next()
+})
+
 export default router
