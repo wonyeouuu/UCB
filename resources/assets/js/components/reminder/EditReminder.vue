@@ -24,7 +24,7 @@ div
             div.row
                 div.input-field.col.s12
                     select.browser-default(v-model='frequency')
-                        option(:value='0', disabled, selected) Choose your option
+                        option(:value='0', disabled, selected) Frequency
                         option(:value='1') Every day(1)
                         option(:value='2') 2 times a day(2)
                         option(:value='3') 3 times a day(3)
@@ -34,9 +34,8 @@ div
                         option(:value='7') Every 3 days(1)
                         option(:value='8') Every week(1)
                         option(:value='9') Every 28 days(1)
-                    label Frequency
                 div.input-field.col.s12(v-show='showMultiple')
-                    select(multiple, v-model='threeDays')
+                    select.browser-default(multiple, v-model='threeDays')
                         option(:value='', disabled, selected) Choose 3 days
                         option(:value='1') Monday
                         option(:value='2') Tuesday
@@ -45,7 +44,6 @@ div
                         option(:value='5') Friday
                         option(:value='6') Saturday
                         option(:value='7') Sunday
-                    label Choose 3 days
 
 
 
@@ -64,7 +62,7 @@ export default {
     },
     computed: {
         showMultiple() {
-            return this.frequency == 0
+            return this.frequency == 5
         }
     },
     ready() {
