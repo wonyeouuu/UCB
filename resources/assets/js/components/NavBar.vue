@@ -13,8 +13,12 @@ nav
                 a.waves-effect(v-link='{ name: "usefulLink" }') Useful Links
             li
                 a.waves-effect(@click='logout()') Log out
-        a.button-collapse(data-activates='slide-out')
+        a.button-collapse(data-activates='slide-out', v-show='!backButton')
             i.material-icons menu
+        a(v-show='backButton', @click='$router.go({ name: "reminder" })')
+            i.material-icons keyboard_arrow_left
+        a.go(v-show='backButton', @click='$router.go({ name: "reminder" })')
+            i.material-icons keyboard_arrow_left
 </template>
 
 <script>
@@ -33,9 +37,13 @@ export default {
                 analysis: 'Analysis',
                 privacyPolicy: 'Privacy Policy',
                 termOfUse: 'Term Of Use',
-                usefulLink: 'Useful Links'
+                usefulLink: 'Useful Links',
+                editReminder: 'Edit'
             }
             return switchObj[this.$route.name]
+        },
+        backButton() {
+            return ['editReminder', 'editRecord'].indexOf(this.$route.name) != -1
         }
     },
     methods: {

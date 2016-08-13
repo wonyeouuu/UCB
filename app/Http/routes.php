@@ -15,7 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::auth();
-
 Route::get('/checkLogin', function() {
     if (Auth::check()) {
         return 1;

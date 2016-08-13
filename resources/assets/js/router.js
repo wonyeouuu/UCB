@@ -9,6 +9,7 @@ import RegisterView from './components/login/RegisterView.vue'
 
 import Home from './components/Home.vue'
 import Reminders from './components/reminder/Reminders.vue'
+import EditReminder from './components/reminder/EditReminder.vue'
 import PrivacyPolicy from './components/home/PrivacyPolicy.vue'
 import TermOfUse from './components/home/TermOfUse.vue'
 import UsefulLink from './components/home/UsefulLink.vue'
@@ -37,9 +38,17 @@ router.map({
         name: 'home',
         component: Home,
         subRoutes: {
-            '/': {
+            '/reminder': {
                 component: Reminders,
                 name: 'reminder'
+            },
+            '/record': {
+                component: Reminders,
+                name: 'record'
+            },
+            '/analysis': {
+                component: Reminders,
+                name: 'analysis'
             },
             '/privacyPolicy': {
                 component: PrivacyPolicy,
@@ -54,11 +63,16 @@ router.map({
                 name: 'usefulLink'
             },
         }
+    },
+    '/reminder/edit': {
+        component: EditReminder,
+        name: 'editReminder'
     }
 })
 
 router.redirect({
-    '/': '/login'
+    '/': '/login',
+    '/home': '/home/reminder'
 })
 
 router.beforeEach(function(transition) {

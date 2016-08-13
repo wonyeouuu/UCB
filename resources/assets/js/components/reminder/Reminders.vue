@@ -1,5 +1,5 @@
 <template lang="jade">
-div.row
+div.row.reminder-container
     div.col.s12.m6(v-for='i in 5')
         div.card.grey.lighten-2
             div.card-content
@@ -9,7 +9,7 @@ div.row
                 a This is a link
                 a This is a link
 
-a.btn-floating.btn-large.waves-effect.waves-light
+a.btn-floating.btn-large.waves-effect.waves-light(@click='$router.go({ name: "editReminder" })')
     i.material-icons add
 </template>
 
@@ -32,4 +32,7 @@ export default {
     position fixed
     bottom 1rem
     right 1rem
+.reminder-container
+    height 78vh
+    overflow-y scroll
 </style>

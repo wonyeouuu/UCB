@@ -1,9 +1,8 @@
 <template lang="jade">
-nav-bar
-tabs(v-if='["reminder", "record", "analysis"].indexOf($route.name) != -1')
-router-view
-
-
+div
+    nav-bar
+    tabs(v-if='["reminder", "record", "analysis"].indexOf($route.name) != -1')
+    router-view
 </template>
 
 <script>

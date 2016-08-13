@@ -25141,7 +25141,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 _router2.default.start(_App2.default, '#app');
 
-},{"./components/App.vue":11,"./router":22,"./vuex/store":23,"jquery":1,"vue":6,"vuex-router-sync":8}],11:[function(require,module,exports){
+},{"./components/App.vue":11,"./router":23,"./vuex/store":24,"jquery":1,"vue":6,"vuex-router-sync":8}],11:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25158,7 +25158,7 @@ exports.default = {
     store: _store2.default
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<router-view _v-38a73648=\"\"></router-view>"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div _v-38a73648=\"\"><router-view _v-38a73648=\"\"></router-view></div>"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -25169,7 +25169,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-38a73648", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/store":23,"vue":6,"vue-hot-reload-api":3}],12:[function(require,module,exports){
+},{"../vuex/store":24,"vue":6,"vue-hot-reload-api":3}],12:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25190,7 +25190,7 @@ exports.default = {
     components: { NavBar: _NavBar2.default, Tabs: _Tabs2.default }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<nav-bar _v-31ea03b4=\"\"></nav-bar><tabs v-if=\"[&quot;reminder&quot;, &quot;record&quot;, &quot;analysis&quot;].indexOf($route.name) != -1\" _v-31ea03b4=\"\"></tabs><router-view _v-31ea03b4=\"\"></router-view>"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div _v-31ea03b4=\"\"><nav-bar _v-31ea03b4=\"\"></nav-bar><tabs v-if=\"[&quot;reminder&quot;, &quot;record&quot;, &quot;analysis&quot;].indexOf($route.name) != -1\" _v-31ea03b4=\"\"></tabs><router-view _v-31ea03b4=\"\"></router-view></div>"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -25223,9 +25223,13 @@ exports.default = {
                 analysis: 'Analysis',
                 privacyPolicy: 'Privacy Policy',
                 termOfUse: 'Term Of Use',
-                usefulLink: 'Useful Links'
+                usefulLink: 'Useful Links',
+                editReminder: 'Edit'
             };
             return switchObj[this.$route.name];
+        },
+        backButton: function backButton() {
+            return ['editReminder', 'editRecord'].indexOf(this.$route.name) != -1;
         }
     },
     methods: {
@@ -25245,7 +25249,7 @@ exports.default = {
 
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<nav _v-80dc71f6=\"\"><div class=\"nav-wrapper\" _v-80dc71f6=\"\"><a class=\"brand-logo\" _v-80dc71f6=\"\">{{ header }}</a><ul id=\"slide-out\" class=\"side-nav\" _v-80dc71f6=\"\"><li _v-80dc71f6=\"\"><a v-link=\"{ name: &quot;reminder&quot; }\" class=\"waves-effect\" _v-80dc71f6=\"\">Home</a></li><li _v-80dc71f6=\"\"><a v-link=\"{ name: &quot;privacyPolicy&quot; }\" class=\"waves-effect\" _v-80dc71f6=\"\">Privacy Policy</a></li><li _v-80dc71f6=\"\"><a v-link=\"{ name: &quot;termOfUse&quot; }\" class=\"waves-effect\" _v-80dc71f6=\"\">Term of use</a></li><li _v-80dc71f6=\"\"><a v-link=\"{ name: &quot;usefulLink&quot; }\" class=\"waves-effect\" _v-80dc71f6=\"\">Useful Links</a></li><li _v-80dc71f6=\"\"><a @click=\"logout()\" class=\"waves-effect\" _v-80dc71f6=\"\">Log out</a></li></ul><a data-activates=\"slide-out\" class=\"button-collapse\" _v-80dc71f6=\"\"><i class=\"material-icons\" _v-80dc71f6=\"\">menu</i></a></div></nav>"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<nav _v-80dc71f6=\"\"><div class=\"nav-wrapper\" _v-80dc71f6=\"\"><a class=\"brand-logo\" _v-80dc71f6=\"\">{{ header }}</a><ul id=\"slide-out\" class=\"side-nav\" _v-80dc71f6=\"\"><li _v-80dc71f6=\"\"><a v-link=\"{ name: &quot;reminder&quot; }\" class=\"waves-effect\" _v-80dc71f6=\"\">Home</a></li><li _v-80dc71f6=\"\"><a v-link=\"{ name: &quot;privacyPolicy&quot; }\" class=\"waves-effect\" _v-80dc71f6=\"\">Privacy Policy</a></li><li _v-80dc71f6=\"\"><a v-link=\"{ name: &quot;termOfUse&quot; }\" class=\"waves-effect\" _v-80dc71f6=\"\">Term of use</a></li><li _v-80dc71f6=\"\"><a v-link=\"{ name: &quot;usefulLink&quot; }\" class=\"waves-effect\" _v-80dc71f6=\"\">Useful Links</a></li><li _v-80dc71f6=\"\"><a @click=\"logout()\" class=\"waves-effect\" _v-80dc71f6=\"\">Log out</a></li></ul><a data-activates=\"slide-out\" v-show=\"!backButton\" class=\"button-collapse\" _v-80dc71f6=\"\"><i class=\"material-icons\" _v-80dc71f6=\"\">menu</i></a><a v-show=\"backButton\" @click=\"$router.go({ name: &quot;reminder&quot; })\" _v-80dc71f6=\"\"><i class=\"material-icons\" _v-80dc71f6=\"\">keyboard_arrow_left</i></a><a v-show=\"backButton\" @click=\"$router.go({ name: &quot;reminder&quot; })\" class=\"go\" _v-80dc71f6=\"\"><i class=\"material-icons\" _v-80dc71f6=\"\">keyboard_arrow_left</i></a></div></nav>"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -25270,7 +25274,7 @@ exports.default = {
     }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div class=\"row\" _v-19e0dad3=\"\"><div class=\"col s12 no-padding\" _v-19e0dad3=\"\"><ul class=\"tabs\" _v-19e0dad3=\"\"><li class=\"tab col s4\" _v-19e0dad3=\"\"><a _v-19e0dad3=\"\">Reminder</a></li><li class=\"tab col s4\" _v-19e0dad3=\"\"><a _v-19e0dad3=\"\">Record</a></li><li class=\"tab col s4\" _v-19e0dad3=\"\"><a _v-19e0dad3=\"\">Analysis</a></li></ul></div></div>"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div class=\"row\" _v-19e0dad3=\"\"><div class=\"col s12 no-padding\" _v-19e0dad3=\"\"><ul class=\"tabs\" _v-19e0dad3=\"\"><li class=\"tab col s4\" _v-19e0dad3=\"\"><a @click=\"$router.go({ name: &quot;reminder&quot; })\" _v-19e0dad3=\"\">Reminder</a></li><li class=\"tab col s4\" _v-19e0dad3=\"\"><a @click=\"$router.go({ name: &quot;record&quot; })\" _v-19e0dad3=\"\">Record</a></li><li class=\"tab col s4\" _v-19e0dad3=\"\"><a @click=\"$router.go({ name: &quot;analysis&quot; })\" _v-19e0dad3=\"\">Analysis</a></li></ul></div></div>"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -25432,11 +25436,6 @@ exports.default = {
         };
     },
 
-    route: {
-        //        activate() {
-        //            this.checkLogin()
-        //        }
-    },
     methods: {
         login: function login() {
             var _this = this;
@@ -25465,17 +25464,6 @@ exports.default = {
                 }
             });
         }
-        //        checkLogin() {
-        //            this
-        //                .$http
-        //                .get('/checkLogin')
-        //                .then(({ data }) => {
-        //                    if (data == 1) {
-        //                        this.$router.go({ name: 'home' })
-        //                    }
-        //                })
-        //        }
-
     }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
@@ -25565,7 +25553,55 @@ if (module.hot) {(function () {  module.hot.accept()
 })()}
 },{"vue":6,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],21:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert(".btn-floating[_v-7a89a639] {\n  position: fixed;\n  bottom: 1rem;\n  right: 1rem;\n}\n")
+var __vueify_style__ = __vueify_insert__.insert(".action-right[_v-20e41958] {\n  position: fixed;\n  top: 0;\n  right: 0;\n}\n")
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = {
+    data: function data() {
+        return {
+            name: "",
+            startDate: "",
+            endDate: "",
+            frequency: "",
+            threeDays: []
+        };
+    },
+
+    computed: {
+        showMultiple: function showMultiple() {
+            return this.frequency == 0;
+        }
+    },
+    ready: function ready() {
+        $('.datepicker').pickadate({
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 15 // Creates a dropdown of 15 years to control year
+        });
+        $('select').material_select();
+    }
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div _v-20e41958=\"\"><nav _v-20e41958=\"\"><div class=\"nav-wrapper\" _v-20e41958=\"\"><a class=\"brand-logo\" _v-20e41958=\"\">Reminder</a><a @click=\"$router.go({ name: &quot;reminder&quot; })\" _v-20e41958=\"\"><i class=\"material-icons\" _v-20e41958=\"\">keyboard_arrow_left</i></a><a class=\"action-right\" _v-20e41958=\"\"><i class=\"material-icons\" _v-20e41958=\"\">edit</i></a></div></nav><div class=\"row\" _v-20e41958=\"\"><form class=\"col s12\" _v-20e41958=\"\"><div class=\"row\" _v-20e41958=\"\"><div class=\"input-field col s12\" _v-20e41958=\"\"><input id=\"nameInput\" type=\"text\" v-model=\"name\" class=\"validate\" _v-20e41958=\"\"><label for=\"nameInput\" _v-20e41958=\"\">Medicine Name</label></div></div><div class=\"row\" _v-20e41958=\"\"><div class=\"input-field col s12\" _v-20e41958=\"\"><input id=\"startDateInput\" type=\"date\" v-model=\"startDate\" class=\"datepicker\" _v-20e41958=\"\"><label for=\"startDateInput\" _v-20e41958=\"\">Start Date</label></div></div><div class=\"row\" _v-20e41958=\"\"><div class=\"input-field col s12\" _v-20e41958=\"\"><input id=\"endDateInput\" type=\"date\" v-model=\"endDate\" class=\"datepicker\" _v-20e41958=\"\"><label for=\"endDateInput\" _v-20e41958=\"\">End Date</label></div></div><div class=\"row\" _v-20e41958=\"\"><div class=\"input-field col s12\" _v-20e41958=\"\"><select v-model=\"frequency\" class=\"browser-default\" _v-20e41958=\"\"><option :value=\"0\" disabled=\"disabled\" selected=\"selected\" _v-20e41958=\"\">Choose your option</option><option :value=\"1\" _v-20e41958=\"\">Every day(1)</option><option :value=\"2\" _v-20e41958=\"\">2 times a day(2)</option><option :value=\"3\" _v-20e41958=\"\">3 times a day(3)</option><option :value=\"4\" _v-20e41958=\"\">4 times a day(4)</option><option :value=\"5\" _v-20e41958=\"\">3 times a week(1)</option><option :value=\"6\" _v-20e41958=\"\">Every 2 days(1)</option><option :value=\"7\" _v-20e41958=\"\">Every 3 days(1)</option><option :value=\"8\" _v-20e41958=\"\">Every week(1)</option><option :value=\"9\" _v-20e41958=\"\">Every 28 days(1)</option></select><label _v-20e41958=\"\">Frequency</label></div><div v-show=\"showMultiple\" class=\"input-field col s12\" _v-20e41958=\"\"><select multiple=\"multiple\" v-model=\"threeDays\" _v-20e41958=\"\"><option :value=\"\" disabled=\"disabled\" selected=\"selected\" _v-20e41958=\"\">Choose 3 days</option><option :value=\"1\" _v-20e41958=\"\">Monday</option><option :value=\"2\" _v-20e41958=\"\">Tuesday</option><option :value=\"3\" _v-20e41958=\"\">Wednesday</option><option :value=\"4\" _v-20e41958=\"\">Thursday</option><option :value=\"5\" _v-20e41958=\"\">Friday</option><option :value=\"6\" _v-20e41958=\"\">Saturday</option><option :value=\"7\" _v-20e41958=\"\">Sunday</option></select><label _v-20e41958=\"\">Choose 3 days</label></div></div></form></div></div>"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.dispose(function () {
+    __vueify_insert__.cache[".action-right[_v-20e41958] {\n  position: fixed;\n  top: 0;\n  right: 0;\n}\n"] = false
+    document.head.removeChild(__vueify_style__)
+  })
+  if (!module.hot.data) {
+    hotAPI.createRecord("_v-20e41958", module.exports)
+  } else {
+    hotAPI.update("_v-20e41958", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+  }
+})()}
+},{"vue":6,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],22:[function(require,module,exports){
+var __vueify_insert__ = require("vueify/lib/insert-css")
+var __vueify_style__ = __vueify_insert__.insert(".btn-floating[_v-7a89a639] {\n  position: fixed;\n  bottom: 1rem;\n  right: 1rem;\n}\n.reminder-container[_v-7a89a639] {\n  height: 78vh;\n  overflow-y: scroll;\n}\n")
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -25582,13 +25618,13 @@ exports.default = {
   components: {}
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div class=\"row\" _v-7a89a639=\"\"><div v-for=\"i in 5\" class=\"col s12 m6\" _v-7a89a639=\"\"><div class=\"card grey lighten-2\" _v-7a89a639=\"\"><div class=\"card-content\" _v-7a89a639=\"\"><span class=\"card-title\" _v-7a89a639=\"\">Card Title</span><p _v-7a89a639=\"\">I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p></div><div class=\"card-action\" _v-7a89a639=\"\"><a _v-7a89a639=\"\">This is a link</a><a _v-7a89a639=\"\">This is a link</a></div></div></div></div><a class=\"btn-floating btn-large waves-effect waves-light\" _v-7a89a639=\"\"><i class=\"material-icons\" _v-7a89a639=\"\">add</i></a>"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div class=\"row reminder-container\" _v-7a89a639=\"\"><div v-for=\"i in 5\" class=\"col s12 m6\" _v-7a89a639=\"\"><div class=\"card grey lighten-2\" _v-7a89a639=\"\"><div class=\"card-content\" _v-7a89a639=\"\"><span class=\"card-title\" _v-7a89a639=\"\">Card Title</span><p _v-7a89a639=\"\">I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p></div><div class=\"card-action\" _v-7a89a639=\"\"><a _v-7a89a639=\"\">This is a link</a><a _v-7a89a639=\"\">This is a link</a></div></div></div></div><a @click=\"$router.go({ name: &quot;editReminder&quot; })\" class=\"btn-floating btn-large waves-effect waves-light\" _v-7a89a639=\"\"><i class=\"material-icons\" _v-7a89a639=\"\">add</i></a>"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.dispose(function () {
-    __vueify_insert__.cache[".btn-floating[_v-7a89a639] {\n  position: fixed;\n  bottom: 1rem;\n  right: 1rem;\n}\n"] = false
+    __vueify_insert__.cache[".btn-floating[_v-7a89a639] {\n  position: fixed;\n  bottom: 1rem;\n  right: 1rem;\n}\n.reminder-container[_v-7a89a639] {\n  height: 78vh;\n  overflow-y: scroll;\n}\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
@@ -25597,7 +25633,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-7a89a639", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":6,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],22:[function(require,module,exports){
+},{"vue":6,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],23:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25636,6 +25672,10 @@ var _Reminders = require('./components/reminder/Reminders.vue');
 
 var _Reminders2 = _interopRequireDefault(_Reminders);
 
+var _EditReminder = require('./components/reminder/EditReminder.vue');
+
+var _EditReminder2 = _interopRequireDefault(_EditReminder);
+
 var _PrivacyPolicy = require('./components/home/PrivacyPolicy.vue');
 
 var _PrivacyPolicy2 = _interopRequireDefault(_PrivacyPolicy);
@@ -25650,8 +25690,10 @@ var _UsefulLink2 = _interopRequireDefault(_UsefulLink);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//components
 _vue2.default.use(_vueRouter2.default);
+
+//components
+
 _vue2.default.use(_vueResource2.default);
 
 var router = new _vueRouter2.default();
@@ -25675,9 +25717,17 @@ router.map({
         name: 'home',
         component: _Home2.default,
         subRoutes: {
-            '/': {
+            '/reminder': {
                 component: _Reminders2.default,
                 name: 'reminder'
+            },
+            '/record': {
+                component: _Reminders2.default,
+                name: 'record'
+            },
+            '/analysis': {
+                component: _Reminders2.default,
+                name: 'analysis'
             },
             '/privacyPolicy': {
                 component: _PrivacyPolicy2.default,
@@ -25692,11 +25742,16 @@ router.map({
                 name: 'usefulLink'
             }
         }
+    },
+    '/reminder/edit': {
+        component: _EditReminder2.default,
+        name: 'editReminder'
     }
 });
 
 router.redirect({
-    '/': '/login'
+    '/': '/login',
+    '/home': '/home/reminder'
 });
 
 router.beforeEach(function (transition) {
@@ -25714,7 +25769,7 @@ router.beforeEach(function (transition) {
 
 exports.default = router;
 
-},{"./components/Home.vue":12,"./components/home/PrivacyPolicy.vue":15,"./components/home/TermOfUse.vue":16,"./components/home/UsefulLink.vue":17,"./components/login/Login.vue":18,"./components/login/LoginView.vue":19,"./components/login/RegisterView.vue":20,"./components/reminder/Reminders.vue":21,"vue":6,"vue-resource":4,"vue-router":5}],23:[function(require,module,exports){
+},{"./components/Home.vue":12,"./components/home/PrivacyPolicy.vue":15,"./components/home/TermOfUse.vue":16,"./components/home/UsefulLink.vue":17,"./components/login/Login.vue":18,"./components/login/LoginView.vue":19,"./components/login/RegisterView.vue":20,"./components/reminder/EditReminder.vue":21,"./components/reminder/Reminders.vue":22,"vue":6,"vue-resource":4,"vue-router":5}],24:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
