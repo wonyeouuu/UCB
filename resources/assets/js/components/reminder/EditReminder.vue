@@ -11,6 +11,9 @@ div
         form.col.s12
             ul.collection
                 li.collection-item
+                    i.material-icons tab
+                    span.title Information
+                li.collection-item
                     div.row
                         div.input-field.col.s12
                             input#nameInput.validate(type='text', v-model='name')
@@ -23,6 +26,9 @@ div
                         div.input-field.col.s12
                             input#endDateInput.datepicker(type='date', v-model='endDate')
                             label(for='endDateInput') End Date
+                li.collection-item
+                    i.material-icons timer
+                    span.title Frequency
                 li.collection-item
                     div.row
                         div.input-field.col.s12
@@ -57,6 +63,9 @@ div
                         div.input-field.col.s12
                             label(for='timepicker4') Time
                             input#timepicker4.timepicker(type='time', v-model='time[3]')
+                li.collection-item
+                    i.material-icons add_alert
+                    span.title Reminder
                 li.collection-item
                     div.row
                         div.input-field.col.s12
@@ -179,5 +188,10 @@ div.row
     height 88vh
     overflow-y scroll
 .collapsible-header
+    font-weight bold
+span.title
+    position relative
+    bottom 0.4rem
+    left 0.5rem
     font-weight bold
 </style>
