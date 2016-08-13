@@ -25588,16 +25588,19 @@ exports.default = {
         },
         timeCounter: function timeCounter() {
             var switchObj = {
-                1: 1,
-                2: 2,
-                3: 3,
-                4: 4,
-                5: 1,
-                6: 1,
-                7: 1,
-                8: 1,
-                9: 1
+                1: [true, false, false, false],
+                2: [true, true, false, false],
+                3: [true, true, true, false],
+                4: [true, true, true, true],
+                5: [true, false, false, false],
+                6: [true, false, false, false],
+                7: [true, false, false, false],
+                8: [true, false, false, false],
+                9: [true, false, false, false]
             };
+            if (this.frequency == "") {
+                return [false, false, false, false];
+            }
             return switchObj[this.frequency];
         }
     },
@@ -25609,7 +25612,19 @@ exports.default = {
         });
         $('select').material_select();
         $('textarea#note-textarea').characterCounter();
-        $('.timepicker').pickatime({
+        $('#timepicker1').pickatime({
+            autoclose: true,
+            twelvehour: false
+        });
+        $('#timepicker2').pickatime({
+            autoclose: true,
+            twelvehour: false
+        });
+        $('#timepicker3').pickatime({
+            autoclose: true,
+            twelvehour: false
+        });
+        $('#timepicker4').pickatime({
             autoclose: true,
             twelvehour: false
         });
@@ -25645,7 +25660,7 @@ exports.default = {
     }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div _v-20e41958=\"\"><nav _v-20e41958=\"\"><div class=\"nav-wrapper\" _v-20e41958=\"\"><a class=\"brand-logo\" _v-20e41958=\"\">Reminder</a><a @click=\"$router.go({ name: &quot;reminder&quot; })\" _v-20e41958=\"\"><i class=\"material-icons\" _v-20e41958=\"\">keyboard_arrow_left</i></a><a class=\"action-right\" _v-20e41958=\"\"><i class=\"material-icons\" _v-20e41958=\"\">edit</i></a></div></nav><div id=\"reminder-form-container\" class=\"row\" _v-20e41958=\"\"><form class=\"col s12\" _v-20e41958=\"\"><ul data-collapsible=\"expandable\" class=\"collapsible\" _v-20e41958=\"\"><li _v-20e41958=\"\"><div class=\"collapsible-header active\" _v-20e41958=\"\"><i class=\"material-icons\" _v-20e41958=\"\">tab</i>Information</div><div class=\"collapsible-body\" _v-20e41958=\"\"><div class=\"row\" _v-20e41958=\"\"><div class=\"input-field col s12\" _v-20e41958=\"\"><input id=\"nameInput\" type=\"text\" v-model=\"name\" class=\"validate\" _v-20e41958=\"\"><label for=\"nameInput\" _v-20e41958=\"\">Medicine Name</label></div></div><div class=\"row\" _v-20e41958=\"\"><div class=\"input-field col s12\" _v-20e41958=\"\"><input id=\"startDateInput\" type=\"date\" v-model=\"startDate\" class=\"datepicker\" _v-20e41958=\"\"><label for=\"startDateInput\" _v-20e41958=\"\">Start Date</label></div></div><div class=\"row\" _v-20e41958=\"\"><div class=\"input-field col s12\" _v-20e41958=\"\"><input id=\"endDateInput\" type=\"date\" v-model=\"endDate\" class=\"datepicker\" _v-20e41958=\"\"><label for=\"endDateInput\" _v-20e41958=\"\">End Date</label></div></div></div></li><li _v-20e41958=\"\"><div class=\"collapsible-header active\" _v-20e41958=\"\"><i class=\"material-icons\" _v-20e41958=\"\">timer</i>Frequency</div><div class=\"collapsible-body\" _v-20e41958=\"\"><div class=\"row\" _v-20e41958=\"\"><div class=\"input-field col s12\" _v-20e41958=\"\"><select id=\"frequency-select\" _v-20e41958=\"\"><option :value=\"0\" disabled=\"disabled\" selected=\"selected\" _v-20e41958=\"\">Choose one</option><option v-for=\"option in frequencyOptions\" :value=\"option.value\" _v-20e41958=\"\">{{ option.text }}</option></select></div></div><div class=\"row\" _v-20e41958=\"\"><div v-show=\"showThreeDay\" class=\"input-field col s12\" _v-20e41958=\"\"><select id=\"three-day-select\" multiple=\"multiple\" v-model=\"threeDays\" _v-20e41958=\"\"><option :value=\"\" disabled=\"disabled\" selected=\"selected\" _v-20e41958=\"\">Choose 3 days</option><option v-for=\"day in weekDays\" :value=\"day.value\" _v-20e41958=\"\">{{ day.text }}</option></select><label _v-20e41958=\"\">Choose 3 days</label></div></div><div class=\"row\" _v-20e41958=\"\"><div v-show=\"showOneDay\" class=\"input-field col s12\" _v-20e41958=\"\"><select id=\"one-day-select\" v-model=\"oneDay\" _v-20e41958=\"\"><option :value=\"\" disabled=\"disabled\" selected=\"selected\" _v-20e41958=\"\">Choose a day</option><option v-for=\"day in weekDays\" :value=\"day.value\" _v-20e41958=\"\">{{ day.text }}</option></select><label _v-20e41958=\"\">Choose a day</label></div></div><div v-for=\"key in timeCounter\" class=\"row\" _v-20e41958=\"\"><div class=\"input-field col s12\" _v-20e41958=\"\"><label for=\"timepicker1\" _v-20e41958=\"\">Time</label><input id=\"timepicker1\" type=\"time\" v-model=\"time[key]\" class=\"timepicker\" _v-20e41958=\"\"></div></div></div></li><li _v-20e41958=\"\"><div class=\"collapsible-header active\" _v-20e41958=\"\"><i class=\"material-icons\" _v-20e41958=\"\">add_alert</i>Reminder</div><div class=\"collapsible-body\" _v-20e41958=\"\"><div class=\"row\" _v-20e41958=\"\"><div class=\"input-field col s12\" _v-20e41958=\"\"><select id=\"reminder-before-select\" _v-20e41958=\"\"><option :value=\"\" disabled=\"disabled\" selected=\"selected\" _v-20e41958=\"\">Choose one</option><option v-for=\"item in reminderBefore\" :value=\"item.value\" _v-20e41958=\"\">{{ item.text }}</option></select></div></div><div class=\"row\" _v-20e41958=\"\"><div class=\"input-field col s12\" _v-20e41958=\"\"><textarea id=\"note-textarea\" length=\"120\" class=\"materialize-textarea\" _v-20e41958=\"\"></textarea><label for=\"note-textarea\" _v-20e41958=\"\">Note</label></div></div></div></li></ul></form></div></div>"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div _v-20e41958=\"\"><nav _v-20e41958=\"\"><div class=\"nav-wrapper\" _v-20e41958=\"\"><a class=\"brand-logo\" _v-20e41958=\"\">Reminder</a><a @click=\"$router.go({ name: &quot;reminder&quot; })\" _v-20e41958=\"\"><i class=\"material-icons\" _v-20e41958=\"\">keyboard_arrow_left</i></a><a class=\"action-right\" _v-20e41958=\"\"><i class=\"material-icons\" _v-20e41958=\"\">edit</i></a></div></nav><div id=\"reminder-form-container\" class=\"row\" _v-20e41958=\"\"><form class=\"col s12\" _v-20e41958=\"\"><ul data-collapsible=\"expandable\" class=\"collapsible\" _v-20e41958=\"\"><li _v-20e41958=\"\"><div class=\"collapsible-header active\" _v-20e41958=\"\"><i class=\"material-icons\" _v-20e41958=\"\">tab</i>Information</div><div class=\"collapsible-body\" _v-20e41958=\"\"><div class=\"row\" _v-20e41958=\"\"><div class=\"input-field col s12\" _v-20e41958=\"\"><input id=\"nameInput\" type=\"text\" v-model=\"name\" class=\"validate\" _v-20e41958=\"\"><label for=\"nameInput\" _v-20e41958=\"\">Medicine Name</label></div></div><div class=\"row\" _v-20e41958=\"\"><div class=\"input-field col s12\" _v-20e41958=\"\"><input id=\"startDateInput\" type=\"date\" v-model=\"startDate\" class=\"datepicker\" _v-20e41958=\"\"><label for=\"startDateInput\" _v-20e41958=\"\">Start Date</label></div></div><div class=\"row\" _v-20e41958=\"\"><div class=\"input-field col s12\" _v-20e41958=\"\"><input id=\"endDateInput\" type=\"date\" v-model=\"endDate\" class=\"datepicker\" _v-20e41958=\"\"><label for=\"endDateInput\" _v-20e41958=\"\">End Date</label></div></div></div></li><li _v-20e41958=\"\"><div class=\"collapsible-header active\" _v-20e41958=\"\"><i class=\"material-icons\" _v-20e41958=\"\">timer</i>Frequency</div><div class=\"collapsible-body\" _v-20e41958=\"\"><div class=\"row\" _v-20e41958=\"\"><div class=\"input-field col s12\" _v-20e41958=\"\"><select id=\"frequency-select\" _v-20e41958=\"\"><option :value=\"0\" disabled=\"disabled\" selected=\"selected\" _v-20e41958=\"\">Choose one</option><option v-for=\"option in frequencyOptions\" :value=\"option.value\" _v-20e41958=\"\">{{ option.text }}</option></select></div></div><div class=\"row\" _v-20e41958=\"\"><div v-show=\"showThreeDay\" class=\"input-field col s12\" _v-20e41958=\"\"><select id=\"three-day-select\" multiple=\"multiple\" v-model=\"threeDays\" _v-20e41958=\"\"><option :value=\"\" disabled=\"disabled\" selected=\"selected\" _v-20e41958=\"\">Choose 3 days</option><option v-for=\"day in weekDays\" :value=\"day.value\" _v-20e41958=\"\">{{ day.text }}</option></select><label _v-20e41958=\"\">Choose 3 days</label></div></div><div class=\"row\" _v-20e41958=\"\"><div v-show=\"showOneDay\" class=\"input-field col s12\" _v-20e41958=\"\"><select id=\"one-day-select\" v-model=\"oneDay\" _v-20e41958=\"\"><option :value=\"\" disabled=\"disabled\" selected=\"selected\" _v-20e41958=\"\">Choose a day</option><option v-for=\"day in weekDays\" :value=\"day.value\" _v-20e41958=\"\">{{ day.text }}</option></select><label _v-20e41958=\"\">Choose a day</label></div></div><div v-show=\"timeCounter[0]\" class=\"row\" _v-20e41958=\"\"><div class=\"input-field col s12\" _v-20e41958=\"\"><label for=\"timepicker1\" _v-20e41958=\"\">Time</label><input id=\"timepicker1\" type=\"time\" v-model=\"time[0]\" class=\"timepicker\" _v-20e41958=\"\"></div></div><div v-show=\"timeCounter[1]\" class=\"row\" _v-20e41958=\"\"><div class=\"input-field col s12\" _v-20e41958=\"\"><label for=\"timepicker2\" _v-20e41958=\"\">Time</label><input id=\"timepicker2\" type=\"time\" v-model=\"time[1]\" class=\"timepicker\" _v-20e41958=\"\"></div></div><div v-show=\"timeCounter[2]\" class=\"row\" _v-20e41958=\"\"><div class=\"input-field col s12\" _v-20e41958=\"\"><label for=\"timepicker3\" _v-20e41958=\"\">Time</label><input id=\"timepicker3\" type=\"time\" v-model=\"time[2]\" class=\"timepicker\" _v-20e41958=\"\"></div></div><div v-show=\"timeCounter[3]\" class=\"row\" _v-20e41958=\"\"><div class=\"input-field col s12\" _v-20e41958=\"\"><label for=\"timepicker4\" _v-20e41958=\"\">Time</label><input id=\"timepicker4\" type=\"time\" v-model=\"time[3]\" class=\"timepicker\" _v-20e41958=\"\"></div></div></div></li><li _v-20e41958=\"\"><div class=\"collapsible-header active\" _v-20e41958=\"\"><i class=\"material-icons\" _v-20e41958=\"\">add_alert</i>Reminder</div><div class=\"collapsible-body\" _v-20e41958=\"\"><div class=\"row\" _v-20e41958=\"\"><div class=\"input-field col s12\" _v-20e41958=\"\"><select id=\"reminder-before-select\" _v-20e41958=\"\"><option :value=\"\" disabled=\"disabled\" selected=\"selected\" _v-20e41958=\"\">Choose one</option><option v-for=\"item in reminderBefore\" :value=\"item.value\" _v-20e41958=\"\">{{ item.text }}</option></select></div></div><div class=\"row\" _v-20e41958=\"\"><div class=\"input-field col s12\" _v-20e41958=\"\"><textarea id=\"note-textarea\" length=\"120\" class=\"materialize-textarea\" _v-20e41958=\"\"></textarea><label for=\"note-textarea\" _v-20e41958=\"\">Note</label></div></div></div></li></ul></form></div></div>"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)

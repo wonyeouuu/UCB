@@ -49,10 +49,22 @@ div
                                     option(:value='', disabled, selected) Choose a day
                                     option(v-for='day in weekDays', :value='day.value') {{ day.text }}
                                 label Choose a day
-                        div.row(v-for='key in timeCounter')
+                        div.row(v-show='timeCounter[0]')
                             div.input-field.col.s12
                                 label(for='timepicker1') Time
-                                input#timepicker1.timepicker(type='time', v-model='time[key]')
+                                input#timepicker1.timepicker(type='time', v-model='time[0]')
+                        div.row(v-show='timeCounter[1]')
+                            div.input-field.col.s12
+                                label(for='timepicker2') Time
+                                input#timepicker2.timepicker(type='time', v-model='time[1]')
+                        div.row(v-show='timeCounter[2]')
+                            div.input-field.col.s12
+                                label(for='timepicker3') Time
+                                input#timepicker3.timepicker(type='time', v-model='time[2]')
+                        div.row(v-show='timeCounter[3]')
+                            div.input-field.col.s12
+                                label(for='timepicker4') Time
+                                input#timepicker4.timepicker(type='time', v-model='time[3]')
                 li
                     div.collapsible-header.active
                         i.material-icons add_alert
@@ -96,15 +108,18 @@ export default {
         },
         timeCounter() {
             const switchObj = {
-                1: 1,
-                2: 2,
-                3: 3,
-                4: 4,
-                5: 1,
-                6: 1,
-                7: 1,
-                8: 1,
-                9: 1,
+                1: [true, false, false, false],
+                2: [true, true, false, false],
+                3: [true, true, true, false],
+                4: [true, true, true, true],
+                5: [true, false, false, false],
+                6: [true, false, false, false],
+                7: [true, false, false, false],
+                8: [true, false, false, false],
+                9: [true, false, false, false]
+            }
+            if (this.frequency == "") {
+                return [false, false, false, false]
             }
             return switchObj[this.frequency]
         }
@@ -117,7 +132,19 @@ export default {
         })
         $('select').material_select()
         $('textarea#note-textarea').characterCounter();
-        $('.timepicker').pickatime({
+        $('#timepicker1').pickatime({
+            autoclose: true,
+            twelvehour: false
+        })
+        $('#timepicker2').pickatime({
+            autoclose: true,
+            twelvehour: false
+        })
+        $('#timepicker3').pickatime({
+            autoclose: true,
+            twelvehour: false
+        })
+        $('#timepicker4').pickatime({
             autoclose: true,
             twelvehour: false
         })
