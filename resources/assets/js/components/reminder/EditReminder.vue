@@ -7,49 +7,70 @@ div
                 i.material-icons keyboard_arrow_left
             a.action-right
                 i.material-icons edit
-    div.row
+    div#reminder-form-container.row
         form.col.s12
-            div.row
-                div.input-field.col.s12
-                    input#nameInput.validate(type='text', v-model='name')
-                    label(for='nameInput') Medicine Name
-            div.row
-                div.input-field.col.s12
-                    input#startDateInput.datepicker(type='date', v-model='startDate')
-                    label(for='startDateInput') Start Date
-            div.row
-                div.input-field.col.s12
-                    input#endDateInput.datepicker(type='date', v-model='endDate')
-                    label(for='endDateInput') End Date
-            div.row
-                div.input-field.col.s12
-                    select.browser-default(v-model='frequency')
-                        option(:value='0', disabled, selected) Frequency
-                        option(:value='1') Every day(1)
-                        option(:value='2') 2 times a day(2)
-                        option(:value='3') 3 times a day(3)
-                        option(:value='4') 4 times a day(4)
-                        option(:value='5') 3 times a week(1)
-                        option(:value='6') Every 2 days(1)
-                        option(:value='7') Every 3 days(1)
-                        option(:value='8') Every week(1)
-                        option(:value='9') Every 28 days(1)
-                div.input-field.col.s12(v-show='showMultiple')
-                    select.browser-default(multiple, v-model='threeDays')
-                        option(:value='', disabled, selected) Choose 3 days
-                        option(:value='1') Monday
-                        option(:value='2') Tuesday
-                        option(:value='3') Wednesday
-                        option(:value='4') Thursday
-                        option(:value='5') Friday
-                        option(:value='6') Saturday
-                        option(:value='7') Sunday
-
-
-
+            ul.collapsible.popout(data-collapsible='expandable')
+                li
+                    div.collapsible-header.active
+                        i.material-icons tab
+                        |Information
+                    div.collapsible-body
+                        div.row
+                            div.input-field.col.s12
+                                input#nameInput.validate(type='text', v-model='name')
+                                label(for='nameInput') Medicine Name
+                        div.row
+                            div.input-field.col.s12
+                                input#startDateInput.datepicker(type='date', v-model='startDate')
+                                label(for='startDateInput') Start Date
+                        div.row
+                            div.input-field.col.s12
+                                input#endDateInput.datepicker(type='date', v-model='endDate')
+                                label(for='endDateInput') End Date
+                li
+                    div.collapsible-header.active
+                        i.material-icons timer
+                        |Frequency
+                    div.collapsible-body
+                        div.row
+                            div.input-field.col.s12
+                                select#frequency-select
+                                    option(:value='0', disabled, selected) Choose one
+                                    option(v-for='option in frequencyOptions', :value='option.value') {{ option.text }}
+                        div.row
+                            div.input-field.col.s12(v-show='showThreeDay')
+                                select#three-day-select(multiple, v-model='threeDays')
+                                    option(:value='', disabled, selected) Choose 3 days
+                                    option(v-for='day in weekDays', :value='day.value') {{ day.text }}
+                                label Choose 3 days
+                        div.row
+                            div.input-field.col.s12(v-show='showOneDay')
+                                select#one-day-select(v-model='oneDay')
+                                    option(:value='', disabled, selected) Choose a day
+                                    option(v-for='day in weekDays', :value='day.value') {{ day.text }}
+                                label Choose a day
+                        div.row(v-for='key in timeCounter')
+                            div.input-field.col.s12
+                                label(for='timepicker1') Time
+                                input#timepicker1.timepicker(type='time', v-model='time[key]')
+                li
+                    div.collapsible-header.active
+                        i.material-icons add_alert
+                        |Reminder
+                    div.collapsible-body
+                        div.row
+                            div.input-field.col.s12
+                                select#reminder-before-select
+                                    option(:value='', disabled, selected) Choose one
+                                    option(v-for='item in reminderBefore', :value='item.value') {{ item.text }}
+                        div.row
+                            div.input-field.col.s12
+                                textarea#note-textarea.materialize-textarea(length='120')
+                                label(for='note-textarea') Note
 </template>
 
 <script>
+import { frequency, weekDays, reminderBefore } from '../../options'
 export default {
     data() {
         return {
@@ -57,27 +78,91 @@ export default {
             startDate: "",
             endDate: "",
             frequency: "",
-            threeDays: []
+            reminder: "",
+            oneDay: "",
+            threeDays: [],
+            time: [],
+            frequencyOptions: frequency,
+            weekDays,
+            reminderBefore
         }
     },
     computed: {
-        showMultiple() {
+        showThreeDay() {
             return this.frequency == 5
+        },
+        showOneDay() {
+            return this.frequency == 8
+        },
+        timeCounter() {
+            const switchObj = {
+                1: 1,
+                2: 2,
+                3: 3,
+                4: 4,
+                5: 1,
+                6: 1,
+                7: 1,
+                8: 1,
+                9: 1,
+            }
+            return switchObj[this.frequency]
         }
     },
     ready() {
         $('.datepicker').pickadate({
             selectMonths: true, // Creates a dropdown to control month
+            format: 'yyyy-mm-dd',
             selectYears: 15 // Creates a dropdown of 15 years to control year
         })
         $('select').material_select()
+        $('textarea#note-textarea').characterCounter();
+        $('.timepicker').pickatime({
+            autoclose: true,
+            twelvehour: false
+        })
+        //used for select
+        const vm = this
+        $('#frequency-select').on('change', function() {
+            vm.updateFrequency($(this).val())
+        })
+        $('#three-day-select').on('change', function() {
+            vm.updateThreeDay($(this).val())
+        })
+        $('#one-day-select').on('change', function() {
+            vm.updateOneDay($(this).val())
+        })
+        $('#reminder-before-select').on('change', function() {
+            vm.updateReminderBefore($(this).val())
+        })
+    },
+    methods: {
+        updateFrequency(newStatus) {
+            this.frequency = newStatus
+        },
+        updateThreeDay(newStatus) {
+            this.threeDays = newStatus
+        },
+        updateOneDay(newStatus) {
+            this.oneDay = newStatus
+        },
+        updateReminderBefore(newStatus) {
+            this.reminder = newStatus
+        }
     }
 }
 </script>
 
 <style lang="stylus" scoped>
+div.row
+    margin-bottom 0 !important
 .action-right
     position fixed
     top 0
     right 0
+#reminder-form-container
+    height 88vh
+    overflow-y scroll
+.collapsible-header
+    font-weight bold
 </style>

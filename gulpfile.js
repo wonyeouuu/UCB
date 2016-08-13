@@ -16,9 +16,12 @@ require('laravel-elixir-vueify')
 elixir(function(mix) {
     mix
         .sass('app.scss')
+        .styles('materialize.clockpicker.css', 'public/css/materialize.clockpicker.main.css')
         .browserify('app.js', 'public/js/app.main.js')
         .version([
             'public/css/app.css',
-            'public/js/app.main.js'
+            'public/css/materialize.clockpicker.main.css',
+            'public/js/app.main.js',
+            'public/js/materialize.clockpicker.main.js'
         ])
 })

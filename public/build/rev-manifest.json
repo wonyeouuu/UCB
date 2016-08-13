@@ -1,4 +1,6 @@
 {
   "css/app.css": "css/app-f1b3ead096.css",
-  "js/app.main.js": "js/app.main-5bb2eb6a20.js"
+  "css/materialize.clockpicker.main.css": "css/materialize.clockpicker.main-76af780162.css",
+  "js/app.main.js": "js/app.main-5eb93fb96b.js",
+  "js/materialize.clockpicker.main.js": "js/materialize.clockpicker.main-2ffeb48250.js"
 }

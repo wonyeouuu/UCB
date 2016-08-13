@@ -25141,7 +25141,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 _router2.default.start(_App2.default, '#app');
 
-},{"./components/App.vue":11,"./router":23,"./vuex/store":24,"jquery":1,"vue":6,"vuex-router-sync":8}],11:[function(require,module,exports){
+},{"./components/App.vue":11,"./router":24,"./vuex/store":25,"jquery":1,"vue":6,"vuex-router-sync":8}],11:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25169,7 +25169,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-38a73648", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/store":24,"vue":6,"vue-hot-reload-api":3}],12:[function(require,module,exports){
+},{"../vuex/store":25,"vue":6,"vue-hot-reload-api":3}],12:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25553,12 +25553,15 @@ if (module.hot) {(function () {  module.hot.accept()
 })()}
 },{"vue":6,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],21:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert(".action-right[_v-20e41958] {\n  position: fixed;\n  top: 0;\n  right: 0;\n}\n")
+var __vueify_style__ = __vueify_insert__.insert("div.row[_v-20e41958] {\n  margin-bottom: 0 !important;\n}\n.action-right[_v-20e41958] {\n  position: fixed;\n  top: 0;\n  right: 0;\n}\n#reminder-form-container[_v-20e41958] {\n  height: 88vh;\n  overflow-y: scroll;\n}\n.collapsible-header[_v-20e41958] {\n  font-weight: bold;\n}\n")
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+
+var _options = require("../../options");
+
 exports.default = {
     data: function data() {
         return {
@@ -25566,31 +25569,89 @@ exports.default = {
             startDate: "",
             endDate: "",
             frequency: "",
-            threeDays: []
+            reminder: "",
+            oneDay: "",
+            threeDays: [],
+            time: [],
+            frequencyOptions: _options.frequency,
+            weekDays: _options.weekDays,
+            reminderBefore: _options.reminderBefore
         };
     },
 
     computed: {
-        showMultiple: function showMultiple() {
+        showThreeDay: function showThreeDay() {
             return this.frequency == 5;
+        },
+        showOneDay: function showOneDay() {
+            return this.frequency == 8;
+        },
+        timeCounter: function timeCounter() {
+            var switchObj = {
+                1: 1,
+                2: 2,
+                3: 3,
+                4: 4,
+                5: 1,
+                6: 1,
+                7: 1,
+                8: 1,
+                9: 1
+            };
+            return switchObj[this.frequency];
         }
     },
     ready: function ready() {
         $('.datepicker').pickadate({
             selectMonths: true, // Creates a dropdown to control month
+            format: 'yyyy-mm-dd',
             selectYears: 15 // Creates a dropdown of 15 years to control year
         });
         $('select').material_select();
+        $('textarea#note-textarea').characterCounter();
+        $('.timepicker').pickatime({
+            autoclose: true,
+            twelvehour: false
+        });
+        //used for select
+        var vm = this;
+        $('#frequency-select').on('change', function () {
+            vm.updateFrequency($(this).val());
+        });
+        $('#three-day-select').on('change', function () {
+            vm.updateThreeDay($(this).val());
+        });
+        $('#one-day-select').on('change', function () {
+            vm.updateOneDay($(this).val());
+        });
+        $('#reminder-before-select').on('change', function () {
+            vm.updateReminderBefore($(this).val());
+        });
+    },
+
+    methods: {
+        updateFrequency: function updateFrequency(newStatus) {
+            this.frequency = newStatus;
+        },
+        updateThreeDay: function updateThreeDay(newStatus) {
+            this.threeDays = newStatus;
+        },
+        updateOneDay: function updateOneDay(newStatus) {
+            this.oneDay = newStatus;
+        },
+        updateReminderBefore: function updateReminderBefore(newStatus) {
+            this.reminder = newStatus;
+        }
     }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div _v-20e41958=\"\"><nav _v-20e41958=\"\"><div class=\"nav-wrapper\" _v-20e41958=\"\"><a class=\"brand-logo\" _v-20e41958=\"\">Reminder</a><a @click=\"$router.go({ name: &quot;reminder&quot; })\" _v-20e41958=\"\"><i class=\"material-icons\" _v-20e41958=\"\">keyboard_arrow_left</i></a><a class=\"action-right\" _v-20e41958=\"\"><i class=\"material-icons\" _v-20e41958=\"\">edit</i></a></div></nav><div class=\"row\" _v-20e41958=\"\"><form class=\"col s12\" _v-20e41958=\"\"><div class=\"row\" _v-20e41958=\"\"><div class=\"input-field col s12\" _v-20e41958=\"\"><input id=\"nameInput\" type=\"text\" v-model=\"name\" class=\"validate\" _v-20e41958=\"\"><label for=\"nameInput\" _v-20e41958=\"\">Medicine Name</label></div></div><div class=\"row\" _v-20e41958=\"\"><div class=\"input-field col s12\" _v-20e41958=\"\"><input id=\"startDateInput\" type=\"date\" v-model=\"startDate\" class=\"datepicker\" _v-20e41958=\"\"><label for=\"startDateInput\" _v-20e41958=\"\">Start Date</label></div></div><div class=\"row\" _v-20e41958=\"\"><div class=\"input-field col s12\" _v-20e41958=\"\"><input id=\"endDateInput\" type=\"date\" v-model=\"endDate\" class=\"datepicker\" _v-20e41958=\"\"><label for=\"endDateInput\" _v-20e41958=\"\">End Date</label></div></div><div class=\"row\" _v-20e41958=\"\"><div class=\"input-field col s12\" _v-20e41958=\"\"><select v-model=\"frequency\" class=\"browser-default\" _v-20e41958=\"\"><option :value=\"0\" disabled=\"disabled\" selected=\"selected\" _v-20e41958=\"\">Frequency</option><option :value=\"1\" _v-20e41958=\"\">Every day(1)</option><option :value=\"2\" _v-20e41958=\"\">2 times a day(2)</option><option :value=\"3\" _v-20e41958=\"\">3 times a day(3)</option><option :value=\"4\" _v-20e41958=\"\">4 times a day(4)</option><option :value=\"5\" _v-20e41958=\"\">3 times a week(1)</option><option :value=\"6\" _v-20e41958=\"\">Every 2 days(1)</option><option :value=\"7\" _v-20e41958=\"\">Every 3 days(1)</option><option :value=\"8\" _v-20e41958=\"\">Every week(1)</option><option :value=\"9\" _v-20e41958=\"\">Every 28 days(1)</option></select></div><div v-show=\"showMultiple\" class=\"input-field col s12\" _v-20e41958=\"\"><select multiple=\"multiple\" v-model=\"threeDays\" class=\"browser-default\" _v-20e41958=\"\"><option :value=\"\" disabled=\"disabled\" selected=\"selected\" _v-20e41958=\"\">Choose 3 days</option><option :value=\"1\" _v-20e41958=\"\">Monday</option><option :value=\"2\" _v-20e41958=\"\">Tuesday</option><option :value=\"3\" _v-20e41958=\"\">Wednesday</option><option :value=\"4\" _v-20e41958=\"\">Thursday</option><option :value=\"5\" _v-20e41958=\"\">Friday</option><option :value=\"6\" _v-20e41958=\"\">Saturday</option><option :value=\"7\" _v-20e41958=\"\">Sunday</option></select></div></div></form></div></div>"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div _v-20e41958=\"\"><nav _v-20e41958=\"\"><div class=\"nav-wrapper\" _v-20e41958=\"\"><a class=\"brand-logo\" _v-20e41958=\"\">Reminder</a><a @click=\"$router.go({ name: &quot;reminder&quot; })\" _v-20e41958=\"\"><i class=\"material-icons\" _v-20e41958=\"\">keyboard_arrow_left</i></a><a class=\"action-right\" _v-20e41958=\"\"><i class=\"material-icons\" _v-20e41958=\"\">edit</i></a></div></nav><div id=\"reminder-form-container\" class=\"row\" _v-20e41958=\"\"><form class=\"col s12\" _v-20e41958=\"\"><ul data-collapsible=\"expandable\" class=\"collapsible popout\" _v-20e41958=\"\"><li _v-20e41958=\"\"><div class=\"collapsible-header active\" _v-20e41958=\"\"><i class=\"material-icons\" _v-20e41958=\"\">tab</i>Information</div><div class=\"collapsible-body\" _v-20e41958=\"\"><div class=\"row\" _v-20e41958=\"\"><div class=\"input-field col s12\" _v-20e41958=\"\"><input id=\"nameInput\" type=\"text\" v-model=\"name\" class=\"validate\" _v-20e41958=\"\"><label for=\"nameInput\" _v-20e41958=\"\">Medicine Name</label></div></div><div class=\"row\" _v-20e41958=\"\"><div class=\"input-field col s12\" _v-20e41958=\"\"><input id=\"startDateInput\" type=\"date\" v-model=\"startDate\" class=\"datepicker\" _v-20e41958=\"\"><label for=\"startDateInput\" _v-20e41958=\"\">Start Date</label></div></div><div class=\"row\" _v-20e41958=\"\"><div class=\"input-field col s12\" _v-20e41958=\"\"><input id=\"endDateInput\" type=\"date\" v-model=\"endDate\" class=\"datepicker\" _v-20e41958=\"\"><label for=\"endDateInput\" _v-20e41958=\"\">End Date</label></div></div></div></li><li _v-20e41958=\"\"><div class=\"collapsible-header active\" _v-20e41958=\"\"><i class=\"material-icons\" _v-20e41958=\"\">timer</i>Frequency</div><div class=\"collapsible-body\" _v-20e41958=\"\"><div class=\"row\" _v-20e41958=\"\"><div class=\"input-field col s12\" _v-20e41958=\"\"><select id=\"frequency-select\" _v-20e41958=\"\"><option :value=\"0\" disabled=\"disabled\" selected=\"selected\" _v-20e41958=\"\">Choose one</option><option v-for=\"option in frequencyOptions\" :value=\"option.value\" _v-20e41958=\"\">{{ option.text }}</option></select></div></div><div class=\"row\" _v-20e41958=\"\"><div v-show=\"showThreeDay\" class=\"input-field col s12\" _v-20e41958=\"\"><select id=\"three-day-select\" multiple=\"multiple\" v-model=\"threeDays\" _v-20e41958=\"\"><option :value=\"\" disabled=\"disabled\" selected=\"selected\" _v-20e41958=\"\">Choose 3 days</option><option v-for=\"day in weekDays\" :value=\"day.value\" _v-20e41958=\"\">{{ day.text }}</option></select><label _v-20e41958=\"\">Choose 3 days</label></div></div><div class=\"row\" _v-20e41958=\"\"><div v-show=\"showOneDay\" class=\"input-field col s12\" _v-20e41958=\"\"><select id=\"one-day-select\" v-model=\"oneDay\" _v-20e41958=\"\"><option :value=\"\" disabled=\"disabled\" selected=\"selected\" _v-20e41958=\"\">Choose a day</option><option v-for=\"day in weekDays\" :value=\"day.value\" _v-20e41958=\"\">{{ day.text }}</option></select><label _v-20e41958=\"\">Choose a day</label></div></div><div v-for=\"key in timeCounter\" class=\"row\" _v-20e41958=\"\"><div class=\"input-field col s12\" _v-20e41958=\"\"><label for=\"timepicker1\" _v-20e41958=\"\">Time</label><input id=\"timepicker1\" type=\"time\" v-model=\"time[key]\" class=\"timepicker\" _v-20e41958=\"\"></div></div></div></li><li _v-20e41958=\"\"><div class=\"collapsible-header active\" _v-20e41958=\"\"><i class=\"material-icons\" _v-20e41958=\"\">add_alert</i>Reminder</div><div class=\"collapsible-body\" _v-20e41958=\"\"><div class=\"row\" _v-20e41958=\"\"><div class=\"input-field col s12\" _v-20e41958=\"\"><select id=\"reminder-before-select\" _v-20e41958=\"\"><option :value=\"\" disabled=\"disabled\" selected=\"selected\" _v-20e41958=\"\">Choose one</option><option v-for=\"item in reminderBefore\" :value=\"item.value\" _v-20e41958=\"\">{{ item.text }}</option></select></div></div><div class=\"row\" _v-20e41958=\"\"><div class=\"input-field col s12\" _v-20e41958=\"\"><textarea id=\"note-textarea\" length=\"120\" class=\"materialize-textarea\" _v-20e41958=\"\"></textarea><label for=\"note-textarea\" _v-20e41958=\"\">Note</label></div></div></div></li></ul></form></div></div>"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.dispose(function () {
-    __vueify_insert__.cache[".action-right[_v-20e41958] {\n  position: fixed;\n  top: 0;\n  right: 0;\n}\n"] = false
+    __vueify_insert__.cache["div.row[_v-20e41958] {\n  margin-bottom: 0 !important;\n}\n.action-right[_v-20e41958] {\n  position: fixed;\n  top: 0;\n  right: 0;\n}\n#reminder-form-container[_v-20e41958] {\n  height: 88vh;\n  overflow-y: scroll;\n}\n.collapsible-header[_v-20e41958] {\n  font-weight: bold;\n}\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
@@ -25599,7 +25660,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-20e41958", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":6,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],22:[function(require,module,exports){
+},{"../../options":23,"vue":6,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],22:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert(".btn-floating[_v-7a89a639] {\n  position: fixed;\n  bottom: 1rem;\n  right: 1rem;\n}\n.reminder-container[_v-7a89a639] {\n  height: 78vh;\n  overflow-y: scroll;\n}\n")
 "use strict";
@@ -25634,6 +25695,88 @@ if (module.hot) {(function () {  module.hot.accept()
   }
 })()}
 },{"vue":6,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],23:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var frequency = exports.frequency = [{
+    value: 1,
+    text: 'Every day(1)'
+}, {
+    value: 2,
+    text: '2 times a day(2)'
+}, {
+    value: 3,
+    text: '3 times a day(3)'
+}, {
+    value: 4,
+    text: '4 times a day(4)'
+}, {
+    value: 5,
+    text: '3 times a week(1)'
+}, {
+    value: 6,
+    text: 'Every 2 days(1)'
+}, {
+    value: 7,
+    text: 'Every 3 days(1)'
+}, {
+    value: 8,
+    text: 'Every week(1)'
+}, {
+    value: 9,
+    text: 'Every 28 days(1)'
+}];
+var weekDays = exports.weekDays = [{
+    value: 1,
+    text: 'Monday'
+}, {
+    value: 2,
+    text: 'Tuesday'
+}, {
+    value: 3,
+    text: 'Wednesday'
+}, {
+    value: 4,
+    text: 'Thursday'
+}, {
+    value: 5,
+    text: 'Friday'
+}, {
+    value: 6,
+    text: 'Saturday'
+}, {
+    value: 7,
+    text: 'Sunday'
+}];
+var reminderBefore = exports.reminderBefore = [{
+    value: 1,
+    text: '5 mins before'
+}, {
+    value: 2,
+    text: '15 mins before'
+}, {
+    value: 3,
+    text: '30 mins before'
+}, {
+    value: 4,
+    text: '1 hour before'
+}, {
+    value: 5,
+    text: '2 hours before'
+}, {
+    value: 6,
+    text: '1 day before'
+}, {
+    value: 7,
+    text: '2 days before'
+}, {
+    value: 8,
+    text: '1 week before'
+}];
+
+},{}],24:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25769,7 +25912,7 @@ router.beforeEach(function (transition) {
 
 exports.default = router;
 
-},{"./components/Home.vue":12,"./components/home/PrivacyPolicy.vue":15,"./components/home/TermOfUse.vue":16,"./components/home/UsefulLink.vue":17,"./components/login/Login.vue":18,"./components/login/LoginView.vue":19,"./components/login/RegisterView.vue":20,"./components/reminder/EditReminder.vue":21,"./components/reminder/Reminders.vue":22,"vue":6,"vue-resource":4,"vue-router":5}],24:[function(require,module,exports){
+},{"./components/Home.vue":12,"./components/home/PrivacyPolicy.vue":15,"./components/home/TermOfUse.vue":16,"./components/home/UsefulLink.vue":17,"./components/login/Login.vue":18,"./components/login/LoginView.vue":19,"./components/login/RegisterView.vue":20,"./components/reminder/EditReminder.vue":21,"./components/reminder/Reminders.vue":22,"vue":6,"vue-resource":4,"vue-router":5}],25:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
