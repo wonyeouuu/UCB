@@ -9,7 +9,7 @@ div
                 i.material-icons edit
     div#reminder-form-container.row
         form.col.s12
-            ul.collapsible.popout(data-collapsible='expandable')
+            ul.collapsible(data-collapsible='expandable')
                 li
                     div.collapsible-header.active
                         i.material-icons tab
