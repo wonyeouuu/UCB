@@ -9,76 +9,64 @@ div
                 i.material-icons edit
     div#reminder-form-container.row
         form.col.s12
-            ul.collapsible(data-collapsible='expandable')
-                li
-                    div.collapsible-header.active
-                        i.material-icons tab
-                        |Information
-                    div.collapsible-body
-                        div.row
-                            div.input-field.col.s12
-                                input#nameInput.validate(type='text', v-model='name')
-                                label(for='nameInput') Medicine Name
-                        div.row
-                            div.input-field.col.s12
-                                input#startDateInput.datepicker(type='date', v-model='startDate')
-                                label(for='startDateInput') Start Date
-                        div.row
-                            div.input-field.col.s12
-                                input#endDateInput.datepicker(type='date', v-model='endDate')
-                                label(for='endDateInput') End Date
-                li
-                    div.collapsible-header.active
-                        i.material-icons timer
-                        |Frequency
-                    div.collapsible-body
-                        div.row
-                            div.input-field.col.s12
-                                select#frequency-select
-                                    option(:value='0', disabled, selected) Choose one
-                                    option(v-for='option in frequencyOptions', :value='option.value') {{ option.text }}
-                        div.row
-                            div.input-field.col.s12(v-show='showThreeDay')
-                                select#three-day-select(multiple, v-model='threeDays')
-                                    option(:value='', disabled, selected) Choose 3 days
-                                    option(v-for='day in weekDays', :value='day.value') {{ day.text }}
-                                label Choose 3 days
-                        div.row
-                            div.input-field.col.s12(v-show='showOneDay')
-                                select#one-day-select(v-model='oneDay')
-                                    option(:value='', disabled, selected) Choose a day
-                                    option(v-for='day in weekDays', :value='day.value') {{ day.text }}
-                                label Choose a day
-                        div.row(v-show='timeCounter[0]')
-                            div.input-field.col.s12
-                                label(for='timepicker1') Time
-                                input#timepicker1.timepicker(type='time', v-model='time[0]')
-                        div.row(v-show='timeCounter[1]')
-                            div.input-field.col.s12
-                                label(for='timepicker2') Time
-                                input#timepicker2.timepicker(type='time', v-model='time[1]')
-                        div.row(v-show='timeCounter[2]')
-                            div.input-field.col.s12
-                                label(for='timepicker3') Time
-                                input#timepicker3.timepicker(type='time', v-model='time[2]')
-                        div.row(v-show='timeCounter[3]')
-                            div.input-field.col.s12
-                                label(for='timepicker4') Time
-                                input#timepicker4.timepicker(type='time', v-model='time[3]')
-                li
-                    div.collapsible-header.active
-                        i.material-icons add_alert
-                        |Reminder
-                    div.collapsible-body
-                        div.row
-                            div.input-field.col.s12
-                                select#reminder-before-select
-                                    option(:value='', disabled, selected) Choose one
-                                    option(v-for='item in reminderBefore', :value='item.value') {{ item.text }}
-                        div.row
-                            div.input-field.col.s12
-                                textarea#note-textarea.materialize-textarea(length='120')
-                                label(for='note-textarea') Note
+            ul.collection
+                li.collection-item
+                    div.row
+                        div.input-field.col.s12
+                            input#nameInput.validate(type='text', v-model='name')
+                            label(for='nameInput') Medicine Name
+                    div.row
+                        div.input-field.col.s12
+                            input#startDateInput.datepicker(type='date', v-model='startDate')
+                            label(for='startDateInput') Start Date
+                    div.row
+                        div.input-field.col.s12
+                            input#endDateInput.datepicker(type='date', v-model='endDate')
+                            label(for='endDateInput') End Date
+                li.collection-item
+                    div.row
+                        div.input-field.col.s12
+                            select#frequency-select
+                                option(:value='0', disabled, selected) Choose one
+                                option(v-for='option in frequencyOptions', :value='option.value') {{ option.text }}
+                    div.row
+                        div.input-field.col.s12(v-show='showThreeDay')
+                            select#three-day-select(multiple, v-model='threeDays')
+                                option(:value='', disabled, selected) Choose 3 days
+                                option(v-for='day in weekDays', :value='day.value') {{ day.text }}
+                            label Choose 3 days
+                    div.row
+                        div.input-field.col.s12(v-show='showOneDay')
+                            select#one-day-select(v-model='oneDay')
+                                option(:value='', disabled, selected) Choose a day
+                                option(v-for='day in weekDays', :value='day.value') {{ day.text }}
+                            label Choose a day
+                    div.row(v-show='timeCounter[0]')
+                        div.input-field.col.s12
+                            label(for='timepicker1') Time
+                            input#timepicker1.timepicker(type='time', v-model='time[0]')
+                    div.row(v-show='timeCounter[1]')
+                        div.input-field.col.s12
+                            label(for='timepicker2') Time
+                            input#timepicker2.timepicker(type='time', v-model='time[1]')
+                    div.row(v-show='timeCounter[2]')
+                        div.input-field.col.s12
+                            label(for='timepicker3') Time
+                            input#timepicker3.timepicker(type='time', v-model='time[2]')
+                    div.row(v-show='timeCounter[3]')
+                        div.input-field.col.s12
+                            label(for='timepicker4') Time
+                            input#timepicker4.timepicker(type='time', v-model='time[3]')
+                li.collection-item
+                    div.row
+                        div.input-field.col.s12
+                            select#reminder-before-select
+                                option(:value='', disabled, selected) Choose one
+                                option(v-for='item in reminderBefore', :value='item.value') {{ item.text }}
+                    div.row
+                        div.input-field.col.s12
+                            textarea#note-textarea.materialize-textarea(length='120')
+                            label(for='note-textarea') Note
 </template>
 
 <script>
