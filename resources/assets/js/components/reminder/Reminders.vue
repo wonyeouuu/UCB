@@ -1,29 +1,33 @@
 <template lang="jade">
 div.row.reminder-container
-    div.col.s12.m6(v-for='i in 5')
+    div.col.s12.m6(v-for='reminder in reminders')
         div.card.grey.lighten-2
             div.card-content
-                span.card-title Card Title
-                p I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.
+                span.card-title {{ reminder.name }}
+                p {{ reminder.note }}
             div.card-action
-                a This is a link
-                a This is a link
+                a {{ reminder.alerts[0].alert_at }}
+                //- a(@click='edit(reminder.id)') Edit
 
 a.btn-floating.btn-large.waves-effect.waves-light(@click='$router.go({ name: "editReminder" })')
     i.material-icons add
 </template>
 
 <script>
+import { fetchReminders } from '../../vuex/actions'
+import { reminders } from '../../vuex/getters'
 export default {
-  data: function () {
-    return {
+    vuex: {
+        getters: {
+            reminders
+        },
+        actions: {
+            refresh: fetchReminders
+        }
+    },
+    ready() {
+        this.refresh()
     }
-  },
-  computed: {},
-  ready: function () {},
-  attached: function () {},
-  methods: {},
-  components: {}
 }
 </script>
 

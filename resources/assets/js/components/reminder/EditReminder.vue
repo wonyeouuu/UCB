@@ -5,7 +5,7 @@ div
             a.brand-logo Reminder
             a(@click='$router.go({ name: "reminder" })')
                 i.material-icons keyboard_arrow_left
-            a.action-right
+            a.action-right(@click='create()')
                 i.material-icons edit
     div#reminder-form-container.row
         form.col.s12
@@ -41,6 +41,7 @@ div
                                 option(:value='', disabled, selected) Choose 3 days
                                 option(v-for='day in weekDays', :value='day.value') {{ day.text }}
                             label Choose 3 days
+                            label.error(v-if='errors.threeDays') Please choose 3 days
                     div.row
                         div.input-field.col.s12(v-show='showOneDay')
                             select#one-day-select(v-model='oneDay')
@@ -74,13 +75,19 @@ div
                                 option(v-for='item in reminderBefore', :value='item.value') {{ item.text }}
                     div.row
                         div.input-field.col.s12
-                            textarea#note-textarea.materialize-textarea(length='120')
+                            textarea#note-textarea.materialize-textarea(length='120', v-model='note')
                             label(for='note-textarea') Note
 </template>
 
 <script>
 import { frequency, weekDays, reminderBefore } from '../../options'
+import { fetchReminders } from '../../vuex/actions'
 export default {
+    vuex: {
+        actions: {
+            fetchReminders
+        }
+    },
     data() {
         return {
             name: "",
@@ -91,6 +98,8 @@ export default {
             oneDay: "",
             threeDays: [],
             time: [],
+            note: "",
+            error: {},
             frequencyOptions: frequency,
             weekDays,
             reminderBefore
@@ -119,6 +128,11 @@ export default {
                 return [false, false, false, false]
             }
             return switchObj[this.frequency]
+        },
+        errors() {
+            return {
+                threeDays: this.threeDays.length != 3
+            }
         }
     },
     ready() {
@@ -172,6 +186,36 @@ export default {
         },
         updateReminderBefore(newStatus) {
             this.reminder = newStatus
+        },
+        create() {
+            const switchTimeObj = {
+                1: [this.time[0]],
+                2: [this.time[0], this.time[1]],
+                3: [this.time[0], this.time[1], this.time[2]],
+                4: [this.time[0], this.time[1], this.time[2], this.time[3]],
+                5: [this.time[0]],
+                6: [this.time[0]],
+                7: [this.time[0]],
+                8: [this.time[0]],
+                9: [this.time[0]]
+            }
+            this.$http.post('/reminder/create', {
+                name: this.name,
+                start_at: this.startDate,
+                end_at: this.endDate,
+                frequency: this.frequency,
+                days: this.frequency == 5 ? this.threeDays : (this.frequency == 8 ? this.oneDay : null),
+                times: switchTimeObj[this.frequency],
+                reminder_before: this.reminder,
+                note: this.note
+            }).then(({ data }) => {
+                if (data.success) {
+                    Materialize.toast(data.message, 2000)
+                    this.$router.go({ name: 'reminder' })
+                } else {
+                    Materialize.toast(data.message, 2000)
+                }
+            })
         }
     }
 }
@@ -194,4 +238,10 @@ span.title
     bottom 0.4rem
     left 0.5rem
     font-weight bold
+.error
+    color red
+    position relative
+    top -1.5rem
+    left 0 !important
+    font-size 0.6rem !important
 </style>

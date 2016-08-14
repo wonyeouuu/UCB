@@ -6,9 +6,13 @@ Vue.use(Vuex)
 Vue.use(VueRouter)
 
 const state = {
+    reminders: []
 }
 
 const mutations = {
+    FETCH_REMINDERS(state, reminders) {
+        state.reminders = reminders
+    }
 }
 
 export default new Vuex.Store({

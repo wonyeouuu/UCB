@@ -22,3 +22,6 @@ Route::get('/checkLogin', function() {
         return 0;
     }
 });
+
+Route::get('/reminder', 'ReminderController@all');
+Route::post('/reminder/create', 'ReminderController@create');

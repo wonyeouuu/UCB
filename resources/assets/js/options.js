@@ -1,39 +1,39 @@
 export const frequency = [
     {
         value: 1,
-        text: 'Every day(1)'
+        text: 'Every day'
     },
     {
         value: 2,
-        text: '2 times a day(2)'
+        text: '2 times a day'
     },
     {
         value: 3,
-        text: '3 times a day(3)'
+        text: '3 times a day'
     },
     {
         value: 4,
-        text: '4 times a day(4)'
+        text: '4 times a day'
     },
     {
         value: 5,
-        text: '3 times a week(1)'
+        text: '3 times a week'
     },
     {
         value: 6,
-        text: 'Every 2 days(1)'
+        text: 'Every 2 days'
     },
     {
         value: 7,
-        text: 'Every 3 days(1)'
+        text: 'Every 3 days'
     },
     {
         value: 8,
-        text: 'Every week(1)'
+        text: 'Every week'
     },
     {
         value: 9,
-        text: 'Every 28 days(1)'
+        text: 'Every 28 days'
     }
 ]
 export const weekDays = [
@@ -62,41 +62,41 @@ export const weekDays = [
         text: 'Saturday'
     },
     {
-        value: 7,
+        value: 0,
         text: 'Sunday'
     }
 ]
 export const reminderBefore = [
     {
-        value: 1,
+        value: 300,
         text: '5 mins before'
     },
     {
-        value: 2,
+        value: 900,
         text: '15 mins before'
     },
     {
-        value: 3,
+        value: 1800,
         text: '30 mins before'
     },
     {
-        value: 4,
+        value: 3600,
         text: '1 hour before'
     },
     {
-        value: 5,
+        value: 7200,
         text: '2 hours before'
     },
     {
-        value: 6,
+        value: 86400,
         text: '1 day before'
     },
     {
-        value: 7,
+        value: 172800,
         text: '2 days before'
     },
     {
-        value: 8,
+        value: 604800,
         text: '1 week before'
     }
 ]
