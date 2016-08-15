@@ -30549,17 +30549,19 @@ Object.defineProperty(exports, "__esModule", {
 
 var _options = require("../../options");
 
+// import moment from 'moment'
 exports.default = {
     data: function data() {
         return {
             name: "",
+            // date: moment().format('YYYY-MM-DD'),
             date: "",
-            symptom: "",
+            symptom: 0,
             relapse: false,
-            edss: "",
-            MRI: "",
+            edss: 0,
+            MRI: [0],
             T25FW: "",
-            MSWS12: "",
+            MSWS12: 0,
             symptoms: _options.symptoms,
             MRIoptions: _options.MRI
         };
@@ -30570,6 +30572,7 @@ exports.default = {
             format: 'yyyy-mm-dd',
             selectYears: 15 // Creates a dropdown of 15 years to control year
         });
+        // $('.datepicker').val(moment().format('YYYY-MM-DD'))
         $('select').material_select();
         var vm = this;
         $('#symptom-select').on('change', function () {
@@ -30600,6 +30603,8 @@ exports.default = {
             this.MSWS12 = newStatus;
         },
         create: function create() {
+            var _this = this;
+
             this.$http.post('/record/create', {
                 date: this.date,
                 symptom: this.symptom,
@@ -30608,12 +30613,17 @@ exports.default = {
                 mri: this.MRI,
                 t25fw: this.T25FW,
                 msws: this.MSWS12
+            }).then(function (_ref) {
+                var data = _ref.data;
+
+                Materialize.toast(data.message, 3000);
+                _this.$router.go({ name: 'record' });
             });
         }
     }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div _v-04551d98=\"\"><nav _v-04551d98=\"\"><div class=\"nav-wrapper\" _v-04551d98=\"\"><a class=\"brand-logo\" _v-04551d98=\"\">Record</a><a @click=\"$router.go({ name: &quot;record&quot; })\" _v-04551d98=\"\"><i class=\"material-icons\" _v-04551d98=\"\">keyboard_arrow_left</i></a><a @click=\"create()\" class=\"action-right\" _v-04551d98=\"\"><i class=\"material-icons\" _v-04551d98=\"\">edit</i></a></div></nav><div id=\"record-form-container\" class=\"row\" _v-04551d98=\"\"><form class=\"col s12\" _v-04551d98=\"\"><div class=\"row\" _v-04551d98=\"\"><div class=\"input-field col s12\" _v-04551d98=\"\"><input id=\"dateInput\" type=\"date\" v-model=\"date\" class=\"datepicker\" _v-04551d98=\"\"><label for=\"dateInput\" _v-04551d98=\"\">Date</label></div></div><div class=\"row\" _v-04551d98=\"\"><div class=\"input-field col s12\" _v-04551d98=\"\"><select id=\"symptom-select\" _v-04551d98=\"\"><option :value=\"0\" selected=\"selected\" _v-04551d98=\"\">None</option><option v-for=\"option in symptoms\" :value=\"option.value\" _v-04551d98=\"\">{{ option.text }}</option></select><label _v-04551d98=\"\">Clinical Symptoms</label></div></div><div class=\"row\" _v-04551d98=\"\"><div class=\"input-field col s12\" _v-04551d98=\"\"><div class=\"switch\" _v-04551d98=\"\"><label _v-04551d98=\"\">Relapse<input type=\"checkbox\" v-model=\"relapse\" _v-04551d98=\"\"><span class=\"lever\" _v-04551d98=\"\"></span></label></div></div></div><div class=\"row\" _v-04551d98=\"\"><div class=\"input-field col s12\" _v-04551d98=\"\"><select id=\"edss-select\" _v-04551d98=\"\"><option :value=\"0\" selected=\"selected\" _v-04551d98=\"\">None</option><option v-for=\"count in 19\" :value=\"(count + 1) / 2\" _v-04551d98=\"\">{{ (count + 1) / 2 }}</option></select><label _v-04551d98=\"\">EDSS</label></div></div><div class=\"row\" _v-04551d98=\"\"><div class=\"input-field col s12\" _v-04551d98=\"\"><select id=\"MRI-select\" multiple=\"multiple\" v-model=\"MRI\" _v-04551d98=\"\"><option :value=\"\" disabled=\"disabled\" selected=\"selected\" _v-04551d98=\"\">None</option><option v-for=\"item in MRIoptions\" :value=\"item.value\" _v-04551d98=\"\">{{ item.text }}</option></select><label _v-04551d98=\"\">MRI</label></div></div><div class=\"row\" _v-04551d98=\"\"><div class=\"input-field col s12\" _v-04551d98=\"\"><input id=\"T25FW-input\" type=\"number\" v-model=\"T25FW\" _v-04551d98=\"\"><label _v-04551d98=\"\">T25FW(seconds)</label></div></div><div class=\"row\" _v-04551d98=\"\"><div class=\"input-field col s12\" _v-04551d98=\"\"><select id=\"MSWS12-select\" _v-04551d98=\"\"><option :value=\"0\" selected=\"selected\" _v-04551d98=\"\">None</option><option v-for=\"count in 49\" :value=\"(count + 12)\" _v-04551d98=\"\">{{ (count + 12) }}</option></select><label _v-04551d98=\"\">MSWS12</label></div></div></form></div></div>"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div _v-04551d98=\"\"><nav _v-04551d98=\"\"><div class=\"nav-wrapper\" _v-04551d98=\"\"><a class=\"brand-logo\" _v-04551d98=\"\">Record</a><a @click=\"$router.go({ name: &quot;record&quot; })\" _v-04551d98=\"\"><i class=\"material-icons\" _v-04551d98=\"\">keyboard_arrow_left</i></a><a @click=\"create()\" class=\"action-right\" _v-04551d98=\"\"><i class=\"material-icons\" _v-04551d98=\"\">edit</i></a></div></nav><div id=\"record-form-container\" class=\"row\" _v-04551d98=\"\"><form class=\"col s12\" _v-04551d98=\"\"><div class=\"row\" _v-04551d98=\"\"><div class=\"input-field col s12\" _v-04551d98=\"\"><input id=\"dateInput\" type=\"date\" v-model=\"date\" class=\"datepicker\" _v-04551d98=\"\"><label for=\"dateInput\" _v-04551d98=\"\">Date</label></div></div><div class=\"row\" _v-04551d98=\"\"><div class=\"input-field col s12\" _v-04551d98=\"\"><select id=\"symptom-select\" _v-04551d98=\"\"><option :value=\"0\" selected=\"selected\" _v-04551d98=\"\">None</option><option v-for=\"option in symptoms\" :value=\"option.value\" _v-04551d98=\"\">{{ option.text }}</option></select><label _v-04551d98=\"\">Clinical Symptoms</label></div></div><div class=\"row\" _v-04551d98=\"\"><div class=\"input-field col s12\" _v-04551d98=\"\"><div class=\"switch\" _v-04551d98=\"\"><label _v-04551d98=\"\">Relapse<input type=\"checkbox\" v-model=\"relapse\" _v-04551d98=\"\"><span class=\"lever\" _v-04551d98=\"\"></span></label></div></div></div><div class=\"row\" _v-04551d98=\"\"><div class=\"input-field col s12\" _v-04551d98=\"\"><select id=\"edss-select\" _v-04551d98=\"\"><option :value=\"0\" selected=\"selected\" _v-04551d98=\"\">None</option><option v-for=\"count in 19\" :value=\"(count + 1) / 2\" _v-04551d98=\"\">{{ (count + 1) / 2 }}</option></select><label _v-04551d98=\"\">EDSS</label></div></div><div class=\"row\" _v-04551d98=\"\"><div class=\"input-field col s12\" _v-04551d98=\"\"><select id=\"MRI-select\" multiple=\"multiple\" v-model=\"MRI\" _v-04551d98=\"\"><option :value=\"0\" selected=\"selected\" disabled=\"disabled\" _v-04551d98=\"\">None</option><option v-for=\"item in MRIoptions\" :value=\"item.value\" _v-04551d98=\"\">{{ item.text }}</option></select><label _v-04551d98=\"\">MRI</label></div></div><div class=\"row\" _v-04551d98=\"\"><div class=\"input-field col s12\" _v-04551d98=\"\"><input id=\"T25FW-input\" type=\"number\" v-model=\"T25FW\" _v-04551d98=\"\"><label _v-04551d98=\"\">T25FW(seconds)</label></div></div><div class=\"row\" _v-04551d98=\"\"><div class=\"input-field col s12\" _v-04551d98=\"\"><select id=\"MSWS12-select\" _v-04551d98=\"\"><option :value=\"0\" selected=\"selected\" _v-04551d98=\"\">None</option><option v-for=\"count in 49\" :value=\"(count + 12)\" _v-04551d98=\"\">{{ (count + 12) }}</option></select><label _v-04551d98=\"\">MSWS12</label></div></div></form></div></div>"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -30630,7 +30640,7 @@ if (module.hot) {(function () {  module.hot.accept()
 })()}
 },{"../../options":26,"vue":7,"vue-hot-reload-api":4,"vueify/lib/insert-css":8}],23:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert(".btn-floating[_v-d768834e] {\n  position: fixed;\n  bottom: 1rem;\n  right: 1rem;\n}\n.record-container[_v-d768834e] {\n  height: 78vh;\n  overflow-y: scroll;\n}\n.pull-right[_v-d768834e] {\n  float: right;\n  overflow-x: scroll;\n  white-space: nowrap;\n  width: 30vw;\n}\n.pull-left[_v-d768834e] {\n  float: left;\n}\n.card-content[_v-d768834e] {\n  font-size: 1.2rem;\n}\n")
+var __vueify_style__ = __vueify_insert__.insert(".btn-floating[_v-d768834e] {\n  position: fixed;\n  bottom: 1rem;\n  right: 1rem;\n}\n.pull-right[_v-d768834e] {\n  float: right;\n  overflow-x: scroll;\n  white-space: nowrap;\n  width: 30vw;\n}\n.pull-left[_v-d768834e] {\n  float: left;\n}\n.card-content[_v-d768834e] {\n  font-size: 1.2rem;\n}\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -30662,13 +30672,13 @@ exports.default = {
     }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div class=\"row record-container\" _v-d768834e=\"\"><div v-for=\"record in records\" class=\"col s12 m6\" _v-d768834e=\"\"><div class=\"card grey lighten-2\" _v-d768834e=\"\"><div class=\"card-content\" _v-d768834e=\"\"><p _v-d768834e=\"\"><span _v-d768834e=\"\">{{ record.date.split(' ')[0] }}</span><span class=\"pull-right\" _v-d768834e=\"\"><a _v-d768834e=\"\">Edit</a></span></p><p _v-d768834e=\"\"><span _v-d768834e=\"\">Clinical Symptom</span><span class=\"pull-right\" _v-d768834e=\"\">{{ symptomParser(record.symptom) }}</span></p><p _v-d768834e=\"\"><span _v-d768834e=\"\">Relapse</span><span class=\"pull-right\" _v-d768834e=\"\">{{ record.relapse == 1 ? 'Yes' : 'No' }}</span></p><p _v-d768834e=\"\"><span _v-d768834e=\"\">EDSS</span><span class=\"pull-right\" _v-d768834e=\"\">{{ record.edss }}</span></p><p _v-d768834e=\"\"><span _v-d768834e=\"\">MRI</span><span class=\"pull-right\" _v-d768834e=\"\">{{ mriParser(record.mri) }}</span></p><p _v-d768834e=\"\"><span _v-d768834e=\"\">T25FW</span><span class=\"pull-right\" _v-d768834e=\"\">{{ record.t25fw }}</span></p><p _v-d768834e=\"\"><span _v-d768834e=\"\">MSWS-12</span><span class=\"pull-right\" _v-d768834e=\"\">{{ record.msws }}</span></p></div></div></div></div><a @click=\"$router.go({ name: &quot;editRecord&quot; })\" class=\"btn-floating btn-large waves-effect waves-light\" _v-d768834e=\"\"><i class=\"material-icons\" _v-d768834e=\"\">add</i></a>"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div class=\"row record-container\" _v-d768834e=\"\"><div v-for=\"record in records\" class=\"col s12 m6\" _v-d768834e=\"\"><div class=\"card grey lighten-2\" _v-d768834e=\"\"><div class=\"card-content\" _v-d768834e=\"\"><p _v-d768834e=\"\"><span _v-d768834e=\"\">{{ record.date.split(' ')[0] }}</span><span class=\"pull-right\" _v-d768834e=\"\"><a _v-d768834e=\"\">Edit</a></span></p><p _v-d768834e=\"\"><span _v-d768834e=\"\">Clinical Symptom</span><span class=\"pull-right\" _v-d768834e=\"\">{{ symptomParser(record.symptom) }}</span></p><p _v-d768834e=\"\"><span _v-d768834e=\"\">Relapse</span><span class=\"pull-right\" _v-d768834e=\"\">{{ record.relapse == 1 ? 'Yes' : 'No' }}</span></p><p _v-d768834e=\"\"><span _v-d768834e=\"\">EDSS</span><span class=\"pull-right\" _v-d768834e=\"\">{{ record.edss == 0 ? 'None' : record.edss }}</span></p><p _v-d768834e=\"\"><span _v-d768834e=\"\">MRI</span><span class=\"pull-right\" _v-d768834e=\"\">{{ record.mri == 0 ? 'None' : mriParser(record.mri) }}</span></p><p _v-d768834e=\"\"><span _v-d768834e=\"\">T25FW</span><span class=\"pull-right\" _v-d768834e=\"\">{{ record.t25fw == 0 ? 'None' : record.t25fw }}</span></p><p _v-d768834e=\"\"><span _v-d768834e=\"\">MSWS-12</span><span class=\"pull-right\" _v-d768834e=\"\">{{ record.msws == 0 ? 'None' : record.msws }}</span></p></div></div></div></div><a @click=\"$router.go({ name: &quot;editRecord&quot; })\" class=\"btn-floating btn-large waves-effect waves-light\" _v-d768834e=\"\"><i class=\"material-icons\" _v-d768834e=\"\">add</i></a>"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.dispose(function () {
-    __vueify_insert__.cache[".btn-floating[_v-d768834e] {\n  position: fixed;\n  bottom: 1rem;\n  right: 1rem;\n}\n.record-container[_v-d768834e] {\n  height: 78vh;\n  overflow-y: scroll;\n}\n.pull-right[_v-d768834e] {\n  float: right;\n  overflow-x: scroll;\n  white-space: nowrap;\n  width: 30vw;\n}\n.pull-left[_v-d768834e] {\n  float: left;\n}\n.card-content[_v-d768834e] {\n  font-size: 1.2rem;\n}\n"] = false
+    __vueify_insert__.cache[".btn-floating[_v-d768834e] {\n  position: fixed;\n  bottom: 1rem;\n  right: 1rem;\n}\n.pull-right[_v-d768834e] {\n  float: right;\n  overflow-x: scroll;\n  white-space: nowrap;\n  width: 30vw;\n}\n.pull-left[_v-d768834e] {\n  float: left;\n}\n.card-content[_v-d768834e] {\n  font-size: 1.2rem;\n}\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
@@ -30974,6 +30984,9 @@ var reminderBefore = exports.reminderBefore = [{
 }];
 
 var symptoms = exports.symptoms = [{
+    value: 0,
+    text: 'None'
+}, {
     value: 1,
     text: 'Fatigue'
 }, {
@@ -31073,7 +31086,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 // export const symptomParser = value => symptoms[_.findKey(symptoms, { value })].text
 var symptomParser = exports.symptomParser = function symptomParser(value) {
-  return _options.symptoms[value - 1].text;
+  return _options.symptoms[value].text;
 };
 var mriParser = exports.mriParser = function mriParser(value) {
   return value.map(function (index) {

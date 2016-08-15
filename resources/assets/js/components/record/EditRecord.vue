@@ -35,7 +35,7 @@ div
             div.row
                 div.input-field.col.s12
                     select#MRI-select(multiple, v-model='MRI')
-                        option(:value='', disabled, selected) None
+                        option(:value='0', selected, disabled) None
                         option(v-for='item in MRIoptions', :value='item.value') {{ item.text }}
                     label MRI
             div.row
@@ -52,17 +52,19 @@ div
 
 <script>
 import { symptoms, MRI } from '../../options'
+// import moment from 'moment'
 export default {
     data() {
         return {
             name: "",
+            // date: moment().format('YYYY-MM-DD'),
             date: "",
-            symptom: "",
+            symptom: 0,
             relapse: false,
-            edss: "",
-            MRI: "",
+            edss: 0,
+            MRI: [0],
             T25FW: "",
-            MSWS12: "",
+            MSWS12: 0,
             symptoms,
             MRIoptions: MRI
         }
@@ -73,6 +75,7 @@ export default {
             format: 'yyyy-mm-dd',
             selectYears: 15 // Creates a dropdown of 15 years to control year
         })
+        // $('.datepicker').val(moment().format('YYYY-MM-DD'))
         $('select').material_select()
         const vm = this
         $('#symptom-select').on('change', function() {
@@ -112,6 +115,10 @@ export default {
                     mri: this.MRI,
                     t25fw: this.T25FW,
                     msws: this.MSWS12
+                })
+                .then(({ data }) => {
+                    Materialize.toast(data.message, 3000)
+                    this.$router.go({ name: 'record' })
                 })
         }
     }

@@ -15,16 +15,16 @@ div.row.record-container
                     span.pull-right {{ record.relapse == 1 ? 'Yes' : 'No' }}
                 p
                     span EDSS
-                    span.pull-right {{ record.edss }}
+                    span.pull-right {{ record.edss == 0 ? 'None' : record.edss }}
                 p
                     span MRI
-                    span.pull-right {{ mriParser(record.mri) }}
+                    span.pull-right {{ record.mri == 0 ? 'None' : mriParser(record.mri) }}
                 p
                     span T25FW
-                    span.pull-right {{ record.t25fw }}
+                    span.pull-right {{ record.t25fw == 0 ? 'None' : record.t25fw }}
                 p
                     span MSWS-12
-                    span.pull-right {{ record.msws }}
+                    span.pull-right {{ record.msws == 0 ? 'None' : record.msws }}
 a.btn-floating.btn-large.waves-effect.waves-light(@click='$router.go({ name: "editRecord" })')
     i.material-icons add
 </template>
@@ -57,9 +57,6 @@ export default {
     position fixed
     bottom 1rem
     right 1rem
-.record-container
-    height 78vh
-    overflow-y scroll
 .pull-right
     float right
     overflow-x scroll
