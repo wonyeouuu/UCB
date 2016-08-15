@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Record;
 use App\Reminder;
 
 class User extends Authenticatable
@@ -28,5 +29,10 @@ class User extends Authenticatable
     public function reminders()
     {
         return $this->hasMany(Reminder::class);
+    }
+
+    public function records()
+    {
+        return $this->hasMany(Record::class);
     }
 }

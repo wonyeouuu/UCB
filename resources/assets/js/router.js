@@ -10,6 +10,8 @@ import RegisterView from './components/login/RegisterView.vue'
 import Home from './components/Home.vue'
 import Reminders from './components/reminder/Reminders.vue'
 import EditReminder from './components/reminder/EditReminder.vue'
+import Records from './components/record/Records.vue'
+import EditRecord from './components/record/EditRecord.vue'
 import PrivacyPolicy from './components/home/PrivacyPolicy.vue'
 import TermOfUse from './components/home/TermOfUse.vue'
 import UsefulLink from './components/home/UsefulLink.vue'
@@ -43,7 +45,7 @@ router.map({
                 name: 'reminder'
             },
             '/record': {
-                component: Reminders,
+                component: Records,
                 name: 'record'
             },
             '/analysis': {
@@ -67,6 +69,10 @@ router.map({
     '/reminder/edit': {
         component: EditReminder,
         name: 'editReminder'
+    },
+    '/record/edit': {
+        component: EditRecord,
+        name: 'editRecord'
     }
 })
 

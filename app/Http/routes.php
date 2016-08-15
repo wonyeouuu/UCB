@@ -25,3 +25,5 @@ Route::get('/checkLogin', function() {
 
 Route::get('/reminder', 'ReminderController@all');
 Route::post('/reminder/create', 'ReminderController@create');
+Route::get('/record', 'RecordController@all');
+Route::post('/record/create', 'RecordController@create');

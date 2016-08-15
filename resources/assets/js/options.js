@@ -100,3 +100,113 @@ export const reminderBefore = [
         text: '1 week before'
     }
 ]
+
+export const symptoms = [
+    {
+        value: 1,
+        text: 'Fatigue'
+    },
+    {
+        value: 2,
+        text: 'Walking (Gait) Difficulties'
+    },
+    {
+        value: 3,
+        text: 'Numbness or Tingling'
+    },
+    {
+        value: 4,
+        text: 'Spasticity'
+    },
+    {
+        value: 5,
+        text: 'Weakness'
+    },
+    {
+        value: 6,
+        text: 'Vision Problems'
+    },
+    {
+        value: 7,
+        text: 'Dizziness and Vertigo'
+    },
+    {
+        value: 8,
+        text: 'Bladder Problems'
+    },
+    {
+        value: 9,
+        text: 'Sexual Problems'
+    },
+    {
+        value: 10,
+        text: 'Bowel Problems'
+    },
+    {
+        value: 11,
+        text: 'Pain'
+    },
+    {
+        value: 12,
+        text: 'Cognitive Changes'
+    },
+    {
+        value: 13,
+        text: 'Emotional Changes'
+    },
+    {
+        value: 14,
+        text: 'Depression'
+    },
+    {
+        value: 15,
+        text: 'Speech Problems'
+    },
+    {
+        value: 16,
+        text: 'Swallowing Problems'
+    },
+    {
+        value: 17,
+        text: 'Tremor'
+    },
+    {
+        value: 18,
+        text: 'Seizures'
+    },
+    {
+        value: 19,
+        text: 'Breathing Problems'
+    },
+    {
+        value: 20,
+        text: 'Itching'
+    },
+    {
+        value: 21,
+        text: 'Headache'
+    },
+    {
+        value: 22,
+        text: 'Hearing Loss'
+    },
+    {
+        value: 23,
+        text: 'Others'
+    }
+]
+
+export const MRI = [
+    {
+        value: 1,
+        text: "At least 9 T2 lesions"
+    },
+    {
+        value: 2,
+        text: "At least 1 Gd+ lesions"
+    },
+    {
+        value: 3,
+        text: "Increase in T2 lesion load"
+    }
+]

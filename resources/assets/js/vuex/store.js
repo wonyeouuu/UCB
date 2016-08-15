@@ -6,12 +6,16 @@ Vue.use(Vuex)
 Vue.use(VueRouter)
 
 const state = {
-    reminders: []
+    reminders: [],
+    records: []
 }
 
 const mutations = {
     FETCH_REMINDERS(state, reminders) {
         state.reminders = reminders
+    },
+    FETCH_RECORDS(state, records) {
+        state.records = records
     }
 }
 
