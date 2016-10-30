@@ -27,4 +27,18 @@ Class RecordRepository
             'message' => 'Success.'
         ];
     }
+
+    public function update($id)
+    {
+        Record::find($id)->update(Input::all());
+        return [
+            'success' => 1,
+            'message' => 'Success.'
+        ];
+    }
+
+    public function show($id)
+    {
+        return Record::find($id);
+    }
 }

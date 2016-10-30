@@ -7,9 +7,9 @@ div.row.reminder-container
                 p {{ reminder.note }}
             div.card-action
                 a {{ reminder.alerts[0].alert_at }}
-                //- a(@click='edit(reminder.id)') Edit
+                a.edit-btn(@click='$router.go({ name: "editReminder", params: { id: reminder.id } })') Edit
 
-a.btn-floating.btn-large.waves-effect.waves-light(@click='$router.go({ name: "editReminder" })')
+a.btn-floating.btn-large.waves-effect.waves-light(@click='$router.go({ name: "createReminder" })')
     i.material-icons add
 </template>
 
@@ -39,4 +39,6 @@ export default {
 .reminder-container
     height 78vh
     overflow-y scroll
+.edit-btn
+    float right
 </style>

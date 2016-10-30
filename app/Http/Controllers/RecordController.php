@@ -23,4 +23,14 @@ class RecordController extends Controller
     {
         return RecordRepository::make()->create();
     }
+
+    public function update($id)
+    {
+        return RecordRepository::make()->update($id);
+    }
+
+    public function show($id)
+    {
+        return RecordRepository::make()->show($id);
+    }
 }

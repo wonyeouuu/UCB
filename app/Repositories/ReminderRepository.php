@@ -101,9 +101,50 @@ Class ReminderRepository
         }
     }
 
+    public function update($id)
+    {
+        // Record::find($id)->update(Input::all());
+        // return [
+        //     'success' => 1,
+        //     'message' => 'Success.'
+        // ];
+    }
+
+    public function show($id)
+    {
+        return Reminder::with('alerts')->find($id);
+    }
+
     protected function toInterval($timeStr)
     {
         $time = Carbon::parse($timeStr);
         return CarbonInterval::create(0, 0, 0, 0, $time->hour, $time->minute, $time->second);
+    }
+
+    public function delete($id)
+    {
+        $reminder = Reminder::find($id);
+        if ($reminder->user_id != Auth::user()->id) {
+            return [
+                'success' => '0',
+                'message' => 'Unauthrorized.'
+            ];
+        }
+        DB::beginTransaction();
+        try {
+            $reminder->alerts()->delete();
+            $reminder->delete();
+            DB::commit();
+            return [
+                'success' => '1',
+                'message' => 'Success.'
+            ];
+        } catch (\Exception $e) {
+            DB::rollback();
+            return [
+                'success' => '0',
+                'message' => 'Failed.'
+            ];
+        }
     }
 }

@@ -19,7 +19,17 @@ class Record extends Model
         $this->attributes['mri'] = is_array($value) ? implode(',', $value) : $value;
     }
 
+    public function setSymptomAttribute($value)
+    {
+        $this->attributes['symptom'] = is_array($value) ? implode(',', $value) : $value;
+    }
+
     public function getMriAttribute($value)
+    {
+        return explode(',', $value);
+    }
+
+    public function getSymptomAttribute($value)
     {
         return explode(',', $value);
     }

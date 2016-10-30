@@ -6,7 +6,7 @@ div.row.record-container
                 p
                     span {{ record.date.split(' ')[0] }}
                     span.pull-right
-                        a Edit
+                        a(@click='$router.go({ name: "editRecord", params: { id: record.id } })') Edit
                 p
                     span Clinical Symptom
                     span.pull-right {{ symptomParser(record.symptom) }}
@@ -25,7 +25,7 @@ div.row.record-container
                 p
                     span MSWS-12
                     span.pull-right {{ record.msws == 0 ? 'None' : record.msws }}
-a.btn-floating.btn-large.waves-effect.waves-light(@click='$router.go({ name: "editRecord" })')
+a.btn-floating.btn-large.waves-effect.waves-light(@click='$router.go({ name: "createRecord" })')
     i.material-icons add
 </template>
 

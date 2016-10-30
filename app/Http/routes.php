@@ -24,6 +24,11 @@ Route::get('/checkLogin', function() {
 });
 
 Route::get('/reminder', 'ReminderController@all');
+Route::get('/reminder/{id}', 'ReminderController@show');
+Route::put('/reminder/{id}', 'ReminderController@update');
+Route::delete('/reminder/{id}', 'ReminderController@delete');
 Route::post('/reminder/create', 'ReminderController@create');
 Route::get('/record', 'RecordController@all');
+Route::get('/record/{id}', 'RecordController@show');
+Route::put('/record/{id}', 'RecordController@update');
 Route::post('/record/create', 'RecordController@create');

@@ -5,7 +5,9 @@ div
             a.brand-logo Record
             a(@click='$router.go({ name: "record" })')
                 i.material-icons keyboard_arrow_left
-            a.action-right(@click='create()')
+            a.action-right(@click='create', v-if='!$route.params.id')
+                i.material-icons edit
+            a.action-right(@click='update', v-if='$route.params.id')
                 i.material-icons edit
     div#record-form-container.row
         form.col.s12
@@ -15,8 +17,8 @@ div
                     label(for='dateInput') Date
             div.row
                 div.input-field.col.s12
-                    select#symptom-select
-                        option(:value='0', selected) None
+                    select#symptom-select(multiple, v-model='symptom')
+                        option(:value='0', selected, disabled) None
                         option(v-for='option in symptoms', :value='option.value') {{ option.text }}
                     label Clinical Symptoms
             div.row
@@ -52,14 +54,13 @@ div
 
 <script>
 import { symptoms, MRI } from '../../options'
-// import moment from 'moment'
+import moment from 'moment'
+
 export default {
     data() {
         return {
-            name: "",
-            // date: moment().format('YYYY-MM-DD'),
             date: "",
-            symptom: 0,
+            symptom: [],
             relapse: false,
             edss: 0,
             MRI: [0],
@@ -70,13 +71,31 @@ export default {
         }
     },
     ready() {
-        $('.datepicker').pickadate({
+        const datePickers = $('.datepicker').pickadate({
             selectMonths: true, // Creates a dropdown to control month
             format: 'yyyy-mm-dd',
             selectYears: 15 // Creates a dropdown of 15 years to control year
         })
-        // $('.datepicker').val(moment().format('YYYY-MM-DD'))
         $('select').material_select()
+        if (this.$route.params.id) {
+            this.$http.get(`/record/${this.$route.params.id}`).then(({ data }) => {
+                datePickers.pickadate('picker').set('select', moment(data.date).format('YYYY-MM-DD'))
+                this.date = moment(data.date).format('YYYY-MM-DD')
+                this.symptom = data.symptom
+                this.relapse = parseInt(data.relapse, 10) === 1
+                this.edss = data.edss
+                this.MRI = data.mri
+                this.T25FW = data.t25fw
+                this.MSWS12 = data.msws
+                $('#T25FW-input').val(data.t25fw)
+                $('#symptom-select').val(data.symptom)
+                $('#edss-select').val(parseFloat(data.edss))
+                $('#MRI-select').val(data.mri)
+                $('#MSWS12-select').val(data.msws)
+                $('select').material_select()
+                Materialize.updateTextFields()
+            })
+        }
         const vm = this
         $('#symptom-select').on('change', function() {
             vm.updateSymptom($(this).val())
@@ -108,6 +127,24 @@ export default {
             this
                 .$http
                 .post('/record/create', {
+                    date: this.date,
+                    symptom: this.symptom,
+                    relapse: this.relapse ? 1 : 2,
+                    edss: this.edss,
+                    mri: this.MRI,
+                    t25fw: this.T25FW,
+                    msws: this.MSWS12
+                })
+                .then(({ data }) => {
+                    Materialize.toast(data.message, 3000)
+                    this.$router.go({ name: 'record' })
+                })
+        },
+        update() {
+            this
+                .$http
+                .post(`/record/${this.$route.params.id}`, {
+                    _method: 'PUT',
                     date: this.date,
                     symptom: this.symptom,
                     relapse: this.relapse ? 1 : 2,

@@ -103,10 +103,6 @@ export const reminderBefore = [
 
 export const symptoms = [
     {
-        value: 0,
-        text: 'None'
-    },
-    {
         value: 1,
         text: 'Fatigue'
     },

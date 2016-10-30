@@ -9,6 +9,7 @@ import RegisterView from './components/login/RegisterView.vue'
 
 import Home from './components/Home.vue'
 import Reminders from './components/reminder/Reminders.vue'
+import Analysis from './components/analysis/Analysis.vue'
 import EditReminder from './components/reminder/EditReminder.vue'
 import Records from './components/record/Records.vue'
 import EditRecord from './components/record/EditRecord.vue'
@@ -49,7 +50,7 @@ router.map({
                 name: 'record'
             },
             '/analysis': {
-                component: Reminders,
+                component: Analysis,
                 name: 'analysis'
             },
             '/privacyPolicy': {
@@ -68,9 +69,17 @@ router.map({
     },
     '/reminder/edit': {
         component: EditReminder,
+        name: 'createReminder'
+    },
+    '/reminder/edit/:id': {
+        component: EditReminder,
         name: 'editReminder'
     },
     '/record/edit': {
+        component: EditRecord,
+        name: 'createRecord'
+    },
+    '/record/edit/:id': {
         component: EditRecord,
         name: 'editRecord'
     }

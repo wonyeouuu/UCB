@@ -17,7 +17,7 @@ class Reminder extends Model
     public static $FREQUENCY_ONCEINTHREEDAYS = 7;
     public static $FREQUENCY_ONCEAWEEK = 8;
     public static $FREQUENCY_ONCEIN28DAYS = 9;
-    
+
     protected $guarded = [
         'id', 'created_at', 'updated_at'
     ];
@@ -34,6 +34,11 @@ class Reminder extends Model
     public function setTimesAttribute($value)
     {
         $this->attributes['times'] = is_array($value) ? implode(',', $value) : $value;
+    }
+
+    public function getTimesAttribute($value)
+    {
+        return explode(',', $value);
     }
 
     public function user()
