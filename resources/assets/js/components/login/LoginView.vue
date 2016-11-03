@@ -51,7 +51,6 @@ export default {
                     if (data.success == 1) {
                         Materialize.toast(data.msg, 5000)
                         this.setUser(data.user)
-                        Android.showToast(data.user.username)
                         this.$router.go({ name: 'home' })
                     }
                 })

@@ -8,8 +8,20 @@ div
 <script>
 import NavBar from './NavBar.vue'
 import Tabs from './Tabs.vue'
+import { user } from '../vuex/getters'
+
 export default {
-    components: { NavBar, Tabs }
+    components: { NavBar, Tabs },
+    vuex: {
+        getters: {
+            user
+        }
+    },
+    ready() {
+        if (typeof Android !== 'undefined') {
+            Android.showToast(this.user.username)
+        }
+    }
 }
 </script>
 

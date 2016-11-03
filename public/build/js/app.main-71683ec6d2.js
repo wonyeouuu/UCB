@@ -46377,10 +46377,22 @@ var _Tabs = require('./Tabs.vue');
 
 var _Tabs2 = _interopRequireDefault(_Tabs);
 
+var _getters = require('../vuex/getters');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
-    components: { NavBar: _NavBar2.default, Tabs: _Tabs2.default }
+    components: { NavBar: _NavBar2.default, Tabs: _Tabs2.default },
+    vuex: {
+        getters: {
+            user: _getters.user
+        }
+    },
+    ready: function ready() {
+        if (typeof Android !== 'undefined') {
+            Android.showToast(this.user.username);
+        }
+    }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
 ;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div _v-31ea03b4=\"\"><nav-bar _v-31ea03b4=\"\"></nav-bar><tabs v-if=\"[&quot;reminder&quot;, &quot;record&quot;, &quot;analysis&quot;].indexOf($route.name) != -1\" _v-31ea03b4=\"\"></tabs><router-view _v-31ea03b4=\"\"></router-view></div>"
@@ -46394,7 +46406,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-31ea03b4", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"./NavBar.vue":18,"./Tabs.vue":19,"vue":11,"vue-hot-reload-api":8}],18:[function(require,module,exports){
+},{"../vuex/getters":35,"./NavBar.vue":18,"./Tabs.vue":19,"vue":11,"vue-hot-reload-api":8}],18:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -46739,7 +46751,6 @@ exports.default = {
                 if (data.success == 1) {
                     Materialize.toast(data.msg, 5000);
                     _this.setUser(data.user);
-                    Android.showToast(data.user.username);
                     _this.$router.go({ name: 'home' });
                 }
             }).catch(function (_ref2) {
@@ -47729,6 +47740,9 @@ var reminders = exports.reminders = function reminders(state) {
 };
 var records = exports.records = function records(state) {
   return state.records;
+};
+var user = exports.user = function user(state) {
+  return state.user;
 };
 
 },{}],36:[function(require,module,exports){
