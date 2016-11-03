@@ -17,6 +17,8 @@ form.col.s12
 </template>
 
 <script>
+import { setUser } from '../../vuex/actions'
+
 export default {
     data() {
         return {
@@ -26,6 +28,11 @@ export default {
                 username: "",
                 password: ""
             }
+        }
+    },
+    vuex: {
+        actions: {
+            setUser
         }
     },
     methods: {
@@ -43,6 +50,8 @@ export default {
                 .then(({ data, status }) => {
                     if (data.success == 1) {
                         Materialize.toast(data.msg, 5000)
+                        this.setUser(data.user)
+                        Android.showToast(data.user.username)
                         this.$router.go({ name: 'home' })
                     }
                 })

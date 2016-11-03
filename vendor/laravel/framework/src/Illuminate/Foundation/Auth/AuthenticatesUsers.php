@@ -117,7 +117,8 @@ trait AuthenticatesUsers
 
         return [
             'success' => 1,
-            'msg' => 'Login Success.'
+            'msg' => 'Login Success.',
+            'user' => Auth::user()
         ];
 //        return redirect()->intended($this->redirectPath());
     }
@@ -178,7 +179,7 @@ trait AuthenticatesUsers
     public function logout()
     {
         Auth::guard($this->getGuard())->logout();
-        
+
         return [
             'success' => 1,
             'msg' => 'Logout Success.'

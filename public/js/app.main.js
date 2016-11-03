@@ -46701,6 +46701,9 @@ var __vueify_style__ = __vueify_insert__.insert(".error[_v-6ad7f143] {\n  color:
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+
+var _actions = require("../../vuex/actions");
+
 exports.default = {
     data: function data() {
         return {
@@ -46713,6 +46716,11 @@ exports.default = {
         };
     },
 
+    vuex: {
+        actions: {
+            setUser: _actions.setUser
+        }
+    },
     methods: {
         login: function login() {
             var _this = this;
@@ -46730,6 +46738,8 @@ exports.default = {
 
                 if (data.success == 1) {
                     Materialize.toast(data.msg, 5000);
+                    _this.setUser(data.user);
+                    Android.showToast(data.user.username);
                     _this.$router.go({ name: 'home' });
                 }
             }).catch(function (_ref2) {
@@ -46759,7 +46769,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-6ad7f143", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":11,"vue-hot-reload-api":8,"vueify/lib/insert-css":12}],26:[function(require,module,exports){
+},{"../../vuex/actions":34,"vue":11,"vue-hot-reload-api":8,"vueify/lib/insert-css":12}],26:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert(".error[_v-45f27163] {\n  color: #f00;\n  position: relative;\n  top: -1.5rem;\n  left: 0 !important;\n  font-size: 0.6rem !important;\n}\n")
 "use strict";
@@ -47675,7 +47685,7 @@ exports.default = router;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.fetchRecords = exports.fetchReminders = undefined;
+exports.setUser = exports.fetchRecords = exports.fetchReminders = undefined;
 
 var _vue = require('vue');
 
@@ -47701,6 +47711,11 @@ var fetchRecords = exports.fetchRecords = function fetchRecords(_ref3) {
 
         dispatch('FETCH_RECORDS', data);
     }).catch(console.log.bind(console));
+};
+
+var setUser = exports.setUser = function setUser(_ref5, user) {
+    var dispatch = _ref5.dispatch;
+    return dispatch('SET_USER', user);
 };
 
 },{"vue":11}],35:[function(require,module,exports){
@@ -47741,6 +47756,7 @@ _vue2.default.use(_vuex2.default);
 _vue2.default.use(_vueRouter2.default);
 
 var state = {
+    user: null,
     reminders: [],
     records: []
 };
@@ -47751,6 +47767,9 @@ var mutations = {
     },
     FETCH_RECORDS: function FETCH_RECORDS(state, records) {
         state.records = records;
+    },
+    SET_USER: function SET_USER(state, user) {
+        state.user = user;
     }
 };
 

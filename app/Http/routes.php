@@ -23,6 +23,13 @@ Route::get('/checkLogin', function() {
     }
 });
 
+// Route::get('/user', function () {
+//     if (Auth::check()) {
+//         return Auth::user();
+//     }
+//     return null;
+// });
+
 Route::get('/reminder', 'ReminderController@all');
 Route::get('/reminder/{id}', 'ReminderController@show');
 Route::put('/reminder/{id}', 'ReminderController@update');

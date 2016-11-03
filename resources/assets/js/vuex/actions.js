@@ -18,3 +18,5 @@ export const fetchRecords = ({ dispatch }) => {
         })
         .catch(console.log.bind(console))
 }
+
+export const setUser = ({ dispatch }, user) => dispatch('SET_USER', user)

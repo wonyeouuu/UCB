@@ -6,6 +6,7 @@ Vue.use(Vuex)
 Vue.use(VueRouter)
 
 const state = {
+    user: null,
     reminders: [],
     records: []
 }
@@ -16,6 +17,9 @@ const mutations = {
     },
     FETCH_RECORDS(state, records) {
         state.records = records
+    },
+    SET_USER(state, user) {
+        state.user = user
     }
 }
 
