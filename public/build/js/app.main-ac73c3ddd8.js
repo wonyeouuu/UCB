@@ -46390,7 +46390,7 @@ exports.default = {
     },
     ready: function ready() {
         if (typeof Android !== 'undefined' && this.user) {
-            Android.showToast(this.user.id);
+            Android.postToken(this.user.id);
         }
     }
 };

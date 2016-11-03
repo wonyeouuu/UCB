@@ -23,6 +23,8 @@ Route::get('/checkLogin', function() {
     }
 });
 
+Route::post('/{id}/token', 'TokenController@postToken');
+
 // Route::get('/user', function () {
 //     if (Auth::check()) {
 //         return Auth::user();
