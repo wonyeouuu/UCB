@@ -46389,8 +46389,8 @@ exports.default = {
         }
     },
     ready: function ready() {
-        if (typeof Android !== 'undefined') {
-            Android.showToast(this.user.username);
+        if (typeof Android !== 'undefined' && this.user) {
+            Android.showToast(this.user.id);
         }
     }
 };
@@ -47676,15 +47676,13 @@ router.redirect({
 });
 
 router.beforeEach(function (transition) {
-    if (['/', '/login'].indexOf(transition.to.path) != -1) {
-        _vue2.default.http.get('/checkLogin').then(function (_ref) {
-            var data = _ref.data;
-
-            if (data == 1) {
-                router.go({ name: 'home' });
-            }
-        });
-    }
+    // if (['/', '/login'].indexOf(transition.to.path) != -1) {
+    //     Vue.http.get('/checkLogin').then(({ data }) => {
+    //         if (data == 1) {
+    //             router.go({ name: 'home' })
+    //         }
+    //     })
+    // }
     transition.next();
 });
 

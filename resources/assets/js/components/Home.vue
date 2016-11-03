@@ -18,8 +18,8 @@ export default {
         }
     },
     ready() {
-        if (typeof Android !== 'undefined') {
-            Android.showToast(this.user.username)
+        if (typeof Android !== 'undefined' && this.user) {
+            Android.showToast(this.user.id)
         }
     }
 }
