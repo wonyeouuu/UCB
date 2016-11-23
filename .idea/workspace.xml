@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="952edf6d-c25c-49dd-8a30-1798661b9342" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Services/SendNotificationService.php" afterPath="$PROJECT_DIR$/app/Services/SendNotificationService.php" />
     </list>
     <ignored path="UCB.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,13 +25,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SendNotification.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Console/Commands/SendNotification.php">
+      <file leaf-file-name="SendNotificationService.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Services/SendNotificationService.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="497">
-              <caret line="53" column="36" selection-start-line="53" selection-start-column="36" selection-end-line="53" selection-end-column="36" />
+            <state relative-caret-position="529">
+              <caret line="41" column="16" selection-start-line="41" selection-start-column="16" selection-end-line="41" selection-end-column="16" />
               <folding>
-                <element signature="e#40#54#0#PHP" expanded="true" />
+                <element signature="e#32#61#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -53,11 +54,11 @@
         <option value="$PROJECT_DIR$/resources/assets/js/components/login/LoginView.vue" />
         <option value="$PROJECT_DIR$/app/Reminder.php" />
         <option value="$PROJECT_DIR$/config/app.php" />
-        <option value="$PROJECT_DIR$/app/Services/SendNotificationService.php" />
         <option value="$PROJECT_DIR$/app/Alert.php" />
         <option value="$PROJECT_DIR$/app/Console/Commands/SendNotification.php" />
         <option value="$PROJECT_DIR$/app/Console/Kernel.php" />
         <option value="$PROJECT_DIR$/database/migrations/2016_08_14_171339_create_alert_table.php" />
+        <option value="$PROJECT_DIR$/app/Services/SendNotificationService.php" />
       </list>
     </option>
   </component>
@@ -212,16 +213,16 @@
       <workItem from="1470746493790" duration="2236000" />
       <workItem from="1470920408425" duration="124000" />
       <workItem from="1472290990049" duration="38000" />
-      <workItem from="1479916780006" duration="3603000" />
+      <workItem from="1479916780006" duration="4318000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7552000" />
+    <option name="totallyTimeSpent" value="8267000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -231,7 +232,7 @@
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32945737" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32945737" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -530,25 +531,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Services/SendNotificationService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
-          <folding>
-            <marker date="1479919056000" expanded="true" signature="36:101" ph="..." />
-            <marker date="1479919056000" expanded="true" signature="132:1659" ph="{...}" />
-            <marker date="1479919056000" expanded="true" signature="380:443" ph="{...}" />
-            <marker date="1479919056000" expanded="true" signature="491:556" ph="{...}" />
-            <marker date="1479919056000" expanded="true" signature="588:1009" ph="{...}" />
-            <marker date="1479919056000" expanded="true" signature="665:730" ph="..." />
-            <marker date="1479919056000" expanded="true" signature="755:931" ph="..." />
-            <marker date="1479919056000" expanded="true" signature="756:930" ph="..." />
-            <marker date="1479919056000" expanded="true" signature="840:916" ph="..." />
-            <marker date="1479919056000" expanded="true" signature="1015:1657" ph="//..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2016_08_14_171339_create_alert_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="368">
@@ -568,10 +550,34 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Console/Commands/SendNotification.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="497">
-          <caret line="53" column="36" selection-start-line="53" selection-start-column="36" selection-end-line="53" selection-end-column="36" />
+        <state relative-caret-position="451">
+          <caret line="51" column="24" selection-start-line="51" selection-start-column="24" selection-end-line="51" selection-end-column="24" />
           <folding>
-            <element signature="e#40#54#0#PHP" expanded="true" />
+            <marker date="1479919297000" expanded="true" signature="44:147" ph="..." />
+            <marker date="1479919297000" expanded="true" signature="187:1348" ph="{...}" />
+            <marker date="1479919297000" expanded="true" signature="197:283" ph=" The name and signature of the console command. ..." />
+            <marker date="1479919297000" expanded="true" signature="329:401" ph=" The console command description. ..." />
+            <marker date="1479919297000" expanded="true" signature="464:535" ph=" Create a new command instance. ..." />
+            <marker date="1479919297000" expanded="true" signature="571:614" ph="{...}" />
+            <marker date="1479919297000" expanded="true" signature="623:693" ph=" Execute the console command. ..." />
+            <marker date="1479919297000" expanded="true" signature="724:1346" ph="{...}" />
+            <marker date="1479919297000" expanded="true" signature="798:829" ph="..." />
+            <marker date="1479919297000" expanded="true" signature="851:891" ph="..." />
+            <marker date="1479919297000" expanded="true" signature="990:1338" ph="..." />
+            <marker date="1479919297000" expanded="true" signature="1028:1337" ph="..." />
+            <marker date="1479919297000" expanded="true" signature="1090:1112" ph="..." />
+            <marker date="1479919297000" expanded="true" signature="1141:1147" ph="..." />
+            <marker date="1479919297000" expanded="true" signature="1215:1327" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Services/SendNotificationService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="529">
+          <caret line="41" column="16" selection-start-line="41" selection-start-column="16" selection-end-line="41" selection-end-column="16" />
+          <folding>
+            <element signature="e#32#61#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

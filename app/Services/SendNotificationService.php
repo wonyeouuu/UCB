@@ -35,7 +35,7 @@ class SendNotificationService
                 'to' => $this->user->fcm_token,
                 'notification' => [
                     'title' => 'MS Diary',
-                    'body' => $this->alert->reminder->name
+                    'body' => $this->alert->reminder->name,
                 ]
             ])
             ->asJson()
