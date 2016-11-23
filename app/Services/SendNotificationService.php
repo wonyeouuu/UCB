@@ -34,6 +34,7 @@ class SendNotificationService
             ->withData([
                 'to' => $this->user->fcm_token,
                 'notification' => [
+                    'title' => 'MS Diary',
                     'body' => $this->alert->reminder->name
                 ]
             ])
