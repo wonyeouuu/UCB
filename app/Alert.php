@@ -14,10 +14,15 @@ class Alert extends Model
     protected $guarded = [
         'id', 'created_at', 'updated_at'
     ];
+    
+    public static $ENUM_STATUS = [
+        'PENDING' => 1,
+        'TRIGGERED' => 2,
+    ];
 
     public function reminder()
     {
-        return $this->belongTo(Reminder::class);
+        return $this->belongsTo(Reminder::class);
     }
 
 }

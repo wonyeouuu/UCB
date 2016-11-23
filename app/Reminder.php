@@ -43,7 +43,7 @@ class Reminder extends Model
 
     public function user()
     {
-        return $this->belongTo(User::Class);
+        return $this->belongsTo(User::Class);
     }
 
     public function alerts()

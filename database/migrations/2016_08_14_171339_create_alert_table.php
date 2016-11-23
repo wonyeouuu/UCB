@@ -15,7 +15,7 @@ class CreateAlertTable extends Migration
         Schema::create('alerts', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('reminder_id')->unsigned();
-            $table->timestamp('alert_at');
+            $table->timestamp('alert_at')->nullable();
             $table->tinyInteger('status')->unsigned()->comment('1: waiting, 2: triggered')->default(1);
             $table->timestamps();
         });
