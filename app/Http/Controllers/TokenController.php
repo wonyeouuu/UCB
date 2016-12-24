@@ -11,6 +11,9 @@ class TokenController extends Controller
     public function postToken($id)
     {
         $user = User::find($id);
+        if ($user->fcm_token) {
+            return 0;
+        }
         $user->fcm_token = Input::get('token');
         $result = $user->save();
         return [
