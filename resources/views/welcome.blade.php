@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>UCB</title>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="{{ elixir('css/app.css') }}">
         <link rel="stylesheet" href="{{ elixir('css/materialize.clockpicker.main.css') }}">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
