@@ -1,7 +1,7 @@
 <template lang="jade">
 div.row.analysis-container
     div.row
-        div.col.s12.m6
+        div.col.s12.m6(@click='$router.go({ name: "duration" })')
             div.card.grey.lighten-2
                 div.card-content
                     span.card-title Anualize Relapse Rate
@@ -35,7 +35,7 @@ div.row.analysis-container
 </template>
 
 <script>
-import { records, reminders } from '../../vuex/getters'
+import { records, reminders, durations } from '../../vuex/getters'
 import { fetchRecords, fetchReminders } from '../../vuex/actions'
 import { symptomParser, mriParser } from '../../parser'
 export default {
@@ -46,13 +46,13 @@ export default {
         },
         getters: {
             records,
-            reminders
+            reminders,
+            durations,
         }
     },
     ready() {
         this.refreshRecords()
         this.refreshReminders()
-        console.log(JSON.parse(JSON.stringify(this.records)))
     },
     computed: {
         hasT2() {

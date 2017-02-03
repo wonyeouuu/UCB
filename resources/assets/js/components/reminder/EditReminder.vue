@@ -303,7 +303,7 @@ div.row
 .action-right
     position fixed
     top 0
-    right 0
+    right 5px
 #reminder-form-container
     height 88vh
     overflow-y scroll

@@ -8,7 +8,8 @@ Vue.use(VueRouter)
 const state = {
     user: null,
     reminders: [],
-    records: []
+    records: [],
+    durations: {},
 }
 
 const mutations = {
@@ -20,6 +21,9 @@ const mutations = {
     },
     SET_USER(state, user) {
         state.user = user
+    },
+    SET_DURATION(state, index, duration) {
+        state.durations[index] = duration
     }
 }
 

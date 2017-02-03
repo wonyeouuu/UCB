@@ -20,3 +20,4 @@ export const fetchRecords = ({ dispatch }) => {
 }
 
 export const setUser = ({ dispatch }, user) => dispatch('SET_USER', user)
+export const setDuration = ({ dispatch }, index, duration) => dispatch('SET_DURATION', index, duration)

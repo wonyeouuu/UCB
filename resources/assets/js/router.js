@@ -10,6 +10,7 @@ import RegisterView from './components/login/RegisterView.vue'
 import Home from './components/Home.vue'
 import Reminders from './components/reminder/Reminders.vue'
 import Analysis from './components/analysis/Analysis.vue'
+import Duration from './components/analysis/Duration.vue'
 import EditReminder from './components/reminder/EditReminder.vue'
 import Records from './components/record/Records.vue'
 import EditRecord from './components/record/EditRecord.vue'
@@ -82,7 +83,11 @@ router.map({
     '/record/edit/:id': {
         component: EditRecord,
         name: 'editRecord'
-    }
+    },
+    '/duration': {
+        component: Duration,
+        name: 'duration'
+    },
 })
 
 router.redirect({
